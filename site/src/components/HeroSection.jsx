@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const STATS = [
-  { value: '7', label: 'Guides' },
+  { value: '8', label: 'Guides' },
   { value: '500+', label: 'Quiz Questions' },
   { value: '50+', label: 'Deep Dives' },
   { value: '0', label: 'Excuses' },

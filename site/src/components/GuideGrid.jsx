@@ -79,6 +79,17 @@ const GUIDES = [
     chapters: 10,
     questions: 200,
   },
+  {
+    name: 'NERC RC Exam',
+    emoji: '⚡',
+    color: 'from-yellow-400 to-amber-500',
+    borderColor: 'rgba(245,158,11,0.5)',
+    glowColor: 'rgba(245,158,11,0.2)',
+    url: 'https://barbosaricardo.github.io/nerc-rc-study-guide/',
+    desc: 'Reliability Coordinator certification prep. 54 real exam questions, 63 flashcards, NERC standards, and operating procedures.',
+    chapters: 9,
+    questions: 54,
+  },
 ]
 
 const containerVariants = {
@@ -174,7 +185,7 @@ export default function GuideGrid() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-semibold tracking-wide mb-4">
-            ALL 7 STUDY GUIDES
+            ALL 8 STUDY GUIDES
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
             Your Complete Library
@@ -215,8 +226,8 @@ export default function GuideGrid() {
               value: GUIDES.reduce((a, g) => a + g.questions, 0) + '+',
               label: 'Quiz Questions',
             },
-            { value: '7', label: 'LaTeX PDFs' },
-            { value: '7', label: 'GitHub Pages Sites' },
+            { value: '8', label: 'LaTeX PDFs' },
+            { value: '8', label: 'GitHub Pages Sites' },
           ].map((stat) => (
             <div
               key={stat.label}
