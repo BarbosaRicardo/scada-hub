@@ -10,7 +10,7 @@
     background-image:
       radial-gradient(ellipse 80% 60% at 10% 0%, rgba(59,130,246,0.08) 0%, transparent 60%),
       radial-gradient(ellipse 60% 80% at 90% 100%, rgba(139,92,246,0.06) 0%, transparent 60%);
-    background-attachment: fixed;
+    background-attachment: scroll;
   }
 }
 

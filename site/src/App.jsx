@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-navy-800 text-slate-100">
+    <div className="min-h-screen text-slate-100">
       <HeroSection />
       <ArchitectureDiagram />
       <LearningPath />
