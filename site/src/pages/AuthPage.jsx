@@ -64,7 +64,7 @@ function LoginForm({ onSwitch }) {
         type="text"
         value={login}
         onChange={e => setLogin(e.target.value)}
-        placeholder="admin or you@example.com"
+        placeholder="username or email"
         autoComplete="username"
       />
       <FormInput
