@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { supabase } from '../lib/supabase'
+import ScadaBackground from '../components/ScadaBackground'
 
 const TABS = ['login', 'register', 'forgot']
 
@@ -228,45 +229,87 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen bg-navy-800 flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Dot grid background */}
+      {/* Dot grid */}
       <div className="absolute inset-0 dot-grid pointer-events-none" />
-      {/* Radial vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, rgba(8,24,41,0.9) 100%)',
-        }}
-      />
 
+      {/* Animated SCADA network background */}
+      <ScadaBackground />
+
+      {/* Login card — sits above the SVG */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md"
+        initial={{ opacity: 0, y: 24, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-md"
+        style={{ zIndex: 10 }}
       >
-        {/* Logo / branding */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
-              <span className="text-amber-400 text-sm font-bold">S</span>
+        {/* Branding */}
+        <div className="text-center mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="inline-flex items-center gap-3 mb-2"
+          >
+            {/* Logo mark — pulsing ring */}
+            <div className="relative">
+              <motion.div
+                className="absolute inset-0 rounded-xl border border-amber-500/40"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
+                transition={{ duration: 2.4, repeat: Infinity }}
+              />
+              <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/40
+                              flex items-center justify-center backdrop-blur-sm">
+                <span className="text-amber-400 text-base font-black tracking-tighter">SH</span>
+              </div>
             </div>
-            <span className="text-xl font-bold text-slate-100">SCADA Hub</span>
-          </div>
-          <p className="text-slate-400 text-sm">Industrial Protocol Training Platform</p>
+            <div className="text-left">
+              <div className="text-lg font-black text-slate-100 leading-none tracking-tight">SCADA Hub</div>
+              <div className="text-[10px] text-amber-500/70 font-mono tracking-widest uppercase">
+                Training Platform
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Live status bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full mt-1"
+            style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}
+          >
+            <motion.div
+              className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+              animate={{ opacity: [1, 0.3, 1] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+            />
+            <span className="text-[10px] font-mono text-emerald-400/80 tracking-wider">
+              ALL SYSTEMS NOMINAL
+            </span>
+          </motion.div>
         </div>
 
         {/* Card */}
-        <div className="bg-slate-900/70 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm shadow-2xl">
+        <div
+          className="rounded-2xl p-8 backdrop-blur-md shadow-2xl"
+          style={{
+            background: 'rgba(8, 20, 40, 0.82)',
+            border: '1px solid rgba(251,191,36,0.12)',
+            boxShadow: '0 0 40px rgba(251,191,36,0.06), 0 25px 50px rgba(0,0,0,0.5)',
+          }}
+        >
           {/* Tab selector */}
-          <div className="flex gap-1 bg-slate-800/60 rounded-xl p-1 mb-6">
+          <div className="flex gap-1 rounded-xl p-1 mb-6"
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
             {TABS.filter(t => t !== 'forgot').map(t => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className={`flex-1 py-2 rounded-lg text-xs font-semibold transition ${
+                className={`flex-1 py-2 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 ${
                   tab === t
-                    ? 'bg-amber-500 text-navy-900'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-amber-500 text-slate-900 shadow-lg'
+                    : 'text-slate-500 hover:text-slate-300'
                 }`}
               >
                 {tabLabel[t]}
@@ -274,25 +317,25 @@ export default function AuthPage() {
             ))}
           </div>
 
-          {/* Form area */}
+          {/* Form */}
           <AnimatePresence mode="wait">
             <motion.div
               key={tab}
-              initial={{ opacity: 0, x: 10 }}
+              initial={{ opacity: 0, x: 12 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.18 }}
             >
-              <h2 className="text-lg font-bold text-slate-100 mb-5">{tabLabel[tab]}</h2>
-              {tab === 'login' && <LoginForm onSwitch={setTab} />}
+              <h2 className="text-base font-bold text-slate-100 mb-5 tracking-wide">{tabLabel[tab]}</h2>
+              {tab === 'login'    && <LoginForm onSwitch={setTab} />}
               {tab === 'register' && <RegisterForm onSwitch={setTab} />}
-              {tab === 'forgot' && <ForgotForm onSwitch={setTab} />}
+              {tab === 'forgot'   && <ForgotForm onSwitch={setTab} />}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <p className="text-center text-xs text-slate-600 mt-6">
-          SCADA Hub Training — Field Engineer Edition
+        <p className="text-center text-[10px] font-mono text-slate-600 mt-5 tracking-widest uppercase">
+          Field Engineer Edition · Temecula, CA
         </p>
       </motion.div>
     </div>
