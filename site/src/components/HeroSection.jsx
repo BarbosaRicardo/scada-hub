@@ -121,8 +121,8 @@ export default function HeroSection() {
         >
           Master the full stack —{' '}
           <span className="text-cyan-400 font-semibold">from field devices to HMI</span>.
-          Eight battle-tested study guides covering every protocol, standard, and platform
-          you'll touch as a SCADA engineer.
+          Eight structured study guides covering every protocol, standard, and platform
+          you'll encounter as a SCADA automation engineer.
         </motion.p>
 
         {/* Stats row */}

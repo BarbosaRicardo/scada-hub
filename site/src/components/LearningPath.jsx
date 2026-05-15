@@ -95,11 +95,10 @@ const STEPS = [
     icon: ScanSearch,
     iconColor: '#38bdf8',
     desc: 'Decode the wire. Capture frames, dissect protocols, verify what your config actually sends.',
-    url: null,
+    url: 'https://barbosaricardo.github.io/wireshark-study-guide/',
     color: 'from-sky-500 to-cyan-500',
     border: 'border-sky-500/40',
     ring: 'bg-sky-500',
-    comingSoon: true,
   },
 ]
 

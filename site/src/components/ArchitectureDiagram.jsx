@@ -94,14 +94,14 @@ function ArrowConnector({ index }) {
     <div className="relative flex items-center justify-center h-5 mx-auto w-8">
       <svg width="16" height="20" viewBox="0 0 16 20" className="overflow-visible">
         <motion.line
-          x1="8" y1="0" x2="8" y2="14"
+          x1="8" y1="20" x2="8" y2="6"
           stroke="rgba(34,211,238,0.6)"
           strokeWidth="2"
           strokeDasharray="4 3"
-          animate={{ strokeDashoffset: [12, 0] }}
+          animate={{ strokeDashoffset: [0, 12] }}
           transition={{ duration: 1, repeat: Infinity, ease: 'linear', delay: index * 0.15 }}
         />
-        <polygon points="8,20 4,12 12,12" fill="rgba(34,211,238,0.6)" />
+        <polygon points="8,0 4,8 12,8" fill="rgba(34,211,238,0.6)" />
       </svg>
     </div>
   )

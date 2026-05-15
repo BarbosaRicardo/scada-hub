@@ -107,6 +107,7 @@ const GUIDES = [
     desc: 'Capture and dissect industrial traffic. Decode Modbus, DNP3, and OPC UA frames. See exactly what the wire carries.',
     chapters: 10,
     questions: 600,
+    hasPdf: false,
   },
 ]
 
@@ -183,10 +184,12 @@ function GuideCard({ guide }) {
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
                 {guide.questions} questions
               </span>
-              <span className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-                PDF
-              </span>
+              {guide.hasPdf !== false && (
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                  PDF
+                </span>
+              )}
             </div>
           )}
 
