@@ -153,19 +153,19 @@ function Ticker({ node, tickers, vw, vh }) {
     <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
       {t.map((row, i) => {
         const dy = isBottom ? -(i + 1) * 14 - 22 : (i + 1) * 14 + 18
-        const dx = isRight ? -52 : 18
+        const dx = isRight ? -66 : 18
         return (
           <g key={i} transform={`translate(${px + dx}, ${py + dy})`}>
-            <rect x="0" y="-9" width="48" height="12" rx="3"
+            <rect x="0" y="-9" width="62" height="12" rx="3"
               fill={color.fill} fillOpacity="0.85"
               stroke={color.ring} strokeWidth="0.5" strokeOpacity="0.5" />
             <text x="4" y="1" fontSize="7" fill={color.dot} fontFamily="monospace" fontWeight="bold">
               {row.k}
             </text>
-            <text x="28" y="1" fontSize="7" fill="#e2e8f0" fontFamily="monospace" textAnchor="end">
+            <text x="42" y="1" fontSize="7" fill="#e2e8f0" fontFamily="monospace" textAnchor="end">
               {row.v}
             </text>
-            <text x="46" y="1" fontSize="6" fill={color.dot} fontFamily="monospace" textAnchor="end" opacity="0.7">
+            <text x="60" y="1" fontSize="6" fill={color.dot} fontFamily="monospace" textAnchor="end" opacity="0.7">
               {row.u}
             </text>
           </g>

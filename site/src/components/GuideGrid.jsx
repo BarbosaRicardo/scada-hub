@@ -11,6 +11,13 @@ import {
   ScanSearch,
 } from 'lucide-react'
 import { GUIDES as GUIDES_DATA } from '../data/guides'
+import { useAuth } from '../contexts/AuthContext'
+
+function guideUrl(url, session) {
+  if (!session) return url
+  const { access_token, refresh_token } = session
+  return `${url}#access_token=${access_token}&refresh_token=${refresh_token}&expires_in=3600&token_type=bearer&type=recovery`
+}
 
 const ICON_MAP = { Network, Globe, Zap, Code2, Sliders, Server, LayoutDashboard, ScanSearch }
 const GUIDES = GUIDES_DATA.map((g) => ({ ...g, icon: ICON_MAP[g.iconName] }))
@@ -24,7 +31,7 @@ const cardVariants = {
   }),
 }
 
-function GuideCard({ guide, index }) {
+function GuideCard({ guide, index, session }) {
   const Icon = guide.icon
   const content = (
     <motion.div
@@ -92,7 +99,7 @@ function GuideCard({ guide, index }) {
             <span className="text-xs text-slate-600 font-medium">In development</span>
           ) : (
             <a
-              href={guide.url}
+              href={guideUrl(guide.url, session)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-semibold transition-colors duration-150"
@@ -112,6 +119,7 @@ function GuideCard({ guide, index }) {
 const ACTIVE_GUIDES = GUIDES.filter((g) => !g.comingSoon)
 
 export default function GuideGrid() {
+  const { session } = useAuth()
   return (
     <section className="py-24 px-6 bg-navy-800" id="guides">
       <div className="max-w-6xl mx-auto">
@@ -139,7 +147,7 @@ export default function GuideGrid() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {GUIDES.map((guide, i) => (
-            <GuideCard key={guide.name} guide={guide} index={i} />
+            <GuideCard key={guide.name} guide={guide} index={i} session={session} />
           ))}
         </div>
 

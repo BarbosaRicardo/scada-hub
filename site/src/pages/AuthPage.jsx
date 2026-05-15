@@ -275,23 +275,14 @@ export default function AuthPage() {
             </div>
           </motion.div>
 
-          {/* Live status bar */}
-          <motion.div
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full mt-1"
-            style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}
+            className="text-[11px] text-slate-500 mt-2 tracking-wide"
           >
-            <motion.div
-              className="w-1.5 h-1.5 rounded-full bg-emerald-400"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-            />
-            <span className="text-[10px] font-mono text-emerald-400/80 tracking-wider">
-              ALL SYSTEMS NOMINAL
-            </span>
-          </motion.div>
+            Sign in to track progress across all 8 guides
+          </motion.p>
         </div>
 
         {/* Card */}
@@ -338,8 +329,8 @@ export default function AuthPage() {
           </AnimatePresence>
         </div>
 
-        <p className="text-center text-[10px] font-mono text-slate-600 mt-5 tracking-widest uppercase">
-          Field Engineer Edition · Temecula, CA
+        <p className="text-center text-[10px] font-mono text-slate-700 mt-5">
+          ⚡ Ohm my, that's a lot of protocols.
         </p>
       </motion.div>
     </div>

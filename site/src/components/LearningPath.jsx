@@ -3,6 +3,13 @@ import { motion } from 'framer-motion'
 import {
   Network, Globe, Zap, Code2, Sliders, Server, LayoutDashboard, ScanSearch,
 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
+
+function guideUrl(url, session) {
+  if (!session) return url
+  const { access_token, refresh_token } = session
+  return `${url}#access_token=${access_token}&refresh_token=${refresh_token}&expires_in=3600&token_type=bearer&type=recovery`
+}
 
 const STEPS = [
   {
@@ -72,6 +79,7 @@ const STEPS = [
 ]
 
 export default function LearningPath() {
+  const { session } = useAuth()
   return (
     <section className="py-24 px-6 bg-slate-900" id="learning-path">
       <div className="max-w-6xl mx-auto">
@@ -104,7 +112,7 @@ export default function LearningPath() {
             return (
               <motion.a
                 key={step.step}
-                href={step.url}
+                href={guideUrl(step.url, session)}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
