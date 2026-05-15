@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 5 — Emoji → Lucide SVG icon replacement complete across all 7 guides)
+> Last updated: 2026-05-15 (Session 6 — Quick wins: shimmer fix, PDF badge, hero copy, diagram arrows)
 
 ---
 
@@ -658,6 +658,34 @@ Total: 65 chapters × 5 questions = 325 new scenario questions
 
 ---
 
+## Session 6 Work Log — 2026-05-15
+
+### Quick Wins Batch
+
+**Progress bar shimmer direction** — all 8 guides + Wireshark
+- Reversed `@keyframes shimmer` in `site/src/index.css`: `0% { background-position: 200% 0 }` → `100% { background-position: -200% 0 }`
+- Highlight now sweeps left-to-right, matching the bar's fill growth
+- Committed individually to each of the 7 guides (iec61131, ignition, modbus, opcua, pid, rtac, wireshark)
+- DNP3 uses a plain gradient progress bar (no shimmer) — no change needed
+
+**Wireshark PDF badge** — scada-hub GuideGrid.jsx
+- Added `hasPdf: false` to Wireshark entry in GUIDES array
+- PDF span now wrapped in `{guide.hasPdf !== false && (...)}` conditional
+
+**Hero copy** — scada-hub HeroSection.jsx
+- "Eight battle-tested study guides..." → "Eight structured study guides covering every protocol, standard, and platform you'll encounter as a SCADA automation engineer."
+
+**Architecture diagram arrows** — scada-hub ArchitectureDiagram.jsx
+- `ArrowConnector`: polygon flipped from `points="8,20 4,12 12,12"` (down) to `points="8,0 4,8 12,8"` (up)
+- Line redrawn from y=20→y=6 (bottom to near-top); dashoffset animation reversed `[0,12]`
+
+**LearningPath Wireshark step** — scada-hub LearningPath.jsx
+- `comingSoon: true` removed, `url: null` → real GitHub Pages URL
+
+All scada-hub changes committed as one commit (`b47dbfd`).
+
+---
+
 ## Future Punchlist — Tabled for Later Development
 
 Items identified in engineering review 2026-05-14. Do not start until active punchlist is cleared.
@@ -669,13 +697,13 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [ ] **Token reduction — no re-read after write** — enforce habit: after Write/Edit succeeds, never read back for verification. Trust the tool or grep a specific line instead of re-reading the file.
 
 ### Copy / Branding
-- [ ] "battle tested" phrase in SCADA Hub hero copy sounds like marketing fluff — update to something more credible and specific (e.g., "built for working engineers" or just remove the phrase).
+- [x] "battle tested" phrase in SCADA Hub hero copy — FIXED (Session 6). Changed to "Eight structured study guides covering every protocol, standard, and platform you'll encounter as a SCADA automation engineer."
 
 ### Architecture
-- [ ] Architecture stack diagram: arrows point downward (HMI → Field direction) but the described data flow is field → HMI. Flip arrows upward.
+- [x] Architecture stack diagram: arrows point downward — FIXED (Session 6). Flipped connector arrows to point upward (tip at y=0, base at y=8; line from y=20 to y=6; dashoffset reversed).
 
 ### Bugs
-- [ ] GuideGrid: Wireshark card shows "PDF" badge — Wireshark guide has no PDF. Add `hasPdf` field and conditionally render.
+- [x] GuideGrid: Wireshark card shows "PDF" badge — FIXED (Session 6). Added `hasPdf: false` to Wireshark entry, PDF span now conditionally rendered.
 - [ ] HeroSection stats are hardcoded — next guide addition will break them again. Drive from a shared GUIDES constant.
 - [ ] Supabase email confirmation redirect is broken — clicking confirmation email link sends user to a broken URL. Fix: update Site URL and Redirect URLs in Supabase Auth settings to point to scada-hub.vercel.app.
 - [ ] Mobile UX: gray-on-white text is unreadable on mobile screens. Overall mobile layout is not user-friendly across guides and hub. Needs full mobile audit.
@@ -692,7 +720,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ### UI / Styling
 - [x] **Eliminate emojis from all study guide content** — done (Session 5). chapters.js → icon name strings, Sidebar/FunFact/ChapterLayout use ICON_MAP + Lucide SVG components. Home.jsx headings/bullets replaced. Callout ⚠️ stripped. Remaining UI-state emojis (✅/🔒/🚧 in QuizLevels/CodeLab) are intentional status indicators, not content emojis.
-- [ ] **Progress bars flowing wrong direction** — in course quizzes, the progress bar fills from right-to-left instead of left-to-right. Fix the CSS direction (check `direction` property or `transform: scaleX(-1)` on the bar element).
+- [x] **Progress bars flowing wrong direction** — FIXED (Session 6). Reversed `@keyframes shimmer` direction in `index.css` across all 8 guides so highlight sweeps left-to-right. (DNP3 has a plain gradient bar, no shimmer — no change needed.)
 
 ### Privacy / Access Control
 - [ ] **Quiz reports visible to all users** — currently any logged-in user can see any other user's quiz progress/reports. Each user should see only their own progress. Admin account should have access to all. Requires row-level security (RLS) in Supabase: add user_id check on quiz_results table reads, and a separate admin bypass policy.
