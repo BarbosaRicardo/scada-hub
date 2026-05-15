@@ -2,8 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const STATS = [
-  { value: '7', label: 'Guides' },
-  { value: '2,000+', label: 'Quiz Questions' },
+  { value: '8', label: 'Guides' },
+  { value: '4,500+', label: 'Quiz Questions' },
   { value: '50+', label: 'Deep Dives' },
   { value: '0', label: 'Excuses' },
 ]
@@ -121,7 +121,7 @@ export default function HeroSection() {
         >
           Master the full stack —{' '}
           <span className="text-cyan-400 font-semibold">from field devices to HMI</span>.
-          Seven battle-tested study guides covering every protocol, standard, and platform
+          Eight battle-tested study guides covering every protocol, standard, and platform
           you'll touch as a SCADA engineer.
         </motion.p>
 
