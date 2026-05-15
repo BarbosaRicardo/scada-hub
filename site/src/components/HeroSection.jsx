@@ -1,10 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { GUIDES } from '../data/guides'
+
+const activeGuides = GUIDES.filter((g) => !g.comingSoon)
+const totalQuestions = activeGuides.reduce((sum, g) => sum + (g.questions || 0), 0)
+const totalChapters = activeGuides.reduce((sum, g) => sum + (g.chapters || 0), 0)
 
 const STATS = [
-  { value: '8', label: 'Guides' },
-  { value: '4,500+', label: 'Quiz Questions' },
-  { value: '50+', label: 'Deep Dives' },
+  { value: String(activeGuides.length), label: 'Guides' },
+  { value: `${(Math.floor(totalQuestions / 100) * 100).toLocaleString()}+`, label: 'Quiz Questions' },
+  { value: `${totalChapters}`, label: 'Chapters' },
   { value: '0', label: 'Excuses' },
 ]
 

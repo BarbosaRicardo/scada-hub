@@ -116,7 +116,11 @@ function RegisterForm({ onSwitch }) {
       return
     }
     setLoading(true)
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: 'https://scada-hub.vercel.app' },
+    })
     setLoading(false)
     if (error) {
       setError(error.message)
