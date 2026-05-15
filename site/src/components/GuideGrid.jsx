@@ -1,10 +1,21 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import {
+  Network,
+  Globe,
+  Zap,
+  Code2,
+  Sliders,
+  Server,
+  LayoutDashboard,
+  ScanSearch,
+} from 'lucide-react'
 
 const GUIDES = [
   {
     name: 'Modbus',
-    emoji: '📡',
+    icon: Network,
+    iconColor: '#60a5fa',
     color: 'from-blue-500 to-cyan-500',
     borderColor: 'rgba(59,130,246,0.5)',
     glowColor: 'rgba(59,130,246,0.2)',
@@ -15,69 +26,87 @@ const GUIDES = [
   },
   {
     name: 'OPC UA',
-    emoji: '🔌',
+    icon: Globe,
+    iconColor: '#a78bfa',
     color: 'from-violet-500 to-purple-500',
     borderColor: 'rgba(139,92,246,0.5)',
     glowColor: 'rgba(139,92,246,0.2)',
     url: 'https://barbosaricardo.github.io/opcua-study-guide/',
     desc: 'The universal industrial communication standard. Address space, secure channels, subscriptions, and certificates.',
     chapters: 10,
-    questions: 150,
+    questions: 600,
   },
   {
     name: 'DNP3',
-    emoji: '⚡',
+    icon: Zap,
+    iconColor: '#fbbf24',
     color: 'from-yellow-500 to-orange-500',
     borderColor: 'rgba(234,179,8,0.5)',
     glowColor: 'rgba(234,179,8,0.15)',
     url: 'https://barbosaricardo.github.io/dnp3-study-guide/',
     desc: 'The power utility protocol. Event-driven, satellite-tolerant, and battle-tested in substations worldwide.',
     chapters: 10,
-    questions: 150,
+    questions: 600,
   },
   {
     name: 'IEC 61131-3',
-    emoji: '💻',
+    icon: Code2,
+    iconColor: '#2dd4bf',
     color: 'from-teal-500 to-emerald-500',
     borderColor: 'rgba(20,184,166,0.5)',
     glowColor: 'rgba(20,184,166,0.2)',
     url: 'https://barbosaricardo.github.io/iec61131-study-guide/',
     desc: 'Five programming languages for PLCs and RTACs. Structured Text, Ladder, FBD, SFC — one standard to rule them all.',
     chapters: 10,
-    questions: 150,
+    questions: 600,
   },
   {
     name: 'PID Controllers',
-    emoji: '🎛️',
+    icon: Sliders,
+    iconColor: '#4ade80',
     color: 'from-green-500 to-teal-500',
     borderColor: 'rgba(34,197,94,0.5)',
     glowColor: 'rgba(34,197,94,0.2)',
     url: 'https://barbosaricardo.github.io/pid-study-guide/',
     desc: 'Close the loop. Understand P, I, and D action, tuning methods, and process dynamics before you touch a setpoint.',
     chapters: 10,
-    questions: 150,
+    questions: 600,
   },
   {
     name: 'SEL RTAC',
-    emoji: '🏭',
+    icon: Server,
+    iconColor: '#818cf8',
     color: 'from-indigo-500 to-blue-500',
     borderColor: 'rgba(99,102,241,0.5)',
     glowColor: 'rgba(99,102,241,0.2)',
     url: 'https://barbosaricardo.github.io/rtac-study-guide/',
     desc: 'The SEL-3530/3555 protocol gateway and substation controller. IEC 61850, DNP3, Modbus — all in one box.',
     chapters: 9,
-    questions: 180,
+    questions: 480,
   },
   {
     name: 'Ignition SCADA',
-    emoji: '🖥️',
+    icon: LayoutDashboard,
+    iconColor: '#fb923c',
     color: 'from-orange-500 to-red-500',
     borderColor: 'rgba(249,115,22,0.5)',
     glowColor: 'rgba(249,115,22,0.2)',
     url: 'https://barbosaricardo.github.io/ignition-study-guide/',
     desc: 'The platform that disrupted SCADA pricing. Unlimited tags, Perspective, scripting, alarming, and Gateway architecture.',
     chapters: 10,
-    questions: 200,
+    questions: 600,
+  },
+  {
+    name: 'Wireshark',
+    icon: ScanSearch,
+    iconColor: '#38bdf8',
+    color: 'from-sky-500 to-cyan-500',
+    borderColor: 'rgba(14,165,233,0.4)',
+    glowColor: 'rgba(14,165,233,0.15)',
+    url: 'https://barbosaricardo.github.io/wireshark-study-guide/',
+    desc: 'Capture and dissect industrial traffic. Decode Modbus, DNP3, and OPC UA frames. See exactly what the wire carries.',
+    chapters: 10,
+    questions: 600,
   },
 ]
 
@@ -98,6 +127,7 @@ const cardVariants = {
 }
 
 function GuideCard({ guide }) {
+  const Icon = guide.icon
   return (
     <motion.div
       variants={cardVariants}
@@ -108,20 +138,33 @@ function GuideCard({ guide }) {
         className="h-full flex flex-col rounded-2xl bg-slate-800/80 backdrop-blur-sm overflow-hidden"
         style={{
           border: `1px solid ${guide.borderColor}`,
+          opacity: guide.comingSoon ? 0.7 : 1,
         }}
       >
         {/* Gradient top bar */}
         <div className={`h-1.5 w-full bg-gradient-to-r ${guide.color}`} />
 
         <div className="flex flex-col flex-1 p-5">
-          {/* Emoji + name */}
+          {/* Icon + name */}
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl leading-none">{guide.emoji}</span>
-            <h3
-              className={`font-black text-lg text-transparent bg-clip-text bg-gradient-to-r ${guide.color}`}
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: `${guide.glowColor}`, border: `1px solid ${guide.borderColor}` }}
             >
-              {guide.name}
-            </h3>
+              <Icon size={18} strokeWidth={1.5} style={{ color: guide.iconColor }} />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <h3
+                className={`font-black text-lg leading-tight text-transparent bg-clip-text bg-gradient-to-r ${guide.color}`}
+              >
+                {guide.name}
+              </h3>
+              {guide.comingSoon && (
+                <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">
+                  Coming Soon
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Description */}
@@ -130,36 +173,48 @@ function GuideCard({ guide }) {
           </p>
 
           {/* Progress indicator */}
-          <div className="flex items-center gap-3 text-xs text-slate-500 mb-4 font-mono">
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-              {guide.chapters} chapters
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-              {guide.questions} quiz questions
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-              LaTeX PDF
-            </span>
-          </div>
+          {!guide.comingSoon && (
+            <div className="flex items-center gap-3 text-xs text-slate-500 mb-4 font-mono">
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                {guide.chapters} chapters
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                {guide.questions} questions
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                PDF
+              </span>
+            </div>
+          )}
 
           {/* CTA */}
-          <a
-            href={guide.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`w-full py-2.5 rounded-xl text-center text-sm font-bold text-white bg-gradient-to-r ${guide.color} hover:opacity-90 active:scale-95 transition-all duration-150 shadow-md`}
-            style={{ boxShadow: `0 4px 16px ${guide.glowColor}` }}
-          >
-            Open Guide →
-          </a>
+          {guide.comingSoon ? (
+            <div
+              className="w-full py-2.5 rounded-xl text-center text-sm font-bold text-slate-500 border border-slate-700"
+            >
+              In Development
+            </div>
+          ) : (
+            <a
+              href={guide.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-full py-2.5 rounded-xl text-center text-sm font-bold text-white bg-gradient-to-r ${guide.color} hover:opacity-90 active:scale-95 transition-all duration-150 shadow-md`}
+              style={{ boxShadow: `0 4px 16px ${guide.glowColor}` }}
+            >
+              Open Guide &rarr;
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
   )
 }
+
+const ACTIVE_GUIDES = GUIDES.filter((g) => !g.comingSoon)
 
 export default function GuideGrid() {
   return (
@@ -174,7 +229,7 @@ export default function GuideGrid() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-semibold tracking-wide mb-4">
-            ALL 7 STUDY GUIDES
+            {GUIDES.length} STUDY GUIDES
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
             Your Complete Library
@@ -208,15 +263,15 @@ export default function GuideGrid() {
         >
           {[
             {
-              value: GUIDES.reduce((a, g) => a + g.chapters, 0),
+              value: ACTIVE_GUIDES.reduce((a, g) => a + g.chapters, 0),
               label: 'Total Chapters',
             },
             {
-              value: GUIDES.reduce((a, g) => a + g.questions, 0) + '+',
+              value: ACTIVE_GUIDES.reduce((a, g) => a + g.questions, 0).toLocaleString() + '+',
               label: 'Quiz Questions',
             },
-            { value: '7', label: 'LaTeX PDFs' },
-            { value: '7', label: 'GitHub Pages Sites' },
+            { value: ACTIVE_GUIDES.length, label: 'Live Guides' },
+            { value: ACTIVE_GUIDES.length, label: 'GitHub Pages Sites' },
           ].map((stat) => (
             <div
               key={stat.label}
