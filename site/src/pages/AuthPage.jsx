@@ -275,14 +275,6 @@ export default function AuthPage() {
             </div>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="text-[11px] text-slate-500 mt-2 tracking-wide"
-          >
-            Sign in to track progress across all 8 guides
-          </motion.p>
         </div>
 
         {/* Card */}
