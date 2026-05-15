@@ -2,14 +2,14 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const GUIDE_LINKS = [
-  { name: 'Modbus', url: 'https://barbosaricardo.github.io/modbus-study-guide/' },
-  { name: 'OPC UA', url: 'https://barbosaricardo.github.io/opcua-study-guide/' },
-  { name: 'DNP3', url: 'https://barbosaricardo.github.io/dnp3-study-guide/' },
-  { name: 'IEC 61131-3', url: 'https://barbosaricardo.github.io/iec61131-study-guide/' },
-  { name: 'PID Controllers', url: 'https://barbosaricardo.github.io/pid-study-guide/' },
-  { name: 'SEL RTAC', url: 'https://barbosaricardo.github.io/rtac-study-guide/' },
-  { name: 'Ignition SCADA', url: 'https://barbosaricardo.github.io/ignition-study-guide/' },
-  { name: 'Wireshark', url: 'https://barbosaricardo.github.io/wireshark-study-guide/' },
+  { name: 'Modbus', url: 'https://modbus-study-guide.vercel.app/' },
+  { name: 'OPC UA', url: 'https://opcua-study-guide.vercel.app/' },
+  { name: 'DNP3', url: 'https://dnp3-study-guide.vercel.app/' },
+  { name: 'IEC 61131-3', url: 'https://iec61131-study-guide.vercel.app/' },
+  { name: 'PID Controllers', url: 'https://pid-study-guide.vercel.app/' },
+  { name: 'SEL RTAC', url: 'https://rtac-study-guide.vercel.app/' },
+  { name: 'Ignition SCADA', url: 'https://ignition-study-guide.vercel.app/' },
+  { name: 'Wireshark', url: 'https://wireshark-study-guide.vercel.app/' },
 ]
 
 export default function Footer() {

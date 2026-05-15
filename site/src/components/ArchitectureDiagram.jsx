@@ -9,7 +9,7 @@ const LAYERS = [
     sublabel: 'Ignition SCADA Platform',
     icon: Monitor,
     accentColor: 'rgba(168,85,247,0.8)',
-    url: 'https://barbosaricardo.github.io/ignition-study-guide/',
+    url: 'https://ignition-study-guide.vercel.app/',
     guide: 'Ignition SCADA Guide',
   },
   {
@@ -18,7 +18,7 @@ const LAYERS = [
     sublabel: 'Unified Architecture · Secure Channels · Session Management',
     icon: Network,
     accentColor: 'rgba(139,92,246,0.8)',
-    url: 'https://barbosaricardo.github.io/opcua-study-guide/',
+    url: 'https://opcua-study-guide.vercel.app/',
     guide: 'OPC UA Guide',
   },
   {
@@ -27,7 +27,7 @@ const LAYERS = [
     sublabel: 'SEL-3530/3555 · Multi-protocol gateway · IEC 61850 GOOSE',
     icon: Cpu,
     accentColor: 'rgba(99,102,241,0.8)',
-    url: 'https://barbosaricardo.github.io/rtac-study-guide/',
+    url: 'https://rtac-study-guide.vercel.app/',
     guide: 'SEL RTAC Guide',
   },
   {
@@ -37,8 +37,8 @@ const LAYERS = [
     icon: Radio,
     accentColor: 'rgba(59,130,246,0.8)',
     urls: [
-      { label: 'DNP3 Guide', url: 'https://barbosaricardo.github.io/dnp3-study-guide/' },
-      { label: 'Modbus Guide', url: 'https://barbosaricardo.github.io/modbus-study-guide/' },
+      { label: 'DNP3 Guide', url: 'https://dnp3-study-guide.vercel.app/' },
+      { label: 'Modbus Guide', url: 'https://modbus-study-guide.vercel.app/' },
     ],
   },
   {
@@ -47,7 +47,7 @@ const LAYERS = [
     sublabel: 'Structured Text · Ladder · Function Block · SFC',
     icon: Code2,
     accentColor: 'rgba(20,184,166,0.8)',
-    url: 'https://barbosaricardo.github.io/iec61131-study-guide/',
+    url: 'https://iec61131-study-guide.vercel.app/',
     guide: 'IEC 61131-3 Guide',
   },
   {
@@ -56,7 +56,7 @@ const LAYERS = [
     sublabel: 'Proportional · Integral · Derivative · Process Dynamics',
     icon: Activity,
     accentColor: 'rgba(16,185,129,0.8)',
-    url: 'https://barbosaricardo.github.io/pid-study-guide/',
+    url: 'https://pid-study-guide.vercel.app/',
     guide: 'PID Controllers Guide',
   },
   {

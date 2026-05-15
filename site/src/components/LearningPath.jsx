@@ -11,7 +11,7 @@ const STEPS = [
     icon: Network,
     iconColor: '#60a5fa',
     desc: 'The foundation. Binary framing, coils, registers, RTU vs TCP. Start here regardless of your background.',
-    url: 'https://barbosaricardo.github.io/modbus-study-guide/',
+    url: 'https://modbus-study-guide.vercel.app/',
   },
   {
     step: 2,
@@ -19,7 +19,7 @@ const STEPS = [
     icon: Globe,
     iconColor: '#a78bfa',
     desc: 'The universal interface layer. Address space, sessions, subscriptions, security modes.',
-    url: 'https://barbosaricardo.github.io/opcua-study-guide/',
+    url: 'https://opcua-study-guide.vercel.app/',
   },
   {
     step: 3,
@@ -27,7 +27,7 @@ const STEPS = [
     icon: Zap,
     iconColor: '#fbbf24',
     desc: 'Power utility protocol. Event-driven, unsolicited responses, Secure Authentication v5.',
-    url: 'https://barbosaricardo.github.io/dnp3-study-guide/',
+    url: 'https://dnp3-study-guide.vercel.app/',
   },
   {
     step: 4,
@@ -35,7 +35,7 @@ const STEPS = [
     icon: Code2,
     iconColor: '#2dd4bf',
     desc: 'Write the control logic. Structured Text, Ladder, Function Blocks — five PLC languages.',
-    url: 'https://barbosaricardo.github.io/iec61131-study-guide/',
+    url: 'https://iec61131-study-guide.vercel.app/',
   },
   {
     step: 5,
@@ -43,7 +43,7 @@ const STEPS = [
     icon: Sliders,
     iconColor: '#4ade80',
     desc: 'Close the loop. Tuning, process dynamics, cascade control, digital implementation.',
-    url: 'https://barbosaricardo.github.io/pid-study-guide/',
+    url: 'https://pid-study-guide.vercel.app/',
   },
   {
     step: 6,
@@ -51,7 +51,7 @@ const STEPS = [
     icon: Server,
     iconColor: '#818cf8',
     desc: 'The platform that ties it together. Protocol gateway, concentrator, IEC 61850 mapping.',
-    url: 'https://barbosaricardo.github.io/rtac-study-guide/',
+    url: 'https://rtac-study-guide.vercel.app/',
   },
   {
     step: 7,
@@ -59,7 +59,7 @@ const STEPS = [
     icon: LayoutDashboard,
     iconColor: '#fb923c',
     desc: 'The HMI layer. Tags, Perspective, scripting, alarming, historian, database integration.',
-    url: 'https://barbosaricardo.github.io/ignition-study-guide/',
+    url: 'https://ignition-study-guide.vercel.app/',
   },
   {
     step: 8,
@@ -67,7 +67,7 @@ const STEPS = [
     icon: ScanSearch,
     iconColor: '#38bdf8',
     desc: 'Verify everything. Capture frames, dissect protocols, confirm your config at the wire level.',
-    url: 'https://barbosaricardo.github.io/wireshark-study-guide/',
+    url: 'https://wireshark-study-guide.vercel.app/',
   },
 ]
 
