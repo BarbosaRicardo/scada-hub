@@ -808,6 +808,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [x] **Wireshark Vercel build fixed** — added `VERCEL` env check to vite.config.js; fixed double-comma in lucide import
 - [x] **QuizLevels.jsx dark-themed** — `bg-white`, `hover:bg-purple-50`, `border-purple-100` replaced across all guides
 - [x] **Remaining light backgrounds — full sweep** — colored info boxes (`bg-X-50 border border-X-200`) replaced with dark `rgba` inline styles across all 8 guides; ~25 files patched; all rebuilt and deployed
+- [x] **IEC 61131 QuizLevels dark-themed + deployed** — uncommitted QuizLevels.jsx and POUs.jsx fixes committed; no light info boxes found; built and deployed to Vercel
 
 ### Completed previous session (Session 7)
 
