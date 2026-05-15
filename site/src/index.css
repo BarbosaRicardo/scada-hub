@@ -127,10 +127,10 @@ code:not(pre code) {
 }
 .slide-up { animation: slide-up 0.6s ease-out forwards; }
 
-/* Dot grid background */
+/* Dot grid background — subtle */
 .dot-grid {
-  background-image: radial-gradient(rgba(34,211,238,0.15) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Accent underline animation */
