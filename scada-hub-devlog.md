@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 6 — Quick wins: shimmer fix, PDF badge, hero copy, diagram arrows)
+> Last updated: 2026-05-15 (Session 7 — Full dark-theme sweep: all 8 guides, all pages + flashcards)
 
 ---
 
@@ -712,7 +712,9 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 ### Quick Wins
 - [ ] Add "← Hub" back-link to all 8 guide sidebars — currently stranded once you enter a guide.
 - [ ] LearningPath mobile layout — horizontal card row is unusable on phones. Convert to vertical accordion on mobile.
-- [ ] Unify hero + GuideGrid stats from a single source of truth so adding a guide updates both automatically.
+- [x] Unify hero + GuideGrid stats from a single source of truth — FIXED (Session 6). GUIDES extracted to `src/data/guides.js`; HeroSection derives counts dynamically.
+- [ ] LearningPath hover bug — hovering a step card causes it to enlarge (whileHover scale) and the text becomes hard to read. Reduce or remove the scale transform on hover.
+- [ ] IEC 61131-3 flashcards use light gray and white backgrounds — hard to read against the dark theme. Fix Flashcards.jsx to use dark card styles consistent with the rest of the guide.
 
 ### Cross-Guide Features
 - [ ] Cross-guide "See Also" callouts — e.g., Wireshark Modbus chapter links to the Modbus guide, OPC UA security chapter links to the Security guide. Guides are siloed; this connects them.
@@ -742,3 +744,83 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [ ] PDF export for Wireshark guide — currently the only guide without one. Or remove PDF badge from all guides that don't have it.
 
 ---
+
+## Session 7 Work Log — 2026-05-15
+
+### Full Dark-Theme Sweep — All 8 Guides
+
+**Problem:** White/light gray backgrounds across chapter pages and flashcards in all 8 guides were unreadable on dark-mode sites.
+
+**Fix applied:** Comprehensive Python script ran across all 8 guides. 67 JSX files patched + 1 Flashcards.jsx rewritten (Modbus). 6 flashcard tap-hint dots fixed.
+
+**Changes per file:**
+- `text-navy-700` in headings → guide-specific accent Tailwind class per guide:
+  - Modbus/IEC → `text-blue-400`, DNP3 → `text-amber-400`, OPC UA → `text-cyan-400`
+  - PID → `text-purple-400`, RTAC → `text-green-400`, Wireshark → `text-sky-400`, Ignition → `text-orange-400`
+- All other `text-navy-700` → `text-slate-100`
+- `bg-white`, `bg-slate-50`, `bg-slate-100` card/panel divs → `style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}`
+- `text-slate-800` → `text-slate-200`, `text-slate-700` → `text-slate-300`
+- Alternating table rows `bg-white`/`bg-slate-50` → `bg-white/5`/`''`
+- `border-slate-100/200` → `border-white/8`, `divide-slate-100` → `divide-white/5`
+- Modbus Flashcards.jsx rewritten from scratch with dark inline styles (matching OPC UA Flashcard pattern)
+- `bg-slate-500` tap-hint dot → `style={{ background: '#475569' }}` in 6 flashcard files
+
+**Bug introduced + fixed:** The `bg-slate-100 rounded` → inline-style replacement incorrectly split `rounded-full` in 3 Home.jsx files (rtac, modbus, ignition), producing invalid JSX. Fixed individually before final build.
+
+**All 8 built clean, committed, and pushed.**
+
+| Guide | Commit | Branch |
+|-------|--------|--------|
+| modbus | 350623e | main |
+| opcua | 541bf77 | main |
+| dnp3 | 3bf5dcb | master |
+| iec61131 | f2a6416 | main |
+| pid | c038faa | main |
+| rtac | 55aa11b | main |
+| wireshark | b128d7b | main |
+| ignition | 140c96f | main |
+
+---
+
+## Punchlist — Session 8 Updates (2026-05-15)
+
+### New items added this session
+
+- [ ] **Wireshark: missing LaTeX PDF** — No `study_guide.pdf` exists at `site/public/`. Needs to be written (LaTeX source), compiled, and placed at `wireshark-study-guide/site/public/study_guide.pdf`. PDF button in sidebar is live but returns 404.
+
+- [ ] **RTAC PDF: layout and formatting overhaul** — Images are horribly laid out (overflow, bad sizing). Spacing between sections is bad. Chapter intro style is different from the Modbus PDF template. Orphaned section titles appear at bottom of pages. Fix to match Modbus PDF style as reference.
+
+- [ ] **Field scenario quizzes: add references/deep-dive links** — Each field scenario question should include a "Read more" reference pointing to the relevant standard, SEL manual section, or external resource for deeper study. Apply across all guides that have field scenario quiz types.
+
+- [ ] **PDF code blocks: dark-on-dark text** — PID PDF showed dark equation boxes with dark text (unreadable). Audit all guide PDFs for dark-on-dark or light-on-light rendering in code/equation blocks. Fix LaTeX source for each affected guide.
+
+- [ ] **Remaining light backgrounds in web app** — After the dark-theme sweep, residual `bg-white`/`bg-slate-50` patterns remain: modbus (~5 hits), opcua (~3), dnp3 (~1), iec61131 (~1), wireshark (~1), ignition (~1). Audit and fix each.
+
+- [ ] **Landing page redesign (scada-hub)** — Current landing page looks like an Instagram ad (user quote). Needs more professional, polished design. Less gradient noise, cleaner hierarchy, more authoritative copy. Specifics TBD — needs design direction.
+
+### Completed this session (Session 8)
+
+- [x] **All 8 guides deployed to Vercel** — `[guide]-study-guide.vercel.app` aliases live; scada-hub landing page links updated from `barbosaricardo.github.io` to Vercel endpoints
+- [x] **Uniform sidebar footer buttons** — all 7 non-DNP3 guides updated to match DNP3 pattern: solid gradient PDF button + dark "← SCADA Hub" button (LayoutGrid) + "Sign In to Track Progress" auth form, each using guide-specific accent color
+- [x] **Supabase auth added to 6 guides** — modbus, opcua, iec61131, pid, wireshark, ignition now have sign-in/sign-out flow matching DNP3/RTAC
+- [x] **PID Quote blocks dark-themed** — `bg-gradient-to-r from-purple-50 to-indigo-50` replaced with `rgba(139,92,246,0.07)` inline style across all 10 PID chapter pages
+- [x] **PID + RTAC `border-slate-200` borders fixed** — changed to `border-white/8` across 18 files
+- [x] **Wireshark Vercel build fixed** — added `VERCEL` env check to vite.config.js; fixed double-comma in lucide import
+- [x] **QuizLevels.jsx dark-themed** — `bg-white`, `hover:bg-purple-50`, `border-purple-100` replaced across all guides
+
+### Completed previous session (Session 7)
+
+- [x] **Dark-theme sweep — Modbus Flashcards.jsx** — rewritten with full dark inline styles
+- [x] **Dark-theme sweep — all OPC UA chapter pages (10 files)** — white/light bg patterns replaced
+- [x] **Dark-theme sweep — all 8 guides, all pages (67 files total)** — `text-navy-700`, `bg-white`, `bg-slate-50`, `bg-slate-100`, `text-slate-700/800`, `border-slate-100/200` replaced with dark inline styles
+- [x] **Flashcard tap-hint dot fixed** — `bg-slate-500` → inline style in IEC, OPC UA, PID, RTAC, Wireshark, Ignition Flashcards.jsx
+
+### Still open (carried from previous sessions)
+
+- [ ] LearningPath hover bug — `whileHover={{ scale: 1.03, y: -4 }}` makes cards enlarge and text hard to read
+- [ ] DNP3 LaTeX PDF — write, compile, place at `site/public/study_guide.pdf`
+- [ ] Quiz reports RLS — Supabase row-level security on `quiz_results` table
+- [ ] Wrong-answer tracking + "Review Missed" mode
+- [ ] Spaced repetition on flashcards (SM-2)
+- [ ] Mobile UX audit
+- [ ] Timed exam mode
