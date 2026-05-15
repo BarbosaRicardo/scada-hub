@@ -49,10 +49,6 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <p className="text-slate-400 text-sm">
-            Built for SCADA Engineers by{' '}
-            <span className="text-cyan-400 font-semibold">Ricardo Barbosa</span>
-          </p>
           <p className="text-slate-600 text-xs mt-1">
             SCADA Automation Engineer Training Program &copy; {year}
           </p>
