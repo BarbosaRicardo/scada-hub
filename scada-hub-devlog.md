@@ -794,7 +794,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 - [ ] **PDF code blocks: dark-on-dark text** — PID PDF showed dark equation boxes with dark text (unreadable). Audit all guide PDFs for dark-on-dark or light-on-light rendering in code/equation blocks. Fix LaTeX source for each affected guide.
 
-- [ ] **Remaining light backgrounds in web app** — After the dark-theme sweep, residual `bg-white`/`bg-slate-50` patterns remain: modbus (~5 hits), opcua (~3), dnp3 (~1), iec61131 (~1), wireshark (~1), ignition (~1). Audit and fix each.
+- [x] **Remaining light backgrounds in web app** — Fixed across all 8 guides. modbus (ASCII, DataModel, RS485, Lab), opcua (Subscriptions, Security, Services), dnp3 (Unsolicited, Security, FunctionCodes), ignition (Lab), pid (9 pages: LoopFundamentals, PLCImplementation, PIDAction, Troubleshoot, Tuning, ProcessDynamics, CascadeControl, DigitalPID, Lab), rtac (DNP3.jsx). All deployed to Vercel.
 
 - [ ] **Landing page redesign (scada-hub)** — Current landing page looks like an Instagram ad (user quote). Needs more professional, polished design. Less gradient noise, cleaner hierarchy, more authoritative copy. Specifics TBD — needs design direction.
 
@@ -807,6 +807,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [x] **PID + RTAC `border-slate-200` borders fixed** — changed to `border-white/8` across 18 files
 - [x] **Wireshark Vercel build fixed** — added `VERCEL` env check to vite.config.js; fixed double-comma in lucide import
 - [x] **QuizLevels.jsx dark-themed** — `bg-white`, `hover:bg-purple-50`, `border-purple-100` replaced across all guides
+- [x] **Remaining light backgrounds — full sweep** — colored info boxes (`bg-X-50 border border-X-200`) replaced with dark `rgba` inline styles across all 8 guides; ~25 files patched; all rebuilt and deployed
 
 ### Completed previous session (Session 7)
 
