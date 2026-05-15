@@ -809,6 +809,10 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [x] **QuizLevels.jsx dark-themed** — `bg-white`, `hover:bg-purple-50`, `border-purple-100` replaced across all guides
 - [x] **Remaining light backgrounds — full sweep** — colored info boxes (`bg-X-50 border border-X-200`) replaced with dark `rgba` inline styles across all 8 guides; ~25 files patched; all rebuilt and deployed
 - [x] **IEC 61131 QuizLevels dark-themed + deployed** — uncommitted QuizLevels.jsx and POUs.jsx fixes committed; no light info boxes found; built and deployed to Vercel
+- [x] **Sign-in flash suppressed** — added `sessionLoading` state to all 8 guide Sidebars so the "Sign In" button is hidden until the Supabase session check resolves; prevents flash of sign-in UI for authenticated users
+- [x] **Cross-guide SSO** — guide links in scada-hub (GuideGrid + LearningPath) now inject Supabase session tokens into URL hash when user is authenticated; guides auto-restore the session on load via `detectSessionInUrl`
+- [x] **ScadaBackground ticker overlap fixed** — ticker box widened 48→62px, value text repositioned so key label and value no longer collide on 4-digit values (e.g. "GEN 1237 kW")
+- [x] **Auth page cleanup** — removed "ALL SYSTEMS NOMINAL" badge and "FIELD ENGINEER EDITION · TEMECULA, CA" footer; replaced footer with "⚡ Ohm my, that's a lot of protocols."; removed project-description tagline from branding area
 
 ### Completed previous session (Session 7)
 
