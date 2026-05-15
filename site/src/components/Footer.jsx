@@ -9,6 +9,7 @@ const GUIDE_LINKS = [
   { name: 'PID Controllers', url: 'https://barbosaricardo.github.io/pid-study-guide/' },
   { name: 'SEL RTAC', url: 'https://barbosaricardo.github.io/rtac-study-guide/' },
   { name: 'Ignition SCADA', url: 'https://barbosaricardo.github.io/ignition-study-guide/' },
+  { name: 'Wireshark', url: 'https://barbosaricardo.github.io/wireshark-study-guide/' },
 ]
 
 export default function Footer() {
