@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.9)  15 MAY 2026 19:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.9)  15 MAY 2026 20:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -986,10 +986,10 @@ Package rerunfilecheck Info: File `modbus_syllabus.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29801 strings out of 478268
- 596420 string characters out of 5846348
- 972559 words of memory out of 5000000
- 47344 multiletter control sequences out of 15000+600000
+ 29799 strings out of 478268
+ 596379 string characters out of 5846348
+ 972607 words of memory out of 5000000
+ 47342 multiletter control sequences out of 15000+600000
  517330 words of font info for 147 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,9n,104p,1012b,1354s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1000,7 +1000,7 @@ t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts
 /type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
 urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb>
-Output written on modbus_syllabus.pdf (1 page, 75298 bytes).
+Output written on modbus_syllabus.pdf (1 page, 75289 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream
