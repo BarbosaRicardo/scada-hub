@@ -919,6 +919,36 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 17 — 2026-05-16
+
+### Completed
+
+- [x] **Syllabi: Learning Outcomes section added to all 8 guides** — Added a `LEARNING OUTCOMES` section between the Course Topics list and the `\vfill` cert boxes. Five bullet points per guide using Bloom's taxonomy action verbs (Configure, Trace, Diagnose, Write, Build, etc.). Eliminates the large white space gap caused by the terse one-line topic entries. Section uses guide-specific accent color and a thin rule separator matching the document's visual hierarchy.
+- [x] **All 8 recompiled** — All confirmed 1 page each.
+- [x] **PDFs copied, all 8 guides rebuilt, committed, pushed to GitHub** — Live on GitHub Pages (barbosaricardo.github.io links).
+- [ ] **Vercel deploy deferred** — Still rate-limited from session 16. All changes on GitHub. Run `vercel --prod --yes` from each guide root tomorrow.
+
+Structure per syllabus is now:
+1. Header (course title + subtitle)
+2. `COURSE TOPICS` — numbered list, one-line entries
+3. `LEARNING OUTCOMES` — 5 action-verb bullets
+4. `CERTIFICATION RELEVANCE` + `NEXT STEPS` boxes (pinned to bottom via `\vfill`)
+5. Footer
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | d75b6af |
+| OPC UA | 5074a18 |
+| IEC 61131 | 2c823ab |
+| PID | e8fbfae |
+| DNP3 | 185d631 |
+| RTAC | 764b16a |
+| Ignition | 282c1ca |
+| Wireshark | 619e441 |
+| scada-hub (sources) | 75f58ea |
+
+---
+
 ## Session 16 — 2026-05-16
 
 ### Completed
