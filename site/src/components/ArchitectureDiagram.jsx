@@ -2,6 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Monitor, Network, Cpu, Radio, Code2, Activity, Settings } from 'lucide-react'
 
+const isGH = import.meta.env.BASE_URL !== '/'
+const guideUrl = (slug) => isGH
+  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
+  : `https://${slug}-study-guide.vercel.app/`
+
 const LAYERS = [
   {
     id: 'hmi',
@@ -9,7 +14,7 @@ const LAYERS = [
     sublabel: 'Ignition SCADA Platform',
     icon: Monitor,
     accentColor: 'rgba(168,85,247,0.8)',
-    url: 'https://ignition-study-guide.vercel.app/',
+    url: guideUrl('ignition'),
     guide: 'Ignition SCADA Guide',
   },
   {
@@ -18,7 +23,7 @@ const LAYERS = [
     sublabel: 'Unified Architecture · Secure Channels · Session Management',
     icon: Network,
     accentColor: 'rgba(139,92,246,0.8)',
-    url: 'https://opcua-study-guide.vercel.app/',
+    url: guideUrl('opcua'),
     guide: 'OPC UA Guide',
   },
   {
@@ -27,7 +32,7 @@ const LAYERS = [
     sublabel: 'SEL-3530/3555 · Multi-protocol gateway · IEC 61850 GOOSE',
     icon: Cpu,
     accentColor: 'rgba(99,102,241,0.8)',
-    url: 'https://rtac-study-guide.vercel.app/',
+    url: guideUrl('rtac'),
     guide: 'SEL RTAC Guide',
   },
   {
@@ -37,8 +42,8 @@ const LAYERS = [
     icon: Radio,
     accentColor: 'rgba(59,130,246,0.8)',
     urls: [
-      { label: 'DNP3 Guide', url: 'https://dnp3-study-guide.vercel.app/' },
-      { label: 'Modbus Guide', url: 'https://modbus-study-guide.vercel.app/' },
+      { label: 'DNP3 Guide', url: guideUrl('dnp3') },
+      { label: 'Modbus Guide', url: guideUrl('modbus') },
     ],
   },
   {
@@ -47,7 +52,7 @@ const LAYERS = [
     sublabel: 'Structured Text · Ladder · Function Block · SFC',
     icon: Code2,
     accentColor: 'rgba(20,184,166,0.8)',
-    url: 'https://iec61131-study-guide.vercel.app/',
+    url: guideUrl('iec61131'),
     guide: 'IEC 61131-3 Guide',
   },
   {
@@ -56,7 +61,7 @@ const LAYERS = [
     sublabel: 'Proportional · Integral · Derivative · Process Dynamics',
     icon: Activity,
     accentColor: 'rgba(16,185,129,0.8)',
-    url: 'https://pid-study-guide.vercel.app/',
+    url: guideUrl('pid'),
     guide: 'PID Controllers Guide',
   },
   {

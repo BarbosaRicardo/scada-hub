@@ -1,3 +1,8 @@
+const isGH = import.meta.env.BASE_URL !== '/'
+const guideUrl = (slug) => isGH
+  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
+  : `https://${slug}-study-guide.vercel.app/`
+
 export const GUIDES = [
   {
     name: 'Modbus',
@@ -6,7 +11,7 @@ export const GUIDES = [
     color: 'from-blue-500 to-cyan-500',
     borderColor: 'rgba(59,130,246,0.5)',
     glowColor: 'rgba(59,130,246,0.2)',
-    url: 'https://modbus-study-guide.vercel.app/',
+    url: guideUrl('modbus'),
     desc: 'The grandfather of industrial protocols. Master RTU framing, TCP/IP encapsulation, register maps, and CRC.',
     chapters: 12,
     questions: 507,
@@ -18,7 +23,7 @@ export const GUIDES = [
     color: 'from-violet-500 to-purple-500',
     borderColor: 'rgba(139,92,246,0.5)',
     glowColor: 'rgba(139,92,246,0.2)',
-    url: 'https://opcua-study-guide.vercel.app/',
+    url: guideUrl('opcua'),
     desc: 'The universal industrial communication standard. Address space, secure channels, subscriptions, and certificates.',
     chapters: 10,
     questions: 600,
@@ -30,7 +35,7 @@ export const GUIDES = [
     color: 'from-yellow-500 to-orange-500',
     borderColor: 'rgba(234,179,8,0.5)',
     glowColor: 'rgba(234,179,8,0.15)',
-    url: 'https://dnp3-study-guide.vercel.app/',
+    url: guideUrl('dnp3'),
     desc: 'The power utility protocol. Event-driven, satellite-tolerant, and battle-tested in substations worldwide.',
     chapters: 10,
     questions: 600,
@@ -42,7 +47,7 @@ export const GUIDES = [
     color: 'from-teal-500 to-emerald-500',
     borderColor: 'rgba(20,184,166,0.5)',
     glowColor: 'rgba(20,184,166,0.2)',
-    url: 'https://iec61131-study-guide.vercel.app/',
+    url: guideUrl('iec61131'),
     desc: 'Five programming languages for PLCs and RTACs. Structured Text, Ladder, FBD, SFC — one standard to rule them all.',
     chapters: 10,
     questions: 600,
@@ -54,7 +59,7 @@ export const GUIDES = [
     color: 'from-green-500 to-teal-500',
     borderColor: 'rgba(34,197,94,0.5)',
     glowColor: 'rgba(34,197,94,0.2)',
-    url: 'https://pid-study-guide.vercel.app/',
+    url: guideUrl('pid'),
     desc: 'Close the loop. Understand P, I, and D action, tuning methods, and process dynamics before you touch a setpoint.',
     chapters: 10,
     questions: 600,
@@ -66,7 +71,7 @@ export const GUIDES = [
     color: 'from-indigo-500 to-blue-500',
     borderColor: 'rgba(99,102,241,0.5)',
     glowColor: 'rgba(99,102,241,0.2)',
-    url: 'https://rtac-study-guide.vercel.app/',
+    url: guideUrl('rtac'),
     desc: 'The SEL-3530/3555 protocol gateway and substation controller. IEC 61850, DNP3, Modbus — all in one box.',
     chapters: 9,
     questions: 480,
@@ -78,7 +83,7 @@ export const GUIDES = [
     color: 'from-orange-500 to-red-500',
     borderColor: 'rgba(249,115,22,0.5)',
     glowColor: 'rgba(249,115,22,0.2)',
-    url: 'https://ignition-study-guide.vercel.app/',
+    url: guideUrl('ignition'),
     desc: 'The platform that disrupted SCADA pricing. Unlimited tags, Perspective, scripting, alarming, and Gateway architecture.',
     chapters: 10,
     questions: 600,
@@ -90,7 +95,7 @@ export const GUIDES = [
     color: 'from-sky-500 to-cyan-500',
     borderColor: 'rgba(14,165,233,0.4)',
     glowColor: 'rgba(14,165,233,0.15)',
-    url: 'https://wireshark-study-guide.vercel.app/',
+    url: guideUrl('wireshark'),
     desc: 'Capture and dissect industrial traffic. Decode Modbus, DNP3, and OPC UA frames. See exactly what the wire carries.',
     chapters: 10,
     questions: 600,

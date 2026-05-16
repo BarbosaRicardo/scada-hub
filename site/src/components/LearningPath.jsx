@@ -5,6 +5,11 @@ import {
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
+const isGH = import.meta.env.BASE_URL !== '/'
+const baseUrl = (slug) => isGH
+  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
+  : `https://${slug}-study-guide.vercel.app/`
+
 function guideUrl(url, session) {
   if (!session) return url
   const { access_token, refresh_token } = session
@@ -18,7 +23,7 @@ const STEPS = [
     icon: Network,
     iconColor: '#60a5fa',
     desc: 'The foundation. Binary framing, coils, registers, RTU vs TCP. Start here regardless of your background.',
-    url: 'https://modbus-study-guide.vercel.app/',
+    url: baseUrl('modbus'),
   },
   {
     step: 2,
@@ -26,7 +31,7 @@ const STEPS = [
     icon: Globe,
     iconColor: '#a78bfa',
     desc: 'The universal interface layer. Address space, sessions, subscriptions, security modes.',
-    url: 'https://opcua-study-guide.vercel.app/',
+    url: baseUrl('opcua'),
   },
   {
     step: 3,
@@ -34,7 +39,7 @@ const STEPS = [
     icon: Zap,
     iconColor: '#fbbf24',
     desc: 'Power utility protocol. Event-driven, unsolicited responses, Secure Authentication v5.',
-    url: 'https://dnp3-study-guide.vercel.app/',
+    url: baseUrl('dnp3'),
   },
   {
     step: 4,
@@ -42,7 +47,7 @@ const STEPS = [
     icon: Code2,
     iconColor: '#2dd4bf',
     desc: 'Write the control logic. Structured Text, Ladder, Function Blocks — five PLC languages.',
-    url: 'https://iec61131-study-guide.vercel.app/',
+    url: baseUrl('iec61131'),
   },
   {
     step: 5,
@@ -50,7 +55,7 @@ const STEPS = [
     icon: Sliders,
     iconColor: '#4ade80',
     desc: 'Close the loop. Tuning, process dynamics, cascade control, digital implementation.',
-    url: 'https://pid-study-guide.vercel.app/',
+    url: baseUrl('pid'),
   },
   {
     step: 6,
@@ -58,7 +63,7 @@ const STEPS = [
     icon: Server,
     iconColor: '#818cf8',
     desc: 'The platform that ties it together. Protocol gateway, concentrator, IEC 61850 mapping.',
-    url: 'https://rtac-study-guide.vercel.app/',
+    url: baseUrl('rtac'),
   },
   {
     step: 7,
@@ -66,7 +71,7 @@ const STEPS = [
     icon: LayoutDashboard,
     iconColor: '#fb923c',
     desc: 'The HMI layer. Tags, Perspective, scripting, alarming, historian, database integration.',
-    url: 'https://ignition-study-guide.vercel.app/',
+    url: baseUrl('ignition'),
   },
   {
     step: 8,
@@ -74,7 +79,7 @@ const STEPS = [
     icon: ScanSearch,
     iconColor: '#38bdf8',
     desc: 'Verify everything. Capture frames, dissect protocols, confirm your config at the wire level.',
-    url: 'https://wireshark-study-guide.vercel.app/',
+    url: baseUrl('wireshark'),
   },
 ]
 

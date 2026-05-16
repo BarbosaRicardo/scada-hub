@@ -1,15 +1,20 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+const isGH = import.meta.env.BASE_URL !== '/'
+const guideUrl = (slug) => isGH
+  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
+  : `https://${slug}-study-guide.vercel.app/`
+
 const GUIDE_LINKS = [
-  { name: 'Modbus', url: 'https://modbus-study-guide.vercel.app/' },
-  { name: 'OPC UA', url: 'https://opcua-study-guide.vercel.app/' },
-  { name: 'DNP3', url: 'https://dnp3-study-guide.vercel.app/' },
-  { name: 'IEC 61131-3', url: 'https://iec61131-study-guide.vercel.app/' },
-  { name: 'PID Controllers', url: 'https://pid-study-guide.vercel.app/' },
-  { name: 'SEL RTAC', url: 'https://rtac-study-guide.vercel.app/' },
-  { name: 'Ignition SCADA', url: 'https://ignition-study-guide.vercel.app/' },
-  { name: 'Wireshark', url: 'https://wireshark-study-guide.vercel.app/' },
+  { name: 'Modbus', url: guideUrl('modbus') },
+  { name: 'OPC UA', url: guideUrl('opcua') },
+  { name: 'DNP3', url: guideUrl('dnp3') },
+  { name: 'IEC 61131-3', url: guideUrl('iec61131') },
+  { name: 'PID Controllers', url: guideUrl('pid') },
+  { name: 'SEL RTAC', url: guideUrl('rtac') },
+  { name: 'Ignition SCADA', url: guideUrl('ignition') },
+  { name: 'Wireshark', url: guideUrl('wireshark') },
 ]
 
 export default function Footer() {

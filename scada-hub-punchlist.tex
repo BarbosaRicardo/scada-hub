@@ -1,0 +1,212 @@
+% ============================================================
+%  SCADA Hub — Manager Punchlist (ADO Submission)
+% ============================================================
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{palatino}
+\usepackage[scaled=0.82]{beramono}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage[colorlinks=true, linkcolor=sblue, urlcolor=scyan,
+  pdftitle={SCADA Hub --- Manager Punchlist}]{hyperref}
+\usepackage{parskip}
+
+\definecolor{sblue}{HTML}{2563EB}
+\definecolor{scyan}{HTML}{3B82F6}
+\definecolor{snavy}{HTML}{1E3A5F}
+\definecolor{sorange}{HTML}{EA580C}
+\definecolor{sgreen}{HTML}{15803D}
+\definecolor{sred}{HTML}{DC2626}
+\definecolor{samber}{HTML}{D97706}
+\definecolor{sgray}{HTML}{6B7280}
+\definecolor{slightgray}{HTML}{F1F5F9}
+
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% Priority badge helper
+\newcommand{\high}{\textcolor{sred}{\small\bfseries HIGH}}
+\newcommand{\med}{\textcolor{samber}{\small\bfseries MED}}
+\newcommand{\low}{\textcolor{sgreen}{\small\bfseries LOW}}
+
+\begin{document}
+
+%% ---- HEADER ----
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[snavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
+  \node[anchor=west, text=white, font=\fontsize{20}{24}\bfseries\sffamily]
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {SCADA Hub};
+  \node[anchor=west, text=scyan!80, font=\fontsize{11}{13}\sffamily]
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Work Item Punchlist · ADO Submission · 2026-05-16};
+  \draw[sorange, line width=2pt]
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.5in,  yshift=-0.83in]current page.north west);
+\end{tikzpicture}
+
+\vspace{0.70in}
+
+{\small\sffamily\color{sgray}\MakeUppercase{Overview}}
+\smallskip
+
+{\small 8 study guide sites covering Modbus, OPC UA, DNP3, IEC 61131-3, PID Controllers, SEL RTAC, Ignition SCADA, and Wireshark. Each guide is a React/Vite SPA deployed to GitHub Pages, with quizzes, flashcards, a Code Lab, and a downloadable course PDF. The hub landing page (scada-hub.vercel.app) links all 8 guides.}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{1.2pt}}
+\smallskip
+
+%% ---- SECTION: FEATURES ----
+{\small\sffamily\color{sgray}\MakeUppercase{Feature Work}}
+\smallskip
+
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{sblue}{\small\bfseries\arabic*.}}
+\begin{enumerate}\small
+  \item \textbf{Quiz Question Hints} \hfill \high \\
+    Add a \texttt{hint} field to every quiz question in all 8 guides' \texttt{quizzes.js} data files, showing WHERE the answer can be found (chapter name, section heading, flashcard ID). Add a "Hint" button to \texttt{Quiz.jsx} that reveals the source on click. Scope: 8 guides × 600–900 questions each.
+
+  \item \textbf{Certification Relevance Sidebar Panel} \hfill \med \\
+    Build a new sidebar button per guide (modal or slide-out panel) containing rich certification content: cert name, exam body, link, description, and which course chapters map to which exam domains. Content removed from the syllabus PDF; this is its permanent home in the web app. Scope: 8 guides.
+
+  \item \textbf{DNP3 Study Guide LaTeX PDF} \hfill \med \\
+    Write, compile, and deploy the DNP3 full-length study guide PDF (equivalent to the Modbus PDF). Place at \texttt{site/public/study\_guide.pdf}. Current sidebar PDF button returns 404. Scope: DNP3 guide only.
+
+  \item \textbf{Wrong-Answer Tracking + Review Missed Mode} \hfill \med \\
+    Store which question IDs a user missed per chapter (Supabase already wired). Add a "Review Missed" quiz mode that surfaces only previously incorrect questions. Scope: all 8 guides + Supabase schema.
+
+  \item \textbf{Spaced Repetition on Flashcards} \hfill \low \\
+    Replace the current random shuffle with the SM-2 algorithm (\textasciitilde150 lines JS). Cards missed come back sooner; mastered cards surface less often. Scope: all 8 guides \texttt{Flashcards.jsx}.
+
+  \item \textbf{Timed Exam Mode} \hfill \low \\
+    Hub-level: 60 questions, 90 minutes, randomized across all guides in a topic area (OT protocols, ICS security, etc.). Supabase for scoring and leaderboard. Scope: scada-hub + Supabase.
+
+  \item \textbf{Cross-Guide "See Also" Callouts} \hfill \low \\
+    Add "See Also" callouts within chapters that link to related chapters in other guides (e.g., Wireshark Modbus chapter → Modbus guide, OPC UA Security → Wireshark OPC UA chapter). Scope: all 8 guides content pages.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION: CONTENT GAPS ----
+{\small\sffamily\color{sgray}\MakeUppercase{Content Gaps — Syllabus vs.\ Coursework}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Modbus: Prerequisites + ModRSsim2 + TCP Flashcards} \hfill \med \\
+    (a) Add prerequisite statement to \texttt{Home.jsx} / Intro chapter. (b) Mention ModRSsim2 in the TCP or Required Software section of the web guide. (c) Expand TCP chapter flashcards (currently 3; syllabus implies 5+, covering transaction ID pipelining and Unit ID in gateways).
+
+  \item \textbf{OPC UA: Sessions/Channels Chapter + Discovery Section} \hfill \med \\
+    (a) Add a dedicated Sessions \& Channels section to \texttt{Architecture.jsx}: token renewal, reconnection retry, ActivateSession flow. (b) Add a Discovery section covering GetEndpoints, FindServers, GDS pattern, certificate trust flow. (c) Introduce open62541 in at least one chapter page (currently only referenced in quiz questions).
+
+  \item \textbf{IEC 61131-3: PLCopen FB Library + Vendor Portability} \hfill \med \\
+    (a) Add a section on PLCopen standard FB signatures (TON/TOF/CTU), instance management, and library navigation. (b) Add a vendor portability section on migration barriers across Siemens/Beckhoff/SEL implementations. (c) Add a table explaining which IEC version applies to which platforms.
+
+  \item \textbf{PID: Scilab Lab Exercises + Laplace Prerequisites} \hfill \med \\
+    (a) Add Scilab step-test simulation exercises to the Process Characterization chapter. (b) Add a note to the Digital Implementation chapter clarifying the math prerequisites (Laplace/transfer functions) so students without calculus know what to skip or review first.
+
+  \item \textbf{DNP3: Prerequisites Statement in Web Guide} \hfill \low \\
+    Add a brief prerequisite note to \texttt{Home.jsx} or the Intro chapter stating that basic TCP/IP and Modbus familiarity is assumed. All 10 topics are fully covered; this is the only gap found.
+
+  \item \textbf{RTAC: Modbus Gateway Chapter} \hfill \med \\
+    Add a dedicated Modbus Gateway chapter (or major section) covering: DNP3-to-Modbus point mapping, register layout design, data type conversion rules, and translation failure modes. Syllabus Topic 4 ("Modbus Gateway") has no corresponding web chapter. Also expand I/O module selection and integrate SEL-5033 virtual RTAC into the lab exercise.
+
+  \item \textbf{Ignition: OPC-UA Integration Chapter Depth} \hfill \med \\
+    Audit \texttt{OpcUa.jsx} against syllabus Topic 3 (OPC-UA Integration). Verify PLC-to-live-tags workflow and Ignition-as-OPC-UA-server config are fully covered. Add SQL prerequisite note to Home.jsx. (\emph{Audit pending.})
+
+  \item \textbf{Wireshark: SSH Remote Capture + tcpreplay} \hfill \low \\
+    Syllabus Topic 9 (Advanced Techniques) lists SSH remote capture and tcpreplay. Verify both are in \texttt{Advanced.jsx}. Add content where missing. (\emph{Audit pending.})
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION: BUGS + INFRASTRUCTURE ----
+{\small\sffamily\color{sgray}\MakeUppercase{Bugs \& Infrastructure}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Vercel Re-Deploy All 8 Guides} \hfill \high \\
+    Free-tier 100-deploy/day limit was hit on 2026-05-15. All code is on GitHub; run \texttt{vercel --\!-prod --\!-yes} from each guide root to sync the latest builds to Vercel. Affected: all 8 guides.
+
+  \item \textbf{Auth: Duplicate Email Signup Error} \hfill \med \\
+    Registering with an existing email shows a generic Supabase error. Show a clear "account exists" message with a "Reset password" link. Add reset-password flow triggered from the register form error state. Scope: scada-hub \texttt{AuthPage.jsx}.
+
+  \item \textbf{Quiz Reports RLS — Supabase} \hfill \med \\
+    Any logged-in user can currently read any other user's quiz history. Add Supabase row-level security (RLS) policies on the \texttt{quiz\_results} table: users see only their own records; admin account has a bypass policy.
+
+  \item \textbf{Mobile UX Audit} \hfill \med \\
+    Overall mobile layout is unfriendly across all 8 guides and the hub. Full audit needed: text sizes, tap targets, sidebar behavior, LearningPath horizontal scroll on small screens.
+
+  \item \textbf{Supabase Email Confirmation Redirect} \hfill \low \\
+    Clicking the confirmation email link sends users to a broken URL. Fix: update Site URL and Redirect URLs in Supabase Auth settings to point to \texttt{scada-hub.vercel.app}.
+
+  \item \textbf{LearningPath Hover Scale Bug} \hfill \low \\
+    Hovering a step card triggers \texttt{whileHover=\{scale: 1.03\}} — card enlarges and text becomes hard to read. Reduce or remove the scale transform. Scope: \texttt{scada-hub/site/src/components/LearningPath.jsx}.
+
+  \item \textbf{RTAC PDF Layout Overhaul} \hfill \low \\
+    RTAC study guide PDF has bad spacing, orphaned headings, and an intro style inconsistent with the Modbus PDF template. Needs a formatting pass to align with the Modbus LaTeX template.
+
+  \item \textbf{OG Image Quality Improvement} \hfill \low \\
+    Current OG images use Python PIL with the system Helvetica font — functional but basic. Replace with a custom SVG design or Vercel's \texttt{@vercel/og} for server-side image generation at deploy time. Scope: scada-hub \texttt{public/og-image.png} + all 8 guide repos.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{UI / Branding}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Login Page: Trimark Associates Brand Colors} \hfill \med \\
+    The SCADA Hub login/auth page (\texttt{ScadaBackground.jsx} + \texttt{AuthPage.jsx}) uses orange as its primary accent. Replace with Trimark Associates brand hex colors. Scope: \texttt{scada-hub/site/src/components/ScadaBackground.jsx}, \texttt{AuthPage.jsx}. Collect hex color values from Trimark brand guidelines before implementation.
+
+  \item \textbf{Login Page: Floating Telemetry Values} \hfill \med \\
+    On the animated SCADA login background, the live telemetry tickers (PV kW, SOC\%, RTT ms, MVA values) overlap with the node icons on some screen sizes. Fix: (a) move ticker boxes so they do not cover the icon, and (b) animate them with a slow float (gentle vertical oscillation) to give the background more life. Scope: \texttt{ScadaBackground.jsx} node layout and ticker positioning logic.
+
+  \item \textbf{All Courses Sidebar Panel — Design Polish} \hfill \low \\
+    The "All Courses" collapsible nav item was added to all 8 guide sidebars with guide icons and Vercel URLs. Future polish: (a) highlight the current guide in the dropdown so users know which guide they are on, (b) consider adding the guide's chapter count or question count as a subtitle under each guide name.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Pending Audits}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Ignition SCADA: Syllabus vs.\ Coursework Audit} \hfill \med \\
+    Audit \texttt{ignition-study-guide} chapter pages against the Ignition syllabus (Course 7 of 8). Verify OPC-UA Integration chapter depth (syllabus Topic 3), SQL prerequisite note, and that all 10 syllabus topics have corresponding web content. Document gaps in the devlog and add fix items to punchlist.
+
+  \item \textbf{Wireshark: Syllabus vs.\ Coursework Audit} \hfill \med \\
+    Audit \texttt{wireshark-study-guide} chapter pages against the Wireshark syllabus (Course 8 of 8). Specifically verify: SSH remote capture and tcpreplay coverage in \texttt{Advanced.jsx} (syllabus Topic 9), and that all 10 topics have web content. Document gaps in the devlog.
+
+  \item \textbf{Vercel Re-Deploy — All 9 Projects} \hfill \high \\
+    Vercel free-tier 100-deploy/day limit was hit on 2026-05-16. All code is current on GitHub. Run the following from each project root (build with empty \texttt{GITHUB\_PAGES} so base is \texttt{/}):
+    \texttt{cd site \&\& GITHUB\_PAGES= npm run build \&\& cd .. \&\& vercel -{-}prod -{-}yes}\\
+    Projects: modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark, scada-hub.
+\end{enumerate}
+
+\vfill
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[snavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
+  \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
+    {SCADA Hub · Industrial Control Systems · scada-hub.vercel.app};
+  \node[anchor=east, text=scyan, font=\footnotesize\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
+    {Generated 2026-05-16};
+\end{tikzpicture}
+
+\end{document}
