@@ -919,6 +919,32 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 23 — 2026-05-16
+
+### Completed
+
+- [x] **All 9 projects deployed to Vercel prod** — Free-tier 100/day limit required 3 separate deploy runs across multiple wakeup cycles. All 9 now live on Vercel with SPA rewrites (`/` → `index.html`). wireshark `vercel.json` had wrong `outputDirectory` (`site/dist` → fixed to `docs`); committed `9406e83` to wireshark main.
+- [x] **DNP3 GitHub Pages branch mismatch fixed** — GitHub Pages was configured to serve from `main` branch but the DNP3 repo lives on `master`. All fixes were going to `master` and Pages never saw them. Fixed via `gh api PUT /pages` to point source to `master /docs`. Fresh build triggered via `gh api POST /pages/builds`.
+- [x] **`.nojekyll` added to all 8 guide `docs/` folders** — Without this file GitHub Pages runs Jekyll, which can prevent updated JS bundles from being served. Added and pushed to all 8 repos.
+- [x] **DNP3 dark theme — AnalogyCard + QuizLevels** — AnalogyCard replaced purple-50/indigo-50 light card with dark rgba inline styles. QuizLevels: `bg-white` locked state removed, emoji level badges (📘📙📕🔒✅🚧) replaced with Lucide SVG (Lock, CheckCircle, AlertTriangle, numbered circle), ResourceDrawer `bg-*-100` → `bg-*-900/30`, `text-slate-700` → `text-slate-200`, `hover:bg-*-50` → `hover:bg-white/5`. Committed `b7ab6f0`, pushed to DNP3 master.
+- [x] **Punchlist updated** — "Trimark Associates" removed; item now reads "Company A Brand Colors". Added new section "Professional Development / R&D" with item on AI agent skills / Claude Code / Codex toolchain evaluation. PDF regenerated and copied to Desktop.
+
+### Vercel prod URLs — all 9 guides
+
+| Guide | Vercel URL | Commit |
+|-------|-----------|--------|
+| Modbus | https://modbus-study-guide.vercel.app | 10741ac |
+| OPC UA | https://opcua-study-guide.vercel.app | c60082b |
+| DNP3 | https://dnp3-study-guide.vercel.app | 116cadc |
+| IEC 61131-3 | https://iec61131-study-guide.vercel.app | d10a052 |
+| PID | https://pid-study-guide.vercel.app | 2c04956 |
+| RTAC | https://rtac-study-guide.vercel.app | 7a5b98a |
+| Ignition | https://ignition-study-guide.vercel.app | 74292ea |
+| Wireshark | https://wireshark-study-guide.vercel.app | 9406e83 |
+| SCADA Hub | https://scada-hub.vercel.app | 450a4e6 |
+
+---
+
 ## Session 22 — 2026-05-16
 
 ### Completed
