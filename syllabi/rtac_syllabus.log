@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.9)  16 MAY 2026 08:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.9)  16 MAY 2026 08:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -938,7 +938,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
-8.
+1.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -948,35 +948,35 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-8.
+1.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-78.
+71.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-78.
+71.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 78.
+(Font)              <9> on input line 71.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 78.
+(Font)              <6> on input line 71.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 78.
+(Font)              <5> on input line 71.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 79.
+(Font)              <10> on input line 93.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 79.
+(Font)              <7> on input line 93.
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 []\T1/ppl/m/n/9 (+20) Download AC-SEL-ER-A-TOR Ar-chi-tect (free from
  []
 
@@ -990,7 +990,7 @@ Package rerunfilecheck Info: File `rtac_syllabus.out' has not changed.
 Here is how much of TeX's memory you used:
  29776 strings out of 478268
  596110 string characters out of 5846348
- 963625 words of memory out of 5000000
+ 969315 words of memory out of 5000000
  47337 multiletter control sequences out of 15000+600000
  516429 words of font info for 137 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1002,7 +1002,7 @@ t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts
 /type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
 urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb>
-Output written on rtac_syllabus.pdf (1 page, 70127 bytes).
+Output written on rtac_syllabus.pdf (1 page, 70979 bytes).
 PDF statistics:
  94 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream
