@@ -54,21 +54,21 @@
 \smallskip
 {\color{inavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{igray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+{\small\sffamily\color{igray}\MakeUppercase{Course Overview}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{iblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction} --- Before IEC 61131-3, every PLC manufacturer used a proprietary language. Engineers retrained from scratch when they changed vendors. This chapter explains why the standard exists, what it unified, and which of the five languages to reach for first.
-  \item \textbf{Data Types} --- BOOL, INT, REAL, TIME, STRING, and user-defined structured types. The type system is what separates safe PLC code from implicit conversions that silently corrupt process values at runtime.
-  \item \textbf{Structured Text (ST)} --- Pascal-style text language: IF/THEN, FOR, WHILE, CASE, function calls. The most expressive of the five languages and the most transferable skill for engineers coming from software backgrounds.
-  \item \textbf{Ladder Diagram (LD)} --- Relay-logic graphical representation: contacts, coils, and rungs. Electricians can read it without training. Every PLC vendor supports it. Understanding LD is non-optional for anyone working with existing automation code.
-  \item \textbf{Function Block Diagram (FBD)} --- Signal-flow graphical language where data passes between interconnected function blocks. The natural fit for control engineers working with PID loops, signal conditioning, and process instrumentation.
-  \item \textbf{Sequential Function Chart (SFC)} --- State machine language for batch and sequential processes. Steps, transitions, and divergence structures replace thousands of lines of LD timer-and-flag logic with a readable, maintainable flowchart.
-  \item \textbf{Program Organization Units} --- Functions, Function Blocks, Programs, and Configurations are the module system that enables reusable automation libraries. Engineers learn how to build code that works across vendors without modification.
-  \item \textbf{RTAC Integration} --- Applying IEC 61131-3 logic in the SEL RTAC; how the standard crosses from PLC programming into substation protection and automation. The bridge between this course and the RTAC guide.
-  \item \textbf{Troubleshooting} --- Type mismatches, scan cycle overruns, unintended coil latching, and the runtime faults that crash programs without a clear error message. Field debugging procedures for real PLC hardware.
-  \item \textbf{Practice Lab} --- Four exercises: a PID temperature controller in Structured Text, a motor starter sequence in Ladder, a batch filling process in SFC, and a reusable Function Block library for analog scaling.
+  \item \textbf{Introduction:} Before IEC 61131-3, every PLC manufacturer had its own language, its own IDE, and its own way of describing a contact or a coil. Moving between vendors meant starting over. The standard defined five languages, a common type system, and a module structure that works across implementations. This chapter explains what was unified and what was deliberately left vendor-specific.
+  \item \textbf{Data Types:} BOOL, INT, DINT, REAL, TIME, STRING, and user-defined structures are the building blocks of every IEC 61131-3 program. Type mismatches that cause silent data corruption look exactly like tuning problems or sensor faults at the process level. Getting types right comes first.
+  \item \textbf{Structured Text:} Pascal-style text with IF/THEN, FOR, WHILE, CASE, and function calls. The most expressive of the five languages and the one that feels most familiar to software engineers. Also the one most PLC programmers reach for last, which is a mistake this chapter corrects.
+  \item \textbf{Ladder Diagram:} Relay logic drawn as rungs on a rail. Every PLC vendor supports it. Electricians who have never written software can read it. Understanding Ladder is non-optional for anyone who will touch existing automation code, because most existing automation code is in Ladder.
+  \item \textbf{Function Block Diagram:} Data flows left to right between connected function blocks. No explicit control flow. The natural language for process control engineers working with PID loops, filters, and signal conditioning chains where the data path matters more than execution order.
+  \item \textbf{Sequential Function Chart:} Steps and transitions model a process that moves through discrete states. A batch filling sequence, a motor start-stop sequence, a conveyor interlocking sequence — any process with a defined beginning, middle, and end is cleaner in SFC than in Ladder with timer flags.
+  \item \textbf{Program Organization Units:} Functions, Function Blocks, Programs, and Configurations are the module system. A well-defined Function Block can be reused across vendors without modification. Building libraries that survive hardware changes is the point of this chapter.
+  \item \textbf{RTAC Integration:} The SEL RTAC runs IEC 61131-3 programs through ACSELERATOR Architect. The same language that controls a tank level also controls a transformer bay. The chapter covers how PLC programming concepts translate to substation automation.
+  \item \textbf{Troubleshooting:} Implicit type conversion that changes values without warning. Scan cycle overruns that make outputs appear delayed. Latching coils that never reset. Runtime faults that stop the PLC silently. Each failure has a diagnosis procedure.
+  \item \textbf{Practice Lab:} A temperature PID controller in Structured Text with manual/auto switching. A motor starter in Ladder with overload and remote stop. A batch fill sequence in SFC with a weight setpoint. A reusable analog scaling Function Block with engineering unit conversion.
 \end{enumerate}
 
 \vfill
@@ -86,9 +86,9 @@
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{iblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{PLCopen Certified} --- PLCopen certification exams test IEC 61131-3 language knowledge, POUs, and programming best practices directly.
-  \item \textbf{ISA CCST} --- PLC programming, ladder logic, and control system configuration are core tested topics at all levels.
-  \item \textbf{Vendor Credentials} --- Siemens TIA Portal, Rockwell Studio 5000, and Beckhoff TwinCAT all use IEC 61131-3 as their programming foundation.
+  \item \textbf{PLCopen Certified} — Certification exams test IEC 61131-3 language knowledge, POUs, and programming best practices directly.
+  \item \textbf{ISA CCST} — PLC programming, ladder logic, and control system configuration are core tested topics at all levels.
+  \item \textbf{Vendor Credentials} — Siemens TIA Portal, Rockwell Studio 5000, and Beckhoff TwinCAT all use IEC 61131-3 as their programming foundation.
 \end{itemize}
 \end{tcolorbox}
 \end{minipage}
@@ -103,10 +103,10 @@
   top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{iorange}{\arabic*.}]
-  \item \small Complete IEC 61131-3 before starting the RTAC guide --- logic concepts transfer directly to ACSELERATOR Architect.
-  \item Download CODESYS (free IDE, IEC 61131-3 compliant) and run the practice lab exercises in a soft PLC.
+  \item \small Take IEC 61131-3 before the RTAC guide. The logic concepts transfer directly to ACSELERATOR Architect.
+  \item Download CODESYS (free, IEC 61131-3 compliant IDE) and run the lab exercises in a soft PLC.
   \item Review the PLCopen Function Block libraries for motion, communications, and safety.
-  \item Pursue PLCopen certification or a vendor credential (TIA Portal, Studio 5000) as the first PLC-specific credential.
+  \item PLCopen certification or a vendor credential (TIA Portal, Studio 5000) is the right first PLC-specific credential.
 \end{enumerate}
 \end{tcolorbox}
 \end{minipage}

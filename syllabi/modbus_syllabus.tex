@@ -54,22 +54,22 @@
 \smallskip
 {\color{mnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{mgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+{\small\sffamily\color{mgray}\MakeUppercase{Course Overview}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{mblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction} --- Modbus was written in 1979 and has not changed its core protocol since. This chapter establishes why that matters: the same register model running in 1980s PLCs ships unchanged in new devices today. Engineers who understand the history stop treating its quirks as bugs.
-  \item \textbf{Data Model} --- Four register tables --- coil, discrete input, input register, holding register --- define every possible Modbus transaction. This chapter makes the address space automatic before function codes are introduced.
-  \item \textbf{RTU Mode} --- Serial framing, CRC-16, RS-485 multi-drop wiring, and the silence intervals that separate frames. RTU is still the dominant implementation in field devices; engineers who skip this chapter struggle with every serial deployment.
-  \item \textbf{ASCII Mode} --- The human-readable serial variant: twice the overhead of RTU for the same data. Covered because legacy systems still use it, and because understanding it clarifies exactly why RTU won.
-  \item \textbf{Modbus TCP} --- MBAP header, transaction IDs, port 502, and how Modbus crossed to Ethernet without modifying its register model. This is why Modbus remains relevant on modern plant networks.
-  \item \textbf{Function Codes} --- The 20 codes covering 95\% of deployments: read coils, read/write registers, write multiple registers, and the diagnostics codes that only appear when a device is misbehaving.
-  \item \textbf{Exception Codes} --- Illegal Function, Illegal Data Address, Illegal Data Value, Slave Device Failure. Engineers learn to read exception responses instead of assuming the master is at fault.
-  \item \textbf{Data Types} --- 16-bit registers were not designed for floats, 32-bit integers, or strings. This chapter covers register-pair encoding, byte-order conventions, and the vendor-specific choices that turn a simple read into an hour of debugging.
-  \item \textbf{Troubleshooting} --- Addressing offset errors, byte-order mismatches, poll-rate overloads, RS-485 termination faults, and the firewall that silently drops Modbus TCP. Field diagnosis using Wireshark and software masters.
-  \item \textbf{Security} --- Modbus has no authentication, no encryption, and no access control by design. This chapter covers compensating controls: network segmentation, unidirectional gateways, and anomaly detection at the network layer.
-  \item \textbf{Practice Lab} --- Five diagnostic exercises: mapping an unknown device's registers, tracing an Exception Code 02, configuring an RTU-to-TCP gateway, diagnosing a byte-order fault, and building a Wireshark filter to monitor a Modbus TCP master.
+  \item \textbf{Introduction:} Modbus was written in 1979 by a single engineer at Modicon for their own PLCs. No one planned for it to outlast every protocol that tried to replace it. The register model from that weekend ships unchanged in devices manufactured today, and understanding that history makes the quirks make sense.
+  \item \textbf{Data Model:} Four register tables cover everything a Modbus device can expose: coil, discrete input, input register, holding register. Knowing which table holds which type of data makes every function code obvious rather than arbitrary.
+  \item \textbf{RTU Mode:} RS-485 framing, CRC-16 on every message, multi-drop bus wiring, and the inter-frame silence that separates transactions. Most field devices still ship with RTU as their primary interface. Getting serial right is non-negotiable.
+  \item \textbf{ASCII Mode:} Modbus with hex-encoded bytes and a colon framing character instead of CRC. Twice the overhead for the same data. Still found in legacy HMI equipment and covered here so engineers recognize it rather than mistake it for a malfunction.
+  \item \textbf{Modbus TCP:} Port 502, the MBAP header that wraps each RTU message, and transaction IDs that allow pipelining. Modbus crossed to Ethernet without changing its register model, which is both its greatest strength and its most significant security liability.
+  \item \textbf{Function Codes:} Twenty codes cover the entire protocol. Read Coils, Read Holding Registers, Preset Multiple Registers, and a handful of diagnostic codes handle ninety-five percent of real deployments. The rest show up exactly once per career.
+  \item \textbf{Exception Codes:} When a device cannot execute a request, it returns one of eight exception codes. Illegal Function, Illegal Data Address, Illegal Data Value, Slave Device Failure. Reading exception responses correctly eliminates the instinct to blame the cable first.
+  \item \textbf{Data Types:} Sixteen-bit registers were not designed to hold floating-point numbers, 32-bit integers, or strings. Vendors solved this differently. The register-pair conventions, byte-order choices, and word-order debates in this chapter account for most Modbus integration hours on any real job.
+  \item \textbf{Troubleshooting:} Zero-based versus one-based addressing confusion. Byte-order mismatches. RS-485 termination errors. Firewalls that drop Modbus TCP silently. Poll rates that exceed device response time. Each failure has a fingerprint.
+  \item \textbf{Security:} No authentication. No encryption. No access control. This is not an oversight — Modbus predates the concept of a networked attacker by a decade. Compensating controls live at the network layer: segmentation, unidirectional gateways, and anomaly detection.
+  \item \textbf{Practice Lab:} Five exercises from start to finish: mapping an unknown device's registers, tracing an Exception Code 02 to its source, configuring a serial-to-TCP gateway, diagnosing a byte-order fault in a historian feed, and building a Wireshark filter to monitor a Modbus TCP master in real time.
 \end{enumerate}
 
 \vfill
@@ -87,9 +87,9 @@
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{mblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{ISA CCST} --- Modbus appears in industrial communications and data acquisition domains at all three CCST levels.
-  \item \textbf{GICSP (GIAC)} --- OT protocol knowledge and Modbus security posture appear throughout ICS security exam domains.
-  \item \textbf{CompTIA CySA+} --- Industrial network traffic analysis including Modbus TCP anomaly detection.
+  \item \textbf{ISA CCST} — Modbus appears in industrial communications and data acquisition domains at all three CCST levels.
+  \item \textbf{GICSP (GIAC)} — OT protocol knowledge and Modbus security posture are tested throughout ICS security exam domains.
+  \item \textbf{CompTIA CySA+} — Industrial network traffic analysis including Modbus TCP anomaly detection.
 \end{itemize}
 \end{tcolorbox}
 \end{minipage}
@@ -104,10 +104,10 @@
   top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{morange}{\arabic*.}]
-  \item \small Complete Modbus before OPC UA --- the data model concepts transfer directly.
-  \item Download ModRSsim2 (free) and Modbus Poll (trial) to practice register reads against a live simulator.
+  \item \small Take Modbus before OPC UA. The data model concepts carry over directly.
+  \item Download ModRSsim2 (free) and Modbus Poll (trial) to run register reads against a live simulator.
   \item Review IEC 61158 for the formal specification behind the protocol details.
-  \item Pursue ISA CCST Level I as the entry-level industrial automation credential.
+  \item ISA CCST Level I is the right entry credential for industrial automation work.
 \end{enumerate}
 \end{tcolorbox}
 \end{minipage}

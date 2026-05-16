@@ -54,21 +54,21 @@
 \smallskip
 {\color{wnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{wgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+{\small\sffamily\color{wgray}\MakeUppercase{Course Overview}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{wblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction to Wireshark} --- Wireshark is the verification layer for every protocol taught in this curriculum. This chapter covers the three-pane interface, dissector architecture, ICS protocol support, and the distinction between tshark (scriptable command-line) and dumpcap (dedicated capture). Engineers who complete this chapter can open a capture and navigate it without instruction.
-  \item \textbf{Capture Techniques} --- Getting frames off a live network without disrupting it. SPAN ports, network taps, promiscuous mode, ring buffers, pcap vs.\ pcapng format differences, and remote capture over SSH. The chapter most engineers skip --- and then struggle with every time they need to capture on production hardware.
-  \item \textbf{Display Filters} --- BPF syntax filters traffic at capture time. Wireshark display filter syntax filters what you see after capture. This chapter covers the most useful SCADA-specific filter expressions, colorization rules for visual triage, and Follow TCP Stream for reconstructing full sessions.
-  \item \textbf{Protocol Dissectors} --- Dissectors decode raw bytes into readable fields. This chapter covers how dissectors work, the Decode As feature for Modbus and DNP3 running on non-standard ports, Wireshark profiles for switching between SCADA and IT contexts, and the Statistics tools that reveal traffic patterns without reading individual frames.
-  \item \textbf{Modbus Analysis} --- MBAP header fields, transaction ID tracking, reading Modbus TCP captures frame by frame, identifying write commands, and detecting exception responses in a capture stream. Verifying what the master actually sent instead of trusting the application log.
-  \item \textbf{DNP3 Analysis} --- DNP3 frame structure, unsolicited response identification, IIN bit monitoring for device status flags, and Secure Authentication v5 handshake verification. The most complex capture in this course --- and the most valuable for engineers working in power utility SCADA.
-  \item \textbf{OPC UA Analysis} --- Session establishment, SecureChannel negotiation, security mode verification from the wire, subscription traffic profiling, and the difference between Security Mode None and Security Mode SignAndEncrypt as seen in actual frame captures. When the configuration says encrypted and the traffic says otherwise, Wireshark is the arbiter.
-  \item \textbf{Security Analysis} --- Establishing a traffic baseline, anomaly detection workflow, identifying scanning behavior, and incident response capture procedures that preserve forensic evidence. The 2015 Ukraine power grid attack and every major ICS incident since left evidence in network traffic; this chapter teaches engineers to collect it.
-  \item \textbf{Advanced Techniques} --- tshark scripting for automated protocol monitoring, remote capture via SSH tunnel, writing Lua dissectors for proprietary protocols, and packet replay with tcpreplay for lab testing without live hardware. Turning Wireshark from a manual analysis tool into an automated monitoring component.
-  \item \textbf{Protocol Lab} --- Five exercises: diagnosing a Modbus poll rate overload, investigating an Exception Code 02 trace, auditing an OPC UA server's security mode from a capture, detecting a rogue Modbus master by analyzing unsolicited write traffic, and writing a tshark monitoring script that alerts on exception responses.
+  \item \textbf{Introduction to Wireshark:} Wireshark is the verification layer for every protocol taught in this curriculum. This chapter covers the three-pane interface, dissector architecture, ICS protocol support, and the distinction between tshark (scriptable command-line) and dumpcap (dedicated capture). Engineers who complete this chapter can open a capture and navigate it without help.
+  \item \textbf{Capture Techniques:} Getting frames off a live network without disrupting it. SPAN ports, network taps, promiscuous mode, ring buffers, pcap vs.\ pcapng format differences, and remote capture over SSH. Most engineers skip this chapter and then struggle every time they need to capture traffic on production hardware.
+  \item \textbf{Display Filters:} BPF syntax filters traffic at capture time. Wireshark display filter syntax filters what you see after capture. This chapter covers the most useful SCADA-specific filter expressions, colorization rules for visual triage, and Follow TCP Stream for reconstructing full sessions.
+  \item \textbf{Protocol Dissectors:} Dissectors decode raw bytes into readable fields. This chapter covers how dissectors work, the Decode As feature for Modbus and DNP3 running on non-standard ports, Wireshark profiles for switching between SCADA and IT contexts, and the Statistics tools that reveal traffic patterns without reading individual frames.
+  \item \textbf{Modbus Analysis:} MBAP header fields, transaction ID tracking, reading Modbus TCP captures frame by frame, identifying write commands, and detecting exception responses in a capture stream. Verifying what the master actually sent instead of trusting the application log.
+  \item \textbf{DNP3 Analysis:} DNP3 frame structure, unsolicited response identification, IIN bit monitoring for device status flags, and Secure Authentication v5 handshake verification. The most complex capture in this course and the most valuable for engineers working in power utility SCADA.
+  \item \textbf{OPC UA Analysis:} Session establishment, SecureChannel negotiation, security mode verification from the wire, subscription traffic profiling, and the difference between Security Mode None and Security Mode SignAndEncrypt as seen in actual frame captures. When the configuration says encrypted and the traffic says otherwise, Wireshark is the arbiter.
+  \item \textbf{Security Analysis:} Establishing a traffic baseline, anomaly detection workflow, identifying scanning behavior, and incident response capture procedures that preserve forensic evidence. The 2015 Ukraine power grid attack and every major ICS incident since left evidence in network traffic; this chapter teaches engineers to collect it.
+  \item \textbf{Advanced Techniques:} tshark scripting for automated protocol monitoring, remote capture via SSH tunnel, writing Lua dissectors for proprietary protocols, and packet replay with tcpreplay for lab testing without live hardware. Turning Wireshark from a one-off analysis tool into an automated monitoring component.
+  \item \textbf{Protocol Lab:} Five exercises: diagnosing a Modbus poll rate overload, investigating an Exception Code 02 trace, auditing an OPC UA server's security mode from a capture, detecting a rogue Modbus master by analyzing unsolicited write traffic, and writing a tshark monitoring script that alerts on exception responses.
 \end{enumerate}
 
 \vfill
@@ -86,10 +86,10 @@
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{wblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{GICSP (GIAC)} --- ICS network analysis and incident response are core exam domains; Wireshark proficiency is assumed by the exam objectives.
-  \item \textbf{GRID (GIAC)} --- ICS defender certification; network forensics and anomaly detection are heavily tested.
-  \item \textbf{CEH (EC-Council)} --- Packet analysis and protocol investigation appear in the network reconnaissance modules.
-  \item \textbf{CompTIA CySA+} --- Network traffic analysis in the threat detection domain.
+  \item \textbf{GICSP (GIAC):} ICS network analysis and incident response are core exam domains; Wireshark proficiency is assumed by the exam objectives.
+  \item \textbf{GRID (GIAC):} ICS defender certification; network forensics and anomaly detection are heavily tested.
+  \item \textbf{CEH (EC-Council):} Packet analysis and protocol investigation appear in the network reconnaissance modules.
+  \item \textbf{CompTIA CySA+:} Network traffic analysis in the threat detection domain.
 \end{itemize}
 \end{tcolorbox}
 \end{minipage}

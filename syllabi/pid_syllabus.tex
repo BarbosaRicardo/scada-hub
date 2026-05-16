@@ -54,21 +54,21 @@
 \smallskip
 {\color{pnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{pgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+{\small\sffamily\color{pgray}\MakeUppercase{Course Overview}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{pblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction} --- Every process that requires maintaining a setpoint --- temperature, pressure, flow, level --- uses feedback control. This chapter establishes the closed-loop principle: measure, compare, correct. Engineers learn why PID is the default algorithm before understanding how it works.
-  \item \textbf{Control Loop Fundamentals} --- Process variable, setpoint, error, and manipulated variable are the four elements every control loop shares regardless of the physical process. This chapter makes the vocabulary automatic before the math is introduced.
-  \item \textbf{PID Algorithm} --- Proportional responds to current error. Integral eliminates steady-state offset. Derivative anticipates future error from its rate of change. Engineers learn what each term contributes to the output --- and what happens when one term dominates.
-  \item \textbf{Tuning Methods} --- Ziegler-Nichols open- and closed-loop, lambda tuning, and IMC replace trial-and-error with a repeatable procedure. Engineers learn which method fits which process type and what to do when the textbook method produces an unstable loop.
-  \item \textbf{Process Characterization} --- First-order plus dead time (FOPDT) model: gain, time constant, and dead time. These three parameters determine every tuning target. Engineers learn to identify them from a step test without simulation software.
-  \item \textbf{Cascade Control} --- Inner and outer loop architecture for processes with slow primary dynamics and a fast measurable intermediate variable. Cascade is the single most effective structural improvement for difficult-to-tune loops.
-  \item \textbf{Digital Implementation} --- Sampling rate, velocity form, bumpless transfer between manual and auto, and anti-windup. Real PLC PID blocks require these parameters; this chapter explains what they do and how to set them correctly.
-  \item \textbf{PLC Implementation} --- Configuring PID function blocks in common PLCs: scaling inputs, setting output limits, switching modes, and the parameters vendors rename between products. What Rockwell calls Reset, Siemens calls Ti.
-  \item \textbf{Troubleshooting} --- Oscillation, sluggish response, offset that integral should have removed, valve stiction, and the difference between a tuning problem and a mechanical problem. Field diagnosis without simulation.
-  \item \textbf{Practice Lab} --- Four exercises: tuning a flow loop from a step test, designing a temperature cascade, configuring anti-windup on a PLC PID block, and commissioning a new loop from zero in manual before switching to auto.
+  \item \textbf{Introduction:} Every process that must hold a setpoint uses feedback control — temperature, pressure, flow, level. The physics is different; the control problem is the same. This chapter establishes the feedback loop concept before the math, so the three-term algorithm makes sense when it arrives.
+  \item \textbf{Control Loop Fundamentals:} Process variable, setpoint, error, and manipulated variable appear in every control loop regardless of the physical process. These four terms are the vocabulary. Fluency with them is the prerequisite for everything that follows.
+  \item \textbf{PID Algorithm:} Proportional gain responds to current error. Integral eliminates the steady-state offset that proportional alone cannot remove. Derivative acts on rate of change to dampen oscillation before it builds. Each term solves a specific problem, and knowing which problem each term solves is what makes tuning possible.
+  \item \textbf{Tuning Methods:} Ziegler-Nichols closed-loop, Ziegler-Nichols open-loop, lambda tuning, and IMC provide starting points without guessing. Each method makes different assumptions about the process, and the chapter covers which to use and when each one fails.
+  \item \textbf{Process Characterization:} The first-order plus dead time model describes almost any self-regulating process with three numbers: gain, time constant, and dead time. A step test extracts these numbers from live equipment. Everything else in tuning follows from them.
+  \item \textbf{Cascade Control:} When the primary process is slow and there is a faster intermediate variable available, an inner loop around that variable dramatically improves the outer loop's disturbance rejection. Flow cascaded under temperature is the textbook case. The chapter covers design, commissioning sequence, and failure modes.
+  \item \textbf{Digital Implementation:} A PLC executes PID on a fixed scan cycle. Sampling rate, velocity-form vs. position-form algorithm, bumpless transfer between manual and automatic, and anti-windup when the output saturates all require explicit configuration that continuous-control textbooks omit.
+  \item \textbf{PLC Implementation:} The PID function block looks different in Rockwell, Siemens, Beckhoff, and Modicon. Same parameters, different names, different scaling conventions. The chapter provides a translation table and a commissioning procedure that works regardless of vendor.
+  \item \textbf{Troubleshooting:} Sustained oscillation at the correct period means gain is too high. No oscillation but persistent offset means integral is undersized. Slow response with no offset means gain is too low. Derivative chatter means filtering is needed. Each symptom points to a specific adjustment.
+  \item \textbf{Practice Lab:} A flow loop tuned from a step test using lambda method. A temperature loop with a cascade inner flow loop. Anti-windup configuration on a PLC with an output that saturates at a valve's close stop. Cold-start commissioning sequence: observe in manual, step test, calculate, switch to auto.
 \end{enumerate}
 
 \vfill
@@ -86,9 +86,9 @@
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{pblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{ISA CCST Level III} --- Advanced process control and loop tuning are tested at the senior technician level.
-  \item \textbf{ISA CAP} --- Certified Automation Professional exam covers control system design and PID fundamentals explicitly.
-  \item \textbf{PE Exam (Control Systems)} --- Professional Engineer licensing tests control theory, system response, and stability analysis at depth.
+  \item \textbf{ISA CCST Level III} — Advanced process control and loop tuning are tested at the senior technician level.
+  \item \textbf{ISA CAP} — Certified Automation Professional exam covers control system design and PID fundamentals explicitly.
+  \item \textbf{PE Exam (Control Systems)} — Professional Engineer licensing tests control theory, system response, and stability analysis.
 \end{itemize}
 \end{tcolorbox}
 \end{minipage}
@@ -103,10 +103,10 @@
   top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{porange}{\arabic*.}]
-  \item \small Complete PID alongside the IEC 61131-3 guide --- PLC PID blocks make sense once you understand both the algorithm and the language.
-  \item Download MATLAB (student license) or use Scilab (free) to simulate open-loop step tests before commissioning on live equipment.
-  \item Review ISA-5.1 (Instrumentation Symbols) and ISA-18.2 (Alarm Management) as the surrounding standards.
-  \item Pursue ISA CCST as the entry credential, then ISA CAP for the advanced process control track.
+  \item \small Take PID alongside IEC 61131-3. PLC PID blocks make sense once you understand both the algorithm and the language.
+  \item Use Scilab (free) or MATLAB (student license) to simulate step tests before commissioning on live equipment.
+  \item ISA-5.1 (Instrumentation Symbols) and ISA-18.2 (Alarm Management) are the surrounding standards worth reviewing.
+  \item ISA CCST is the right entry credential, with ISA CAP as the next step for advanced process control work.
 \end{enumerate}
 \end{tcolorbox}
 \end{minipage}

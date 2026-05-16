@@ -54,19 +54,19 @@
 \smallskip
 {\color{rnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{rgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+{\small\sffamily\color{rgray}\MakeUppercase{Course Overview}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{rgreen}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{RTAC Architecture} --- The SEL RTAC (SEL-3505, SEL-3530, SEL-3555) is a protocol gateway, data concentrator, and local logic engine in one ruggedized DIN-rail device. This chapter covers hardware variants, I/O modules, communication ports, and the commissioning sequence before any software is opened.
-  \item \textbf{ACSELERATOR Architect} --- SEL's configuration software organizes every RTAC project as a database: tags, aliases, point mapping, and revision control. Engineers learn the project structure that every RTAC configuration follows and the workflow that prevents configuration drift.
-  \item \textbf{DNP3 Configuration} --- The RTAC communicates upstream to the SCADA master via DNP3. This chapter covers master and outstation roles, point database mapping, event handling, unsolicited reporting, and the DNP3 parameters that determine how quickly a SCADA system sees a field change.
-  \item \textbf{Modbus Gateway} --- The RTAC translates Modbus TCP requests into DNP3 point values. This chapter covers server configuration, register mapping from DNP3 to coils and holding registers, and the common integration patterns for legacy SCADA systems that speak only Modbus.
-  \item \textbf{IEC 61850 Integration} --- GOOSE messages carry protection relay trip signals across the station LAN in microseconds. Sampled Values carry current and voltage waveforms. MMS handles operator control. This chapter covers all three and how RTAC maps IEC 61850 data to its internal tag database.
-  \item \textbf{Local Logic} --- When communications to the SCADA master fail, the RTAC continues executing local IEC 61131-3 programs. This chapter covers the ACSELERATOR logic engine: event-driven automation, failover sequences, and the programs that keep a substation safe when the network is down.
-  \item \textbf{Security \& Access Control} --- Role-based access, RBAC profile configuration, serial port security, and firmware update procedures. The RTAC is a critical infrastructure device; this chapter covers the security posture required for NERC CIP compliance in power utility applications.
-  \item \textbf{Field Scenarios} --- Three substation automation case studies: transformer bay control with automatic tap changer response, feeder protection coordination with downstream reclosers, and load shedding automation that executes correctly under a communication fault to the SCADA master.
+  \item \textbf{RTAC Architecture:} The SEL RTAC — available as the SEL-3505, SEL-3530, and SEL-3555 — is a protocol gateway, data concentrator, and local logic controller in a single DIN-rail device. It sits between field devices speaking DNP3, Modbus, and IEC 61850, and the SCADA master that speaks DNP3 or ICCP. Hardware variants, I/O module selection, communication ports, and the physical commissioning steps before software is involved.
+  \item \textbf{ACSELERATOR Architect:} Every RTAC project is a database. Tags represent individual data points. Aliases map protocol point addresses to tag names. Revision control logs every configuration change with a timestamp and operator ID. The project workflow from a blank project to first live data.
+  \item \textbf{DNP3 Configuration:} The RTAC communicates upstream to the SCADA master as a DNP3 outstation, and downstream to field devices as a DNP3 master. Point database mapping, event class assignment, unsolicited reporting intervals, and the DNP3 parameters that determine latency from a field change to a SCADA display update.
+  \item \textbf{Modbus Gateway:} The RTAC exposes a Modbus TCP server that maps DNP3 analog and binary points to holding registers and coils. Legacy SCADA systems that speak only Modbus can read live substation data through this interface. Register layout, data type conversion, and the failure modes specific to the Modbus-to-DNP3 translation.
+  \item \textbf{IEC 61850 Integration:} GOOSE messages carry protection relay trip and status signals across the station LAN in under four milliseconds. Sampled Values carry current and voltage waveforms. MMS handles operator control and data retrieval. How the RTAC maps each to its internal tag database.
+  \item \textbf{Local Logic:} When the WAN link to the SCADA master fails, the RTAC keeps running IEC 61131-3 programs locally. Event-driven automation, load shedding sequences, and protection coordination logic that must execute correctly with or without upstream communication. The logic engine, scan cycle behavior, and design principles for automation that survives communication loss.
+  \item \textbf{Security and Access Control:} Role-based access control limits which operators can view, control, or configure the RTAC. Serial port security prevents unauthorized local access. Firmware update procedures maintain integrity without interrupting the substation. NERC CIP implications for each configuration decision.
+  \item \textbf{Field Scenarios:} Three case studies from real substation automation work: a transformer bay with automatic tap changer response to load changes, a feeder protection scheme coordinating with downstream reclosers, and a load shedding sequence that must execute within 200 milliseconds of detecting an overload — with or without the SCADA master online.
 \end{enumerate}
 
 \vfill
@@ -84,9 +84,9 @@
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{rgreen}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{SEL Certified Engineer} --- SEL offers application engineer certification through their training center; RTAC configuration is a core track.
-  \item \textbf{GICSP (GIAC)} --- Substation automation, IEC 61850 security, and protocol gateway configuration appear in ICS security certification exam domains.
-  \item \textbf{ISA CCST} --- Protocol gateway integration and field device configuration are tested topics at CCST Levels II and III.
+  \item \textbf{SEL Certified Engineer} — SEL offers application engineer certification through their training center; RTAC configuration is a core track.
+  \item \textbf{GICSP (GIAC)} — Substation automation, IEC 61850 security, and protocol gateway configuration appear in ICS security exam domains.
+  \item \textbf{ISA CCST} — Protocol gateway integration and field device configuration tested at CCST Levels II and III.
 \end{itemize}
 \end{tcolorbox}
 \end{minipage}
@@ -101,10 +101,10 @@
   top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{rorange}{\arabic*.}]
-  \item \small Complete the DNP3 and IEC 61131-3 guides alongside RTAC --- both protocol knowledge and programming skills are prerequisites for field configuration.
+  \item \small Take DNP3 and IEC 61131-3 before RTAC. Protocol knowledge and programming skills are both prerequisites for field configuration work.
   \item Download ACSELERATOR Architect (free from selinc.com) and configure a lab project against a virtual RTAC.
-  \item Attend SEL application engineering training (Pullman, WA or regional); the in-person lab is the fastest path to RTAC proficiency.
-  \item Pursue GICSP for the ICS security credential most relevant to power utility and substation work.
+  \item Attend SEL application engineering training in Pullman, WA or at a regional event. The in-person lab is the fastest path to real proficiency.
+  \item GICSP pairs well with RTAC expertise for engineers working in power utilities and substations.
 \end{enumerate}
 \end{tcolorbox}
 \end{minipage}
