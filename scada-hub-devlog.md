@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 12 — Syllabus footer fixed; Modbus sidebar button confirmed in code; Vercel rate-limited)
+> Last updated: 2026-05-15 (Session 13 — DNP3 syllabus written; Course Syllabus + Quiz Results added to DNP3 footer)
 
 ---
 
@@ -782,6 +782,16 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 13 — 2026-05-15
+
+### Completed
+
+- [x] **DNP3 syllabus written and compiled** — `dnp3_syllabus.tex` written (Course 5 of 8, amber color scheme); 10 chapters with narrative TOC; `\vfill` for footer; 1 page clean. Source at `scada-hub/syllabi/dnp3_syllabus.tex`.
+- [x] **DNP3 sidebar — Course Syllabus button added** — `FileText` added to lucide imports; syllabus button added to footer after PDF button; `syllabus.pdf` copied to `site/public/` and force-added past `.gitignore`.
+- [x] **DNP3 sidebar — Quiz Results moved to footer** — Nav link removed from chapter list; styled footer button added pointing to `/report` (DNP3 uses route-based report page, not modal); matches footer button pattern of other 7 guides. Committed `3d5abf8`, pushed to GitHub. Vercel rate-limited — will sync on next deploy.
+
+---
+
 ## Session 12 — 2026-05-15
 
 ### Completed
@@ -893,7 +903,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 - [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Source at `wireshark-study-guide/latex/wireshark_study_guide.tex`.
 - [x] **Course syllabi — 7 one-page LaTeX PDFs** — Narrative chapter TOC, cert relevance, next steps. No diagrams. `\vfill` anchors cert boxes to bottom. All in `scada-hub/syllabi/`. Sidebar button added to all 7 guides. Committed and pushed.
-- [ ] **Modbus Vercel re-deploy** — Button is in code and GitHub Pages; Vercel hit 100-deploy/day limit. Run `vercel --prod --yes` from `modbus-study-guide/` to sync.
+- [ ] **Vercel re-deploy all guides** — Hit 100-deploy/day free tier limit on 2026-05-15. All changes are on GitHub; run `vercel --prod --yes` from each guide root tomorrow to sync. Affects: modbus, pid, wireshark (session 11), dnp3 (session 13).
 - [ ] RTAC PDF: layout and formatting overhaul
 - [ ] Field scenario quizzes: add references/deep-dive links
 - [ ] PDF code blocks: dark-on-dark text

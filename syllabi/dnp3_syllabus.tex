@@ -1,0 +1,124 @@
+% ============================================================
+%  DNP3 — COURSE SYLLABUS
+% ============================================================
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{palatino}
+\usepackage[scaled=0.82]{beramono}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true, linkcolor=dblue, urlcolor=dcyan,
+  pdftitle={DNP3 --- Course Syllabus}]{hyperref}
+\usepackage{parskip}
+
+\definecolor{dblue}{HTML}{D97706}
+\definecolor{dcyan}{HTML}{F59E0B}
+\definecolor{dnavy}{HTML}{1C0A00}
+\definecolor{dorange}{HTML}{B45309}
+\definecolor{daccent}{HTML}{FFFBEB}
+\definecolor{dgray}{HTML}{6B7280}
+
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[dnavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
+  \node[anchor=west, text=white, font=\fontsize{22}{26}\bfseries\sffamily]
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {DNP3};
+  \node[anchor=west, text=dcyan!80, font=\fontsize{11}{13}\sffamily]
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
+  \node[anchor=east, draw=dcyan, rounded corners=5pt, fill=dblue!70,
+        inner sep=6pt, text=white, font=\small\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=-0.35in]current page.north east)
+    {10 Chapters · 500+ Questions · PDF Included};
+  \draw[dorange, line width=2pt]
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.5in,  yshift=-0.83in]current page.north west);
+\end{tikzpicture}
+
+\vspace{0.95in}
+
+{\small\sffamily\color{dgray}%
+  10 Chapters\enspace·\enspace500+ Questions\enspace·\enspace3 Quiz Levels\enspace·\enspace Free Access\enspace·\enspace No Account Required}
+
+\smallskip
+{\color{dnavy}\rule{\linewidth}{1.2pt}}
+\smallskip
+{\small\sffamily\color{dgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
+\smallskip
+
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{dblue}{\small\bfseries\arabic*.}}
+\begin{enumerate}\small
+  \item \textbf{Introduction} --- DNP3 was developed in 1990 specifically because SCADA systems were failing on unreliable serial links. Modbus had no integrity checking. ICCP had no field-device profile. DNP3 solved both: a three-layer stack with CRC at every frame, typed data objects, and event-driven reporting built in from the start. This chapter explains why DNP3 became the default SCADA protocol for power utilities in North America.
+  \item \textbf{Protocol Layers} --- DNP3 is self-contained: Application Layer carries requests and responses, Transport Layer handles fragmentation of large APDUs across multiple frames, Data Link Layer handles addressing and CRC on every frame. This chapter maps the three layers to function and explains why DNP3 does not need TCP/IP to operate correctly.
+  \item \textbf{Data Link Layer} --- Frame structure, sync bytes, CRC-16 on every 16-byte block, primary and secondary station roles, and link-layer addresses. The Data Link Layer is what makes DNP3 work on noisy RS-485 and dial-up serial lines where Modbus cannot recover from bit errors.
+  \item \textbf{Application Layer} --- APDU format, application control byte, sequence numbering, fragmentation and reassembly, and the confirm/response handshake that guarantees large responses arrive intact. Engineers learn how the Application Layer handles multi-fragment exchanges that span hundreds of data objects.
+  \item \textbf{Data Objects} --- DNP3 data is organized by object group (analog input, binary input, counter, analog output, binary output) and variation (data type and quality bits). This typed object model makes DNP3 self-describing: a master can read an outstation's object map and know exactly what data is available and in what format.
+  \item \textbf{Function Codes} --- Read, Write, Direct Operate, Select-Before-Operate, Freeze, Clear, Enable/Disable Unsolicited. Select-Before-Operate is the two-step control sequence that prevents accidental breaker operations from a single corrupted message --- the function code that DNP3's safety model depends on.
+  \item \textbf{Unsolicited Responses} --- DNP3 outstations report events without being polled: binary state changes, analog deadband crossings, counter increments. This chapter covers unsolicited response configuration, event buffer sizing, class assignment, and the confirmation handshake that prevents event loss when the master is temporarily unreachable.
+  \item \textbf{Security --- Secure Authentication v5} --- SAv5 adds HMAC-based challenge/response authentication to every critical DNP3 request without modifying the underlying protocol. This chapter covers the key management architecture, the challenge sequence, aggressive mode for time-critical operations, and how SAv5 maps to NERC CIP requirements for substation communications.
+  \item \textbf{Troubleshooting} --- Event buffer overflow when the master polls too slowly, SBO sequence failures from timing mismatches, application layer confirm timeouts, TCP session management under intermittent WAN links, and the Wireshark filters that isolate each failure mode. Field diagnosis without interrupting live SCADA communications.
+  \item \textbf{Protocol Lab} --- Five exercises: commissioning a new outstation from scratch, configuring unsolicited reporting with class-based event delivery, setting up SAv5 key management between master and outstation, writing a tshark filter that counts DNP3 unsolicited messages per hour, and diagnosing an event buffer overflow from a Wireshark capture.
+\end{enumerate}
+
+\vfill
+{\color{dblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[
+  enhanced, colback=daccent, colframe=dblue, arc=4pt,
+  fonttitle=\small\bfseries\sffamily\color{white},
+  title=Certification Relevance,
+  boxed title style={colback=dblue},
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  top=6pt, bottom=4pt, left=5pt, right=5pt
+]
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{dblue}{$\bullet$}}
+\begin{itemize}\small
+  \item \textbf{GICSP (GIAC)} --- DNP3 protocol knowledge and Secure Authentication appear directly in ICS security exam domains; DNP3 is the primary power utility protocol tested.
+  \item \textbf{ISA CCST} --- SCADA communications and field device protocols are tested at CCST Levels II and III; DNP3 is explicitly covered.
+  \item \textbf{NERC CIP} --- SAv5 implementation is a compliance path for CIP-005 and CIP-007 electronic security perimeter requirements in substations.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[
+  enhanced, colback=dorange!8, colframe=dorange, arc=4pt,
+  fonttitle=\small\bfseries\sffamily\color{white},
+  title=Next Steps,
+  boxed title style={colback=dorange},
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  top=6pt, bottom=4pt, left=5pt, right=5pt
+]
+\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{dorange}{\arabic*.}]
+  \item \small Complete DNP3 alongside the RTAC guide --- the RTAC is the most common DNP3 master/outstation in power utility substations.
+  \item Download Triangle MicroWorks DNP3 Test Harness (free trial) to practice outstation configuration against a software master.
+  \item Review IEEE 1815 (the DNP3 standard) and the DNP3 User Group application notes for normative protocol details.
+  \item Pursue GICSP as the ICS security credential most relevant to power utility and substation SCADA work.
+\end{enumerate}
+\end{tcolorbox}
+\end{minipage}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[dnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
+  \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
+    {SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material};
+  \node[anchor=east, text=dcyan, font=\footnotesize\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
+    {Course 5 of 8};
+\end{tikzpicture}
+
+\end{document}
