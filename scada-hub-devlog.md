@@ -916,3 +916,28 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [ ] Spaced repetition on flashcards (SM-2)
 - [ ] Mobile UX audit
 - [ ] Timed exam mode
+
+---
+
+## Session 14 — 2026-05-16
+
+### Completed
+
+- [x] **All 8 syllabi rewritten with human prose** — Replaced all ` --- ` em-dash separators with colons throughout chapter lists and certification items. Removed "Chapter by Chapter" from section heading. Rewrote AI-patterned openers ("This chapter covers…", "Engineers learn…") with direct, specific prose. Ignition and Wireshark (the two remaining files) updated in this session. All 8 `.tex` sources in `scada-hub/syllabi/`.
+- [x] **All 8 syllabi recompiled** — All 8 confirmed 1 page each via `mdls -name kMDItemNumberOfPages`.
+- [x] **PDFs deployed to all 8 guide repos** — Copied to `site/public/syllabus.pdf`; build outputs to `docs/syllabus.pdf`; force-added past `.gitignore`.
+- [x] **All 8 guides rebuilt, committed, pushed** — One commit per guide: "update syllabus: human prose, colon separators, no AI dashes"
+- [x] **scada-hub LaTeX sources committed and pushed** — All 8 `.tex`, `.pdf`, `.log` files committed.
+- [x] **All 8 guides deployed to Vercel** — `vercel --prod --yes` from each guide root.
+
+| Guide | Commit | Vercel |
+|-------|--------|--------|
+| Modbus | c8108f3 | deployed |
+| OPC UA | d215aa8 | deployed |
+| IEC 61131 | 7e4660b | deployed |
+| PID | e612846 | deployed |
+| DNP3 | 81996cd | deployed |
+| RTAC | 196d1f6 | deployed |
+| Ignition | 9c9faa9 | deployed |
+| Wireshark | d65b161 | deployed |
+| scada-hub (sources) | aa01366 | — |
