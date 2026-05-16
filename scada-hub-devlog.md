@@ -919,6 +919,30 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 21 — 2026-05-16
+
+### Completed
+
+- [x] **Sidebar order fixed — all 8 guides** — Added dedicated `HomeItem` (Home icon, NavLink to `/` with `end` prop) above `AllGuidesItem`. Guides with an explicit `{ id: 'home' }` chapter (modbus, dnp3, rtac, ignition) now filter it from the CHAPTERS list to avoid duplication. Order is now: Home → All Courses → Ch 1 → Ch 2 → ... → Flashcards.
+- [x] **Syllabus footer simplified — all 8** — Removed left label text ("SCADA Hub · Industrial Control Systems · scada-hub.vercel.app") and right "Course N of 8" label. Footer now shows only "May 2026" centered in the guide's accent color on the navy bar. All 8 recompiled and pushed.
+- [x] **Per-guide favicons** — Generated `favicon.png` (512×512) and `favicon.ico` (32×32) for each guide using guide-specific background + accent colors and 2–3 letter initials (MB, OPC, D3, IEC, PID, SEL, IGN, WS). Updated all 8 `site/index.html` files to `<link rel="icon" type="image/png" href="/favicon.png" />` (Vite injects base path at build time). All 8 built and pushed to GitHub Pages.
+- [x] **Vercel rate limit** — All deploy attempts hit the 100/day free-tier limit. Scheduled wakeup will retry Vercel deploys automatically.
+
+### GitHub Pages links (current)
+
+| Guide | URL |
+|-------|-----|
+| Modbus | https://barbosaricardo.github.io/modbus-study-guide/ |
+| OPC UA | https://barbosaricardo.github.io/opcua-study-guide/ |
+| DNP3 | https://barbosaricardo.github.io/dnp3-study-guide/ |
+| IEC 61131-3 | https://barbosaricardo.github.io/iec61131-study-guide/ |
+| PID | https://barbosaricardo.github.io/pid-study-guide/ |
+| SEL RTAC | https://barbosaricardo.github.io/rtac-study-guide/ |
+| Ignition | https://barbosaricardo.github.io/ignition-study-guide/ |
+| Wireshark | https://barbosaricardo.github.io/wireshark-study-guide/ |
+
+---
+
 ## Session 20 — 2026-05-16
 
 ### Completed
