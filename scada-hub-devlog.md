@@ -919,6 +919,51 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 19 — 2026-05-16
+
+### Completed
+
+- [x] **Syllabus footer fix** — Removed `\vfill` was causing content to flow into the footer overlay zone. Restored `\vfill` before the footer TikZ in all 8 files. Footer now stays pinned at page bottom. All 8 recompiled (1 page each), pushed.
+- [x] **scada-hub: login gate removed** — `App.jsx` now renders `HubContent` directly without session check. Sign-out bar also removed. Auth infrastructure kept in place (Supabase, AuthContext) in case needed later. Hub built and pushed to GitHub.
+- [x] **OG images + meta tags** — Created 1200×630 PNG banners for scada-hub and all 8 guide repos using Python PIL. Added `og:image`, `og:title`, `og:description`, `og:url`, `twitter:card` tags to all 9 `index.html` files. Images served at `/og-image.png` from each site's public dir. Teams link previews will now show the banner.
+- [x] **Sidebar auto-open on page load** — Changed `useState(false)` → `useState(true)` for the mobile sidebar in all 8 `Sidebar.jsx` files. Desktop sidebar is always visible. On mobile, sidebar slides in immediately on load; X button and backdrop click still close it. All 8 built and pushed.
+- [x] **Modbus content audit** — Agent audited chapters, flashcards, required software, prerequisites against syllabus. Result: 95% coverage. Gaps: (1) ModRSsim2 not mentioned anywhere, (2) TCP flashcards thin (3 cards vs 4+), (3) prerequisites not stated in web guide.
+
+### Punchlist (new items from this session)
+
+- [ ] **Quiz question hints** — Each quiz question needs a `hint` field showing WHERE the answer comes from (chapter name, section, flashcard ID, etc.). Needs: (1) `hint` field added to all quiz question objects in all 8 guides' `quizzes.js`, (2) Hint button UI in `Quiz.jsx` that reveals the source on click.
+- [ ] **Cert/Next Steps sidebar panel** — Remove cert content from syllabus PDF (done). Rebuild as a richer sidebar button/modal in each guide with links, cert descriptions, exam domains mapped to course chapters. One panel per guide.
+- [ ] **OG image quality** — PIL system font is basic. Optionally replace with a custom SVG design or use Vercel's @vercel/og for server-side image generation at deploy time.
+
+### Syllabus vs. Coursework Audit (in progress)
+
+Workflow: syllabus defines what MUST be covered; coursework is patched to match. Gaps punchlist, fixed individually.
+
+| Guide | Status | Gaps |
+|-------|--------|------|
+| Modbus ✓ | Audited | ModRSsim2 unmentioned; TCP flashcards thin (3); prereqs not stated in web guide |
+| OPC UA ✓ | Audited | Sessions/Channels: no dedicated chapter; Discovery: 1 flashcard only; open62541 only in quizzes (never taught); Data Types chapter thin |
+| IEC 61131-3 ✓ | Audited | PLCopen FB library navigation not taught (only referenced); pre-programming scaffolding absent; vendor portability trade-offs not covered; IEC version differences in quizzes but not in chapters |
+| PID | Pending | — |
+| DNP3 | Pending | — |
+| RTAC | Pending | — |
+| Ignition | Pending | — |
+| Wireshark | Pending | — |
+
+#### OPC UA Gap Detail
+- **Sessions & Channels (Topic 4)** — No dedicated chapter. SecureChannel/token lifecycle only in Architecture.jsx (lines 116–145). Missing: token renewal, reconnection retry, ActivateSession flow. Flashcard category also missing.
+- **Discovery (Topic 8)** — 1 flashcard only. No chapter. Missing: GetEndpoints, FindServers, GDS enterprise pattern, certificate discovery trust flow.
+- **open62541** — 3 quiz references only; never introduced in any chapter page.
+- **Data Types (Topic 7)** — 8 flashcards; no dedicated chapter section on schema design or enumeration handling.
+
+#### IEC 61131-3 Gap Detail
+- **PLCopen FB Library** — deepDive references exist but no chapter section on TON/TOF/CTU signatures, instance management, or library navigation.
+- **Pre-programming scaffolding** — ST chapter (StructuredText.jsx line 21) says "if you have written procedural code..." — assumes background beyond the stated prerequisite.
+- **Vendor portability** — Intro notes vendor extensions but no practical section on migration barriers across Siemens/Beckhoff/SEL.
+- **Version differences** — Quizzes cover 1st/2nd/3rd edition changes but no chapter explains which version applies to which platforms.
+
+---
+
 ## Session 18 — 2026-05-16
 
 ### Completed
