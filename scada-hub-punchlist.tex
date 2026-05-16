@@ -181,6 +181,126 @@
 {\color{snavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — Modbus Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Modbus Syllabus: Add RS-485 as Standalone Topic} \hfill \low \\
+    The syllabus lists 11 topics but the web guide and LaTeX PDF both treat RS-485 Physical Layer as a full standalone chapter (Ch 4). Add RS-485 as Topic 3 in the syllabus (between Data Model and RTU Mode), bringing the total to 12 topics aligned with the actual chapter count.
+
+  \item \textbf{Modbus Web: Add FC08 and FC43 to Function Codes Chapter} \hfill \med \\
+    \texttt{FunctionCodes.jsx} covers only FC01, FC02, FC03, FC04, FC05, FC06, FC15, FC16. The LaTeX PDF (Ch 8) and flashcards both include FC08 (Diagnostics) and FC43 (Encapsulated Interface Transport / MEI). Add these two codes to the web chapter so all three sources are consistent.
+
+  \item \textbf{Modbus Web: Add Exception Codes 10 and 11 to Exceptions Chapter} \hfill \med \\
+    \texttt{Exceptions.jsx} covers only codes 01--08. The LaTeX PDF (Ch 9) and flashcards both cover gateway codes 10 (Gateway Path Unavailable) and 11 (Gateway Target Device Failed to Respond). Add them to the web chapter and update the syllabus wording from ``eight exception identifiers'' to reflect all eleven.
+
+  \item \textbf{Modbus Web: Add Connection Management to TCP Chapter} \hfill \low \\
+    \texttt{TCP.jsx} does not cover stale connections or multiple simultaneous connections. LaTeX Ch 7 covers both. Add a Connection Management section to the web chapter.
+
+  \item \textbf{Modbus Web: Add Poll Rate Overrun to Troubleshooting Chapter} \hfill \low \\
+    The syllabus explicitly lists ``poll rate overruns'' as a troubleshooting topic but it does not appear in \texttt{Troubleshoot.jsx}. Add it as a symptom scenario (symptoms: device busy exceptions, missed polls, sluggish HMI response; cause: too many registers polled per cycle or too short a poll interval for baud rate).
+
+  \item \textbf{Modbus Web Lab: Add Gateway Exception 11 and Security Audit Scenarios} \hfill \med \\
+    LaTeX Ch 12 includes Scenario 5 (Modbus TCP Gateway Exception 11) and Scenario 6 (Security Audit Finding). Neither appears in \texttt{Lab.jsx}. Add both as interactive exercises or frame-decode problems to close the gap.
+
+  \item \textbf{Modbus Flashcards: Expand Security Chapter} \hfill \low \\
+    Ch 11 Security flashcards contain only 4 cards despite the chapter covering 5 attack vectors, 5 defense-in-depth layers, and 4 NERC CIP standards. Target 8--10 cards to match coverage depth of other chapters.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — OPC UA Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{OPC UA Web: Add Dedicated Discovery Chapter} \hfill \med \\
+    The syllabus lists Discovery as Topic 8 (Local Discovery Server, Global Discovery Server, FindServers, GetEndpoints, endpoint enumeration, open-discovery security risk). No \texttt{Discovery.jsx} page exists. The topic appears only briefly in \texttt{Intro.jsx} and in one flashcard (t10). Add a full web chapter covering LDS/GDS architecture, FindServers vs GetEndpoints, certificate trust during discovery, and the security risk of unauthenticated endpoint enumeration.
+
+  \item \textbf{OPC UA Flashcards: Add Troubleshooting Cards} \hfill \med \\
+    \texttt{Troubleshoot.jsx} is a full chapter with 7 OPC UA status codes, a 5-step diagnostic ladder, UA Expert workflow, and Wireshark analysis — but zero flashcards cover troubleshooting. Add 6--8 cards targeting the most common status codes (\texttt{BadCertificateUntrusted}, \texttt{BadNodeIdUnknown}, \texttt{BadUserAccessDenied}, etc.) and the diagnostic ladder sequence.
+
+  \item \textbf{OPC UA Flashcards: Add Ignition Integration Cards} \hfill \low \\
+    \texttt{IgnitionIntegration.jsx} covers Ignition port 62541, the 5-step certificate trust workflow, and SEL RTAC as an OPC UA server — none of which appear in flashcards. Add 4--5 cards on Ignition-specific OPC UA behavior.
+
+  \item \textbf{OPC UA Web Security Chapter: Add CRL and Role-Based Security} \hfill \low \\
+    Flashcards sec05 (Certificate Revocation Lists) and sec07 (role-based access: Observer, Operator, Engineer, Supervisor roles) exist but neither topic appears in \texttt{Security.jsx}. Align the web chapter with the flashcard content by adding subsections for CRL checking and built-in OPC UA roles.
+
+  \item \textbf{OPC UA Web Services Chapter: Add RegisterNodes} \hfill \low \\
+    \texttt{RegisterNodes}/\texttt{UnregisterNodes} is a performance optimization service that appears in flashcard s08 and Level 3 quiz questions but is absent from \texttt{Services.jsx}. Add a brief section covering when and why to use \texttt{RegisterNodes} for high-frequency polling scenarios.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — DNP3 Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{DNP3 Flashcards: Add Application Layer Chapter Cards} \hfill \med \\
+    The \texttt{appLayer} chapter has a full quiz question set but zero flashcards. Add 5--7 cards covering the DNP3 Application Layer: request/response fragments, function codes (READ, WRITE, SELECT, OPERATE, DIRECT OPERATE), IIN bits, sequence numbering, and fragmentation reassembly. This is the only content gap found in the DNP3 audit; all 10 syllabus topics are otherwise covered.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — IEC 61131-3 Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{IEC 61131-3 Flashcards: Add Lab Chapter Cards} \hfill \med \\
+    The Lab \& Practice chapter (\texttt{Ch 10}) has 60 quiz questions but zero dedicated flashcards. Add 6--8 cards covering the practical lab scenarios: PLC program structure, scan cycle, I/O addressing syntax, and the most common beginner mistakes caught in the quiz scenario questions.
+
+  \item \textbf{IEC 61131-3 Flashcards: Split Languages Category by Language} \hfill \med \\
+    The \texttt{languages} flashcard category contains \textasciitilde47 cards covering four distinct chapters (Intro, Structured Text, Ladder Diagram, Function Block Diagram) — each chapter has 60 quiz questions but shares a single thin flashcard set. Split into at minimum two categories: \texttt{ld-fbd} (graphical languages) and \texttt{st-il} (text languages), and expand total card count to \textasciitilde20 per language to match quiz depth.
+
+  \item \textbf{IEC 61131-3 Flashcards: Cover Scenario-Type Questions} \hfill \low \\
+    The quiz data contains \textasciitilde80 scenario questions (\texttt{iec\_*\_sc} entries, \textasciitilde5 per chapter) covering applied troubleshooting and design decisions. No flashcard category addresses scenario-style content. Add a \texttt{scenarios} flashcard category with 10--12 cards framing the most instructive scenario setups and their resolution logic.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — PID Controllers Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{PID Flashcards: Add Cards for 5 Uncovered Chapters} \hfill \high \\
+    5 of 10 quiz chapters have zero flashcards: Closed-Loop Intro (65 Qs), Loop Fundamentals (65 Qs), P/I/D Action (65 Qs), Digital PID (65 Qs), and Troubleshooting (65 Qs). That is roughly half the quiz content with no flashcard reinforcement. Priority order: (1) P/I/D Action, (2) Troubleshooting, (3) Digital PID, (4) Intro, (5) Loop Fundamentals. Target 6--8 cards per chapter.
+
+  \item \textbf{PID Flashcards: Align Category Names to Chapter Boundaries} \hfill \low \\
+    Current flashcard categories (fundamentals, tuning, dynamics, advanced, practical) do not map 1:1 to the 10 syllabus chapters. Students cannot navigate from a quiz chapter to a matching flashcard deck. Rename or split categories so each quiz chapter has an identifiable flashcard counterpart.
+
+  \item \textbf{PID Flashcards: Add Lab / Simulation Chapter Cards} \hfill \low \\
+    Ch 10 (Simulation Lab) has 65 quiz questions but zero flashcards. Add 5--6 cards covering Scilab step-test procedure, open-loop identification, and the tuning workflow performed in the lab.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — SEL RTAC Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{RTAC Flashcards: Add Cards for 4 Uncovered Chapters} \hfill \high \\
+    4 quiz chapters have zero dedicated flashcards: RTAC Architecture/Intro (no cards), ACSELERATOR Architect Software (no cards), Tag Database (no cards), and Modbus Gateway (no cards — despite being syllabus Topic 4). Target 5--7 cards per chapter, prioritizing Gateway and TagDB since those are the heaviest operational topics.
+
+  \item \textbf{RTAC: Add Lab Chapter Quiz Questions} \hfill \med \\
+    The Lab \& Field Scenarios chapter (\texttt{Lab.jsx}) has a full web page but zero quiz questions. It is the only chapter across all 8 quiz chapters with no assessment. Add 30--40 quiz questions covering the scenario walkthroughs presented in the lab page (configuration steps, fault identification, verification checks).
+
+  \item \textbf{RTAC Flashcards: Reconcile Hardware Chapter Scope} \hfill \low \\
+    The \texttt{hardware} flashcard category spans content from three web chapters (Architecture, Software, TagDB) rather than mapping to a single chapter. Refactor: move hardware-specific cards to an \texttt{intro} category and create separate \texttt{software} and \texttt{tagdb} categories so each chapter has its own flashcard home.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
 {\small\sffamily\color{sgray}\MakeUppercase{Pending Audits}}
 \smallskip
 

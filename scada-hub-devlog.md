@@ -919,6 +919,61 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 24 — 2026-05-16
+
+### Completed
+
+- [x] **scada-hub.vercel.app blank page fixed** — `AuthProvider` was imported in `App.jsx` but never wrapped `HubContent`. `GuideGrid` calls `useAuth()`, which returned `null` (createContext default), crashing on `const { session } = null`. Fixed by wrapping `<HubContent />` in `<AuthProvider>`. Committed `b20690d`, pushed to scada-hub master.
+
+- [x] **DNP3 dark theme — AnalogyCard + QuizLevels** — `AnalogyCard.jsx` replaced `from-purple-50 to-indigo-50` light card with dark `rgba` inline styles. `QuizLevels.jsx`: removed `bg-white` locked state, replaced emoji level badges (📘📙📕🔒✅🚧) with Lucide SVG (`Lock`, `CheckCircle`, `AlertTriangle`, numbered circle). `ResourceDrawer` `bg-*-100` → `bg-*-900/30`, `text-slate-700` → `text-slate-200`, `hover:bg-*-50` → `hover:bg-white/5`. `LEVEL_META` `border-navy-200` → `border-slate-700/50`, `emoji` fields removed. Committed `b7ab6f0`.
+
+- [x] **DNP3 GitHub Pages branch mismatch fixed** — GitHub Pages was configured to serve from `main` branch; repo lives on `master`. All commits were invisible to Pages. Fixed via `gh api PUT /pages` to `master /docs`. Triggered fresh build via `gh api POST /pages/builds`. Root cause: `built` status returned but old JS was served — the branch mismatch masked itself.
+
+- [x] **`.nojekyll` added to all 8 guide `docs/` folders** — Without it GitHub Pages runs Jekyll, which can block updated JS from being served. Added and pushed to all 8 repos (modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark).
+
+- [x] **Punchlist: Company A branding / R&D AI skills items** — "Trimark Associates" removed from punchlist item; now reads "Company A Brand Colors." New section "Professional Development / R&D" added with item on Claude Code / Codex / agent SDK evaluation.
+
+- [x] **Course audit pipeline started — Modbus + OPC UA complete**
+  - Modbus: 7 gaps found → punchlistd (RS-485 missing from syllabus, FC08/FC43 missing from web, exception codes 10/11 missing from web, connection management missing from TCP chapter, poll rate overruns missing from troubleshoot, 2 lab scenarios missing from web, security flashcards thin)
+  - OPC UA: 5 gaps found → punchlistd (no Discovery.jsx chapter, troubleshooting has no flashcards, Ignition integration has no flashcards, CRL + role-based security in flashcards only, RegisterNodes missing from Services chapter)
+
+- [x] **SOURCES.md created** — Modbus sources agent compiled authoritative references for all 10 Modbus topics. Key finding: all primary Modbus specs (RTU, ASCII, TCP, Security) are freely downloadable from modbus.org. RS-485 (ANSI/TIA-485-A), IEEE 754-2019, and IEC 61158 require purchase. All 4 NERC CIP standards (CIP-005-7, CIP-007-6, CIP-010-5, CIP-013-1) are free on nerc.com. File: `/Users/bandito/Downloads/scada-hub/SOURCES.md`.
+
+- [x] **Watchdog agent — token efficiency analysis** — Reviewed the two audit agents. Key findings: audit prompt caused verbatim file dumps (106k tokens, 33 tool calls). Produced lean reusable audit template (~40% token reduction expected). OPC UA ran 106k tokens; Modbus sources ran 36k tokens with lean prompt. Template saved for remaining 6 course audits.
+
+### In Progress (background agents running at session end)
+
+- [ ] **DNP3 course gap audit** — lean-template agent running, results pending
+- [ ] **Language humanizer agent** — reviewing punchlist LaTeX for AI-sounding phrases, running quietly in background
+- [ ] **OPC UA sources** — not yet started; Modbus sources done first
+
+### Punchlist state at session end
+
+- Total items: 30+ (4-page PDF)
+- Modbus gaps: 7 items added
+- OPC UA gaps: 5 items added
+- Remaining course audits to run: DNP3, IEC 61131-3, PID, SEL RTAC, Ignition SCADA, Wireshark
+- PDF on Desktop: `~/Desktop/scada-hub-punchlist.pdf` (4 pages)
+
+### Active background agents at session end
+
+| Agent | Task | Status |
+|-------|------|--------|
+| a608b95e | DNP3 gap audit (lean template) | running |
+| a8b9a890 | Language humanizer — punchlist | running |
+
+### Next session pick-up checklist
+
+1. Check DNP3 audit agent output — gap table → punchlist
+2. Check language humanizer output — apply targeted edits to punchlist LaTeX
+3. Start IEC 61131-3 audit (lean template, same pattern)
+4. Start OPC UA sources agent (same format as Modbus sources)
+5. Continue course-by-course: PID → RTAC → Ignition → Wireshark
+6. Compile SOURCES.md entries per course as audits complete
+7. Commit + push devlog + punchlist updates to scada-hub master
+
+---
+
 ## Session 23 — 2026-05-16
 
 ### Completed
