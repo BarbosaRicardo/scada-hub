@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 11 — Syllabi redesigned: no diagrams, narrative chapter TOC, single page clean)
+> Last updated: 2026-05-15 (Session 12 — Syllabus footer fixed; Modbus sidebar button confirmed in code; Vercel rate-limited)
 
 ---
 
@@ -782,6 +782,29 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 12 — 2026-05-15
+
+### Completed
+
+- [x] **Syllabus footer fix** — Added `\vfill` before the Certification Relevance / Next Steps tcolorbox pair in all 7 syllabi. Chapter list now fills the top of the page; cert boxes pin to the bottom immediately above the footer overlay. All 7 recompiled (1 page each), PDFs copied to each guide's `site/public/syllabus.pdf`, all 7 rebuilt and pushed to GitHub.
+- [x] **Modbus syllabus button confirmed** — Button IS in `Sidebar.jsx` source and in the compiled `docs/assets/index-*.js`. Vercel free tier hit 100-deploys/day limit from today's session volume; GitHub Pages serves from committed `docs/` and should be correct. Run `vercel --prod --yes` from `modbus-study-guide/` tomorrow to force Vercel update.
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | 5568711 |
+| OPC UA | 49ead9e |
+| IEC 61131 | 5805d29 |
+| PID | 554c1a9 |
+| RTAC | d108261 |
+| Ignition | 16557cc |
+| Wireshark | 4c6f7c2 |
+
+### Known issue
+
+- **Vercel 100-deploy/day limit hit** — Free tier exhausted for 2026-05-15. Several guide deploys failed silently (modbus, pid, wireshark from session 11 batch). All changes are committed and on GitHub; Vercel will pick up on next successful deploy. Retry tomorrow.
+
+---
+
 ## Session 11 — 2026-05-15
 
 ### Completed
@@ -868,11 +891,9 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ## Open punchlist (all sessions)
 
-- [ ] **Course syllabi / one-page C-Suite sell sheets** — one LaTeX PDF per guide (7 builds: Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each is one page (two max): chapter outline as a narrative story, certification connections (GICSP, CCST, PLCopen, OPC Foundation, ISA), next steps to pursue each cert, subtle project pitch. Graphics where useful. Tight for executive review.
-- [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Deployed to Vercel. Source at `latex/wireshark_study_guide.tex`.
-- [x] **Course syllabi / one-page C-Suite sell sheets** — 7 one-page LaTeX PDFs built (Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each has: chapter narrative, TikZ architecture diagram, cert relevance, next steps, stats badges. Committed to `scada-hub/syllabi/`. All 7 compile clean.
-- [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Deployed to Vercel. Source at `latex/wireshark_study_guide.tex`.
-- [x] **Course Syllabus button in all 7 guide sidebars** — `syllabus.pdf` copied to each guide's `site/public/`; sidebar button injected after PDF download button; all 7 built, deployed to Vercel, committed, pushed.
+- [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Source at `wireshark-study-guide/latex/wireshark_study_guide.tex`.
+- [x] **Course syllabi — 7 one-page LaTeX PDFs** — Narrative chapter TOC, cert relevance, next steps. No diagrams. `\vfill` anchors cert boxes to bottom. All in `scada-hub/syllabi/`. Sidebar button added to all 7 guides. Committed and pushed.
+- [ ] **Modbus Vercel re-deploy** — Button is in code and GitHub Pages; Vercel hit 100-deploy/day limit. Run `vercel --prod --yes` from `modbus-study-guide/` to sync.
 - [ ] RTAC PDF: layout and formatting overhaul
 - [ ] Field scenario quizzes: add references/deep-dive links
 - [ ] PDF code blocks: dark-on-dark text
