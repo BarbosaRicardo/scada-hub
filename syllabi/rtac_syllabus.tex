@@ -1,5 +1,5 @@
 % ============================================================
-%  SEL RTAC — COURSE SYLLABUS / SELL SHEET
+%  SEL RTAC — COURSE SYLLABUS
 % ============================================================
 \documentclass[10pt]{article}
 \usepackage[T1]{fontenc}
@@ -8,173 +8,114 @@
 \usepackage{microtype}
 \usepackage{palatino}
 \usepackage[scaled=0.82]{beramono}
-\usepackage[top=0.55in, bottom=0.55in, left=0.65in, right=0.65in]{geometry}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
 \usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,backgrounds,fit}
-\usepackage{booktabs}
-\usepackage{array}
 \usepackage{enumitem}
 \usepackage[most]{tcolorbox}
 \usepackage[colorlinks=true, linkcolor=rgreen, urlcolor=rcyan,
-  pdftitle={SEL RTAC — Course Syllabus}]{hyperref}
+  pdftitle={SEL RTAC --- Course Syllabus}]{hyperref}
 \usepackage{parskip}
 
 \definecolor{rgreen}{HTML}{15803D}
 \definecolor{rcyan}{HTML}{059669}
 \definecolor{rnavy}{HTML}{052E16}
 \definecolor{rorange}{HTML}{D97706}
-\definecolor{rblue}{HTML}{1D4ED8}
 \definecolor{raccent}{HTML}{F0FDF4}
 \definecolor{rgray}{HTML}{6B7280}
 
-\setlength{\parskip}{3pt}
+\setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[rnavy] (current page.north west) rectangle ([yshift=-1.05in]current page.north east);
+  \fill[rnavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
   \node[anchor=west, text=white, font=\fontsize{22}{26}\bfseries\sffamily]
-    at ([xshift=0.65in, yshift=-0.38in]current page.north west) {SEL RTAC};
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {SEL RTAC};
   \node[anchor=west, text=rcyan!80, font=\fontsize{11}{13}\sffamily]
-    at ([xshift=0.65in, yshift=-0.68in]current page.north west) {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
-  \node[anchor=east, draw=rcyan, rounded corners=5pt, fill=rgreen!60,
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
+  \node[anchor=east, draw=rcyan, rounded corners=5pt, fill=rgreen!70,
         inner sep=6pt, text=white, font=\small\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=-0.38in]current page.north east)
+    at ([xshift=-0.65in, yshift=-0.35in]current page.north east)
     {8 Chapters · 160+ Questions · PDF Included};
   \draw[rorange, line width=2pt]
-    ([xshift=0.65in, yshift=-0.88in]current page.north west) --
-    ([xshift=3.5in, yshift=-0.88in]current page.north west);
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
 \vspace{0.95in}
 
-\begin{minipage}[t]{0.60\textwidth}
+{\small\sffamily\color{rgray}%
+  8 Chapters\enspace·\enspace160+ Questions\enspace·\enspace3 Quiz Levels\enspace·\enspace Free Access\enspace·\enspace No Account Required}
 
+\smallskip
 {\color{rnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{rgray}\MakeUppercase{What This Course Teaches}}
+{\small\sffamily\color{rgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
 \smallskip
-
-The SEL Real Time Automation Controller (RTAC) is the platform that ties everything else together. It is a protocol gateway, a data concentrator, a logic engine, and an IEC 61850 interface — all in one ruggedized DIN-rail device. In power utilities and critical infrastructure, the RTAC sits between the field device level and the SCADA master, translating protocols, filtering data, and implementing local automation that must survive communication failures.
-
-Engineers who understand the RTAC can design substation automation architectures, configure protocol mappings between DNP3, Modbus, and IEC 61850, and implement local control logic using ACSELERATOR Architect. This course covers the full stack from hardware commissioning through advanced protocol gateway configuration.
-
-\smallskip
-{\color{rgreen}\rule{\linewidth}{0.6pt}}
-\smallskip
-{\small\sffamily\color{rgray}\MakeUppercase{Chapter Sequence}}
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{rgreen}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{RTAC Architecture} — Hardware variants (SEL-3505/3530/3555), I/O modules, communication ports, power requirements, hardware commissioning.
-  \item \textbf{ACSELERATOR Architect} — Software environment, project structure, database tags, tag aliasing, revision control.
-  \item \textbf{DNP3 Configuration} — DNP3 master and outstation roles, point mapping, event handling, unsolicited reporting configuration.
-  \item \textbf{Modbus Gateway} — Modbus TCP server configuration, register mapping from DNP3 points, coil and holding register layout.
-  \item \textbf{IEC 61850 Integration} — GOOSE messaging, Sampled Values, MMS client/server, logical node mapping to RTAC tags.
-  \item \textbf{Local Logic} — ACSELERATOR logic engine: IEC 61131-3 programs, event-driven automation, failover sequences.
-  \item \textbf{Security \& Access Control} — Role-based access, RBAC configuration, serial port security, firmware update procedures.
-  \item \textbf{Field Scenarios} — Substation automation case studies: transformer bay control, feeder protection, load shedding automation.
+  \item \textbf{RTAC Architecture} --- The SEL RTAC (SEL-3505, SEL-3530, SEL-3555) is a protocol gateway, data concentrator, and local logic engine in one ruggedized DIN-rail device. This chapter covers hardware variants, I/O modules, communication ports, and the commissioning sequence before any software is opened.
+  \item \textbf{ACSELERATOR Architect} --- SEL's configuration software organizes every RTAC project as a database: tags, aliases, point mapping, and revision control. Engineers learn the project structure that every RTAC configuration follows and the workflow that prevents configuration drift.
+  \item \textbf{DNP3 Configuration} --- The RTAC communicates upstream to the SCADA master via DNP3. This chapter covers master and outstation roles, point database mapping, event handling, unsolicited reporting, and the DNP3 parameters that determine how quickly a SCADA system sees a field change.
+  \item \textbf{Modbus Gateway} --- The RTAC translates Modbus TCP requests into DNP3 point values. This chapter covers server configuration, register mapping from DNP3 to coils and holding registers, and the common integration patterns for legacy SCADA systems that speak only Modbus.
+  \item \textbf{IEC 61850 Integration} --- GOOSE messages carry protection relay trip signals across the station LAN in microseconds. Sampled Values carry current and voltage waveforms. MMS handles operator control. This chapter covers all three and how RTAC maps IEC 61850 data to its internal tag database.
+  \item \textbf{Local Logic} --- When communications to the SCADA master fail, the RTAC continues executing local IEC 61131-3 programs. This chapter covers the ACSELERATOR logic engine: event-driven automation, failover sequences, and the programs that keep a substation safe when the network is down.
+  \item \textbf{Security \& Access Control} --- Role-based access, RBAC profile configuration, serial port security, and firmware update procedures. The RTAC is a critical infrastructure device; this chapter covers the security posture required for NERC CIP compliance in power utility applications.
+  \item \textbf{Field Scenarios} --- Three substation automation case studies: transformer bay control with automatic tap changer response, feeder protection coordination with downstream reclosers, and load shedding automation that executes correctly under a communication fault to the SCADA master.
 \end{enumerate}
 
 \smallskip
 {\color{rgreen}\rule{\linewidth}{0.6pt}}
 \smallskip
 
-{\small\sffamily\color{rgray}\MakeUppercase{The Story}}
-
-\small Substation automation is the application domain where every protocol from this curriculum converges. A modern substation communicates via DNP3 to the SCADA master, via IEC 61850 GOOSE between protection relays, via Modbus to legacy meters, and via serial to older RTUs. The RTAC is the device that manages all of that simultaneously.
-
-SEL dominates the power utility automation market in North America. Understanding the RTAC is not optional for engineers working in substations, distribution automation, or grid modernization. This course provides the configuration depth that the SEL documentation provides in six separate manuals — integrated into a learning sequence that connects each feature to the underlying protocol concepts taught in the prior courses.
-
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.36\textwidth}
-
-% Gateway architecture diagram
-\begin{tikzpicture}[
-  blk/.style={rectangle, rounded corners=3pt, draw, fill, text centered,
-    font=\small\sffamily, inner sep=5pt, minimum width=3.6cm, minimum height=0.58cm},
-  arr/.style={Stealth-Stealth, thick}
-]
-\node[blk, draw=rblue, fill=rblue!12] (scada) {SCADA Master};
-\node[blk, draw=rgreen, fill=rgreen!12, below=10pt of scada] (rtac) {\textbf{SEL RTAC}};
-\node[blk, draw=rnavy!60, fill=rnavy!8, below left=10pt and -20pt of rtac, minimum width=1.6cm] (dnp) {DNP3};
-\node[blk, draw=rnavy!60, fill=rnavy!8, below right=10pt and -20pt of rtac, minimum width=1.6cm] (61850) {IEC 61850};
-\node[blk, draw=rorange!60, fill=rorange!8, below=8pt of dnp, minimum width=1.6cm] (mbx) {Modbus RTU};
-
-\draw[arr, color=rblue!60] (scada) -- node[right, font=\tiny\sffamily]{DNP3/TCP} (rtac);
-\draw[arr, color=rgreen!60] (rtac) -- (dnp);
-\draw[arr, color=rgreen!60] (rtac) -- (61850);
-\draw[arr, color=rorange!60] (dnp) -- (mbx);
-
-\node[font=\tiny\sffamily\color{rgray}, left=2pt of dnp] {Port 20000};
-\node[font=\tiny\sffamily\color{rgray}, right=2pt of 61850] {Port 102};
-\end{tikzpicture}
-
-\vspace{5pt}
-
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=raccent, colframe=rgreen, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
   title=Certification Relevance,
   boxed title style={colback=rgreen},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{rgreen}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{SEL Certified Engineer} — SEL offers application engineer certification via their training center; RTAC configuration is a core track.
-  \item \textbf{GICSP (GIAC)} — Substation automation and IEC 61850 security appear in ICS security certification exams.
-  \item \textbf{ISA CCST} — Protocol gateway configuration and field device integration are tested topics.
+  \item \textbf{SEL Certified Engineer} --- SEL offers application engineer certification through their training center; RTAC configuration is a core track.
+  \item \textbf{GICSP (GIAC)} --- Substation automation, IEC 61850 security, and protocol gateway configuration appear in ICS security certification exam domains.
+  \item \textbf{ISA CCST} --- Protocol gateway integration and field device configuration are tested topics at CCST Levels II and III.
 \end{itemize}
 \end{tcolorbox}
-
-\vspace{5pt}
-
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=rorange!8, colframe=rorange, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps (Certs),
+  title=Next Steps,
   boxed title style={colback=rorange},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{rorange}{\arabic*.}]
-  \item \small Complete DNP3 + RTAC guides together for full stack coverage.
-  \item Download ACSELERATOR Architect (free from selinc.com) and configure a lab project.
-  \item Attend SEL application engineering training (Pullman, WA or regional).
-  \item Pursue GICSP for the ICS security credential that pairs with RTAC expertise.
+  \item \small Complete the DNP3 and IEC 61131-3 guides alongside RTAC --- both protocol knowledge and programming skills are prerequisites for field configuration.
+  \item Download ACSELERATOR Architect (free from selinc.com) and configure a lab project against a virtual RTAC.
+  \item Attend SEL application engineering training (Pullman, WA or regional); the in-person lab is the fastest path to RTAC proficiency.
+  \item Pursue GICSP for the ICS security credential most relevant to power utility and substation work.
 \end{enumerate}
 \end{tcolorbox}
-
-\vspace{5pt}
-
-\begin{center}
-\begin{tikzpicture}
-  \foreach \val/\lbl/\col [count=\i] in {
-    8/Chapters/rgreen,
-    4/Protocols/rorange,
-    160+/Questions/rblue
-  }{
-    \node[rectangle, rounded corners=3pt, fill=\col!12, draw=\col!40,
-          inner sep=5pt, minimum width=1.1cm, font=\sffamily, text=\col] at (\i*1.35, 0)
-      {\textbf{\val}\\\tiny\color{rgray}\lbl};
-  }
-\end{tikzpicture}
-\end{center}
-
 \end{minipage}
 
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[rnavy!90] (current page.south west) rectangle ([yshift=0.32in]current page.south east);
+  \fill[rnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
   \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
-    at ([xshift=0.65in, yshift=0.16in]current page.south west)
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
     {SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material};
   \node[anchor=east, text=rcyan, font=\footnotesize\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=0.16in]current page.south east)
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
     {Course 6 of 8};
 \end{tikzpicture}
 

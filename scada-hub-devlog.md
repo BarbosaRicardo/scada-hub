@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 10 — Course Syllabus button added to all 7 guide sidebars; syllabi deployed)
+> Last updated: 2026-05-15 (Session 11 — Syllabi redesigned: no diagrams, narrative chapter TOC, single page clean)
 
 ---
 
@@ -779,6 +779,24 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 | rtac | 55aa11b | main |
 | wireshark | b128d7b | main |
 | ignition | 140c96f | main |
+
+---
+
+## Session 11 — 2026-05-15
+
+### Completed
+
+- [x] **Syllabus redesign — all 7 guides** — Removed TikZ architecture diagrams (caused blank first page and layout overflow). Removed separate "The Story" section. Chapter sequence rewritten as a narrative table of contents: each numbered item is one tight paragraph explaining what the chapter covers and why it comes in this order. Two-column tcolorboxes (Certification Relevance + Next Steps) at bottom. Full-width layout, no minipages for chapter list. All 7 compile to exactly 1 page. New PDFs deployed to Vercel, committed, pushed.
+
+| Guide | Change | Commit |
+|-------|--------|--------|
+| Modbus | Clean 1-page narrative TOC | a91b714 |
+| OPC UA | Clean 1-page narrative TOC | b8ae38d |
+| IEC 61131 | Clean 1-page narrative TOC | 5138884 |
+| PID | Clean 1-page narrative TOC | 36d9eda |
+| RTAC | Clean 1-page narrative TOC | 3b3432f |
+| Ignition | Clean 1-page narrative TOC | b562fd7 |
+| Wireshark | Clean 1-page narrative TOC | 5adfc18 |
 
 ---
 

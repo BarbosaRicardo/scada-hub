@@ -1,6 +1,5 @@
 % ============================================================
-%  MODBUS PROTOCOL — COURSE SYLLABUS / SELL SHEET
-%  One-page executive overview for SCADA Hub Training Platform
+%  MODBUS — COURSE SYLLABUS
 % ============================================================
 \documentclass[10pt]{article}
 \usepackage[T1]{fontenc}
@@ -9,201 +8,117 @@
 \usepackage{microtype}
 \usepackage{palatino}
 \usepackage[scaled=0.82]{beramono}
-\usepackage[
-  top=0.55in, bottom=0.55in,
-  left=0.65in, right=0.65in
-]{geometry}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
 \usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,backgrounds,fit}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{array}
 \usepackage{enumitem}
 \usepackage[most]{tcolorbox}
-\usepackage{multicol}
-\usepackage{fontawesome5}
-\usepackage[
-  colorlinks=true, linkcolor=mblue, urlcolor=mcyan,
-  pdftitle={Modbus Protocol — Course Syllabus},
-  pdfauthor={}
-]{hyperref}
+\usepackage[colorlinks=true, linkcolor=mblue, urlcolor=mcyan,
+  pdftitle={Modbus --- Course Syllabus}]{hyperref}
 \usepackage{parskip}
 
-% Colors
-\definecolor{mblue}{HTML}{1565C0}
-\definecolor{mcyan}{HTML}{0097A7}
-\definecolor{mnavy}{HTML}{0D2137}
-\definecolor{morange}{HTML}{E65100}
-\definecolor{mgreen}{HTML}{2E7D32}
-\definecolor{maccent}{HTML}{E3F2FD}
-\definecolor{mgray}{HTML}{546E7A}
+\definecolor{mblue}{HTML}{2563EB}
+\definecolor{mcyan}{HTML}{3B82F6}
+\definecolor{mnavy}{HTML}{1E3A5F}
+\definecolor{morange}{HTML}{EA580C}
+\definecolor{maccent}{HTML}{EFF6FF}
+\definecolor{mgray}{HTML}{6B7280}
 
-\setlength{\parskip}{3pt}
+\setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
-% ── Header ───────────────────────────────────────────────────
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[mnavy] (current page.north west) rectangle ([yshift=-1.05in]current page.north east);
+  \fill[mnavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
   \node[anchor=west, text=white, font=\fontsize{22}{26}\bfseries\sffamily]
-    at ([xshift=0.65in, yshift=-0.38in]current page.north west) {Modbus Protocol};
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {Modbus};
   \node[anchor=west, text=mcyan!80, font=\fontsize{11}{13}\sffamily]
-    at ([xshift=0.65in, yshift=-0.68in]current page.north west) {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
-  % Chapter count badge
-  \node[anchor=east, draw=mcyan, rounded corners=5pt, fill=mblue!50,
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
+  \node[anchor=east, draw=mcyan, rounded corners=5pt, fill=mblue!70,
         inner sep=6pt, text=white, font=\small\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=-0.38in]current page.north east)
-    {12 Chapters · 500+ Questions · PDF Included};
-  % Orange accent line
+    at ([xshift=-0.65in, yshift=-0.35in]current page.north east)
+    {11 Chapters · 550+ Questions · PDF Included};
   \draw[morange, line width=2pt]
-    ([xshift=0.65in, yshift=-0.88in]current page.north west) --
-    ([xshift=3.5in, yshift=-0.88in]current page.north west);
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
 \vspace{0.95in}
 
-% ── Two-column layout ────────────────────────────────────────
-\begin{minipage}[t]{0.60\textwidth}
+{\small\sffamily\color{mgray}%
+  11 Chapters\enspace·\enspace550+ Questions\enspace·\enspace3 Quiz Levels\enspace·\enspace Free Access\enspace·\enspace No Account Required}
 
+\smallskip
 {\color{mnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-
-{\small\sffamily\color{mgray}\MakeUppercase{What This Course Teaches}}
-
+{\small\sffamily\color{mgray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
 \smallskip
-
-Modbus is the first protocol every SCADA engineer encounters and the last one they fully understand. Written in 1979 and still running millions of devices in active service, it underpins more industrial infrastructure than any protocol introduced since. This course teaches Modbus from first principles through field-level troubleshooting — not as an academic exercise, but as the engineering foundation you need before every other protocol makes sense.
-
-\smallskip
-{\color{mblue}\rule{\linewidth}{0.6pt}}
-\smallskip
-
-{\small\sffamily\color{mgray}\MakeUppercase{Chapter Sequence}}
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{mblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction to Modbus} — History, RTU vs.\ ASCII vs.\ TCP, the master/slave model, RS-485 specifications.
-  \item \textbf{Data Model} — The four register tables, 0- vs.\ 1-based addressing, data types, packed coil transmission.
-  \item \textbf{Function Codes} — FC01–FC23, exception codes, the request/response pair structure.
-  \item \textbf{RTU Framing} — Binary encoding, CRC-16 calculation, timing-based frame delimitation.
-  \item \textbf{ASCII Mode} — LRC checksum, colon/CRLF delimiters, tradeoffs vs.\ RTU.
-  \item \textbf{Modbus TCP} — MBAP header, port 502, transaction IDs, gateway behavior.
-  \item \textbf{RS-485 Physical Layer} — Differential signaling, termination, cable length vs.\ baud rate.
-  \item \textbf{Data Types \& Scaling} — 32-bit floats, word order, engineering unit conversion.
-  \item \textbf{Security} — Attack surface analysis, network segmentation strategy, protocol-aware firewall rules.
-  \item \textbf{Troubleshooting} — Exception code diagnosis, timeout analysis, common commissioning failures.
-  \item \textbf{Advanced Topics} — Multi-drop timing, gateway configuration, Modbus over satellite/radio.
-  \item \textbf{Protocol Lab} — Live exercises: frame construction, CRC verification, Wireshark capture analysis.
+  \item \textbf{Introduction} --- Modbus was written in 1979 and has not changed its core protocol since. This chapter establishes why that matters: the same register model running in 1980s PLCs ships unchanged in new devices today. Engineers who understand the history stop treating its quirks as bugs.
+  \item \textbf{Data Model} --- Four register tables --- coil, discrete input, input register, holding register --- define every possible Modbus transaction. This chapter makes the address space automatic before function codes are introduced.
+  \item \textbf{RTU Mode} --- Serial framing, CRC-16, RS-485 multi-drop wiring, and the silence intervals that separate frames. RTU is still the dominant implementation in field devices; engineers who skip this chapter struggle with every serial deployment.
+  \item \textbf{ASCII Mode} --- The human-readable serial variant: twice the overhead of RTU for the same data. Covered because legacy systems still use it, and because understanding it clarifies exactly why RTU won.
+  \item \textbf{Modbus TCP} --- MBAP header, transaction IDs, port 502, and how Modbus crossed to Ethernet without modifying its register model. This is why Modbus remains relevant on modern plant networks.
+  \item \textbf{Function Codes} --- The 20 codes covering 95\% of deployments: read coils, read/write registers, write multiple registers, and the diagnostics codes that only appear when a device is misbehaving.
+  \item \textbf{Exception Codes} --- Illegal Function, Illegal Data Address, Illegal Data Value, Slave Device Failure. Engineers learn to read exception responses instead of assuming the master is at fault.
+  \item \textbf{Data Types} --- 16-bit registers were not designed for floats, 32-bit integers, or strings. This chapter covers register-pair encoding, byte-order conventions, and the vendor-specific choices that turn a simple read into an hour of debugging.
+  \item \textbf{Troubleshooting} --- Addressing offset errors, byte-order mismatches, poll-rate overloads, RS-485 termination faults, and the firewall that silently drops Modbus TCP. Field diagnosis using Wireshark and software masters.
+  \item \textbf{Security} --- Modbus has no authentication, no encryption, and no access control by design. This chapter covers compensating controls: network segmentation, unidirectional gateways, and anomaly detection at the network layer.
+  \item \textbf{Practice Lab} --- Five diagnostic exercises: mapping an unknown device's registers, tracing an Exception Code 02, configuring an RTU-to-TCP gateway, diagnosing a byte-order fault, and building a Wireshark filter to monitor a Modbus TCP master.
 \end{enumerate}
 
 \smallskip
 {\color{mblue}\rule{\linewidth}{0.6pt}}
 \smallskip
 
-{\small\sffamily\color{mgray}\MakeUppercase{The Story}}
-
-\small Modbus is the entry point. Engineers who skip it — or who learned it "on the job" without structure — carry gaps that compound as they move up the stack. An engineer who doesn't understand register addressing will struggle with every integration they touch. An engineer who doesn't understand RTU framing cannot diagnose a serial fault without guessing.
-
-This course closes those gaps in sequence: physical layer → framing → function codes → TCP encapsulation → security → lab. By the end, the engineer can read a raw Modbus frame in hex and tell you what register is being read, from which slave, and whether the response is correct — without opening a manual.
-
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.36\textwidth}
-
-% Architecture diagram
-\begin{tikzpicture}[
-  layer/.style={rectangle, rounded corners=4pt, text centered,
-    font=\small\sffamily, inner sep=6pt, minimum width=3.8cm, minimum height=0.7cm},
-  arrow/.style={-Stealth, thick, color=mblue!60}
-]
-\node[layer, fill=mblue!15, draw=mblue] (scada) {SCADA / HMI};
-\node[layer, fill=mblue!10, draw=mblue!70, below=6pt of scada] (gateway) {Modbus TCP Gateway};
-\node[layer, fill=mnavy!8, draw=mnavy!40, below=6pt of gateway] (rs485) {RS-485 Bus};
-\node[layer, fill=morange!10, draw=morange!60, below=4pt of rs485] (plc1) {PLC / RTU \#1};
-\node[layer, fill=morange!10, draw=morange!60, below=4pt of plc1] (plc2) {PLC / RTU \#2};
-\node[layer, fill=morange!10, draw=morange!60, below=4pt of plc2] (plc3) {Field Device \#N};
-
-\draw[arrow] (scada) -- (gateway);
-\draw[arrow] (gateway) -- (rs485);
-\draw[arrow] (rs485) -- (plc1);
-\draw[arrow] (plc1) -- (plc2);
-\draw[arrow] (plc2) -- (plc3);
-
-\node[font=\tiny\sffamily\color{mgray}, right=2pt of scada] {Port 502};
-\node[font=\tiny\sffamily\color{mgray}, right=2pt of plc1] {Addr 01};
-\node[font=\tiny\sffamily\color{mgray}, right=2pt of plc2] {Addr 02};
-\node[font=\tiny\sffamily\color{mgray}, right=2pt of plc3] {Addr \ldots};
-\end{tikzpicture}
-
-\vspace{6pt}
-
-% Cert box
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=maccent, colframe=mblue, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
   title=Certification Relevance,
   boxed title style={colback=mblue},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{mblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{ISA CCST} — Modbus is explicitly tested in the Instrumentation \& Control systems domain.
-  \item \textbf{GICSP (GIAC)} — ICS protocol knowledge; Modbus is a core topic in all vendor prep materials.
-  \item \textbf{CompTIA CySA+} — ICS/OT protocol awareness tested at associate level.
+  \item \textbf{ISA CCST} --- Modbus appears in industrial communications and data acquisition domains at all three CCST levels.
+  \item \textbf{GICSP (GIAC)} --- OT protocol knowledge and Modbus security posture appear throughout ICS security exam domains.
+  \item \textbf{CompTIA CySA+} --- Industrial network traffic analysis including Modbus TCP anomaly detection.
 \end{itemize}
 \end{tcolorbox}
-
-\vspace{5pt}
-
-% Next steps box
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=morange!8, colframe=morange, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps (Certs),
+  title=Next Steps,
   boxed title style={colback=morange},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{morange}{\arabic*.}]
-  \item \small Complete this course + Wireshark guide for hands-on lab skills.
-  \item Study ISA-18.2 and ISA-99 (IEC 62443) standards.
-  \item Register at \texttt{isa.org} for CCST; at \texttt{giac.org} for GICSP.
-  \item Schedule exam within 90 days of course completion.
+  \item \small Complete Modbus before OPC UA --- the data model concepts transfer directly.
+  \item Download ModRSsim2 (free) and Modbus Poll (trial) to practice register reads against a live simulator.
+  \item Review IEC 61158 for the formal specification behind the protocol details.
+  \item Pursue ISA CCST Level I as the entry-level industrial automation credential.
 \end{enumerate}
 \end{tcolorbox}
-
-\vspace{5pt}
-
-% Stats row
-\begin{center}
-\begin{tikzpicture}
-  \foreach \val/\lbl/\col [count=\i] in {
-    12/Chapters/mblue,
-    500+/Questions/morange,
-    3/Levels/mgreen
-  }{
-    \node[rectangle, rounded corners=3pt, fill=\col!12, draw=\col!40,
-          inner sep=5pt, minimum width=1.1cm, font=\sffamily,
-          text=\col] at (\i*1.35, 0)
-      {\textbf{\val}\\\tiny\color{mgray}\lbl};
-  }
-\end{tikzpicture}
-\end{center}
-
 \end{minipage}
 
-% ── Footer ───────────────────────────────────────────────────
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[mnavy!90] (current page.south west) rectangle ([yshift=0.32in]current page.south east);
+  \fill[mnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
   \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
-    at ([xshift=0.65in, yshift=0.16in]current page.south west)
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
     {SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material};
   \node[anchor=east, text=mcyan, font=\footnotesize\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=0.16in]current page.south east)
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
     {Course 1 of 8};
 \end{tikzpicture}
 

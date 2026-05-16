@@ -1,5 +1,5 @@
 % ============================================================
-%  IEC 61131-3 — COURSE SYLLABUS / SELL SHEET
+%  IEC 61131-3 — COURSE SYLLABUS
 % ============================================================
 \documentclass[10pt]{article}
 \usepackage[T1]{fontenc}
@@ -8,177 +8,117 @@
 \usepackage{microtype}
 \usepackage{palatino}
 \usepackage[scaled=0.82]{beramono}
-\usepackage[top=0.55in, bottom=0.55in, left=0.65in, right=0.65in]{geometry}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
 \usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,backgrounds,fit}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{array}
 \usepackage{enumitem}
 \usepackage[most]{tcolorbox}
 \usepackage[colorlinks=true, linkcolor=iblue, urlcolor=icyan,
-  pdftitle={IEC 61131-3 — Course Syllabus}]{hyperref}
+  pdftitle={IEC 61131-3 --- Course Syllabus}]{hyperref}
 \usepackage{parskip}
 
-\definecolor{iblue}{HTML}{0369A1}
-\definecolor{icyan}{HTML}{2DD4BF}
-\definecolor{inavy}{HTML}{0C2340}
-\definecolor{iorange}{HTML}{EA580C}
-\definecolor{igreen}{HTML}{15803D}
-\definecolor{iaccent}{HTML}{F0F9FF}
+\definecolor{iblue}{HTML}{2563EB}
+\definecolor{icyan}{HTML}{3B82F6}
+\definecolor{inavy}{HTML}{1E3A5F}
+\definecolor{iorange}{HTML}{D97706}
+\definecolor{iaccent}{HTML}{EFF6FF}
 \definecolor{igray}{HTML}{6B7280}
 
-\setlength{\parskip}{3pt}
+\setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[inavy] (current page.north west) rectangle ([yshift=-1.05in]current page.north east);
+  \fill[inavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
   \node[anchor=west, text=white, font=\fontsize{22}{26}\bfseries\sffamily]
-    at ([xshift=0.65in, yshift=-0.38in]current page.north west) {IEC 61131-3};
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {IEC 61131-3};
   \node[anchor=west, text=icyan!80, font=\fontsize{11}{13}\sffamily]
-    at ([xshift=0.65in, yshift=-0.68in]current page.north west) {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
-  \node[anchor=east, draw=icyan, rounded corners=5pt, fill=iblue!60,
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
+  \node[anchor=east, draw=icyan, rounded corners=5pt, fill=iblue!70,
         inner sep=6pt, text=white, font=\small\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=-0.38in]current page.north east)
-    {10 Chapters · 600+ Questions · PDF Included};
+    at ([xshift=-0.65in, yshift=-0.35in]current page.north east)
+    {10 Chapters · 400+ Questions · PDF Included};
   \draw[iorange, line width=2pt]
-    ([xshift=0.65in, yshift=-0.88in]current page.north west) --
-    ([xshift=3.5in, yshift=-0.88in]current page.north west);
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
 \vspace{0.95in}
 
-\begin{minipage}[t]{0.60\textwidth}
+{\small\sffamily\color{igray}%
+  10 Chapters\enspace·\enspace400+ Questions\enspace·\enspace3 Quiz Levels\enspace·\enspace Free Access\enspace·\enspace No Account Required}
 
+\smallskip
 {\color{inavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{igray}\MakeUppercase{What This Course Teaches}}
+{\small\sffamily\color{igray}\MakeUppercase{Course Overview --- Chapter by Chapter}}
 \smallskip
-
-IEC 61131-3 is the international standard for PLC programming languages. Five languages, one standard: Ladder Diagram (LD), Function Block Diagram (FBD), Structured Text (ST), Instruction List (IL), and Sequential Function Chart (SFC). Every major PLC platform — Siemens, Allen-Bradley, Schneider, Beckhoff, Codesys-based vendors — implements some or all of these. An engineer who understands IEC 61131-3 can read control logic on any of them. An engineer who only knows one vendor's dialect cannot.
-
-This course teaches all five languages with emphasis on Structured Text (the future of PLC programming) and Function Blocks (the reuse pattern every modern PLC project depends on). Lab exercises use the open Codesys runtime — no license, no hardware required.
-
-\smallskip
-{\color{iblue}\rule{\linewidth}{0.6pt}}
-\smallskip
-{\small\sffamily\color{igray}\MakeUppercase{Chapter Sequence}}
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{iblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Standard Overview} — History of PLC programming before standardization, what IEC 61131-3 solved, vendor compliance levels.
-  \item \textbf{Program Organization Units} — Programs, Function Blocks, Functions, Tasks — the execution model and memory scoping rules.
-  \item \textbf{Data Types} — Elementary types, derived types, arrays, structures, enumerations, type safety rules.
-  \item \textbf{Ladder Diagram (LD)} — Contact/coil model, rung logic, timer and counter function blocks, safety circuit patterns.
-  \item \textbf{Function Block Diagram (FBD)} — Graphical dataflow, standard library blocks, PID function block wiring.
-  \item \textbf{Structured Text (ST)} — Syntax, control flow, assignment, iteration — full programming language for PLC logic.
-  \item \textbf{Sequential Function Chart (SFC)} — Step/transition model, action qualifiers, sequence design for batch processes.
-  \item \textbf{Standard Library} — IEC standard function blocks: TON, TOF, TP, CTU, CTD, MOVE, LIMIT, PID — correct usage and common mistakes.
-  \item \textbf{Safety \& Best Practices} — PLCopen Motion guidelines, naming conventions, documentation requirements, code review.
-  \item \textbf{Code Lab} — Hands-on exercises: implement a motor interlock, a batch sequence, and a PID loop in Structured Text.
+  \item \textbf{Introduction} --- Before IEC 61131-3, every PLC manufacturer used a proprietary language. Engineers retrained from scratch when they changed vendors. This chapter explains why the standard exists, what it unified, and which of the five languages to reach for first.
+  \item \textbf{Data Types} --- BOOL, INT, REAL, TIME, STRING, and user-defined structured types. The type system is what separates safe PLC code from implicit conversions that silently corrupt process values at runtime.
+  \item \textbf{Structured Text (ST)} --- Pascal-style text language: IF/THEN, FOR, WHILE, CASE, function calls. The most expressive of the five languages and the most transferable skill for engineers coming from software backgrounds.
+  \item \textbf{Ladder Diagram (LD)} --- Relay-logic graphical representation: contacts, coils, and rungs. Electricians can read it without training. Every PLC vendor supports it. Understanding LD is non-optional for anyone working with existing automation code.
+  \item \textbf{Function Block Diagram (FBD)} --- Signal-flow graphical language where data passes between interconnected function blocks. The natural fit for control engineers working with PID loops, signal conditioning, and process instrumentation.
+  \item \textbf{Sequential Function Chart (SFC)} --- State machine language for batch and sequential processes. Steps, transitions, and divergence structures replace thousands of lines of LD timer-and-flag logic with a readable, maintainable flowchart.
+  \item \textbf{Program Organization Units} --- Functions, Function Blocks, Programs, and Configurations are the module system that enables reusable automation libraries. Engineers learn how to build code that works across vendors without modification.
+  \item \textbf{RTAC Integration} --- Applying IEC 61131-3 logic in the SEL RTAC; how the standard crosses from PLC programming into substation protection and automation. The bridge between this course and the RTAC guide.
+  \item \textbf{Troubleshooting} --- Type mismatches, scan cycle overruns, unintended coil latching, and the runtime faults that crash programs without a clear error message. Field debugging procedures for real PLC hardware.
+  \item \textbf{Practice Lab} --- Four exercises: a PID temperature controller in Structured Text, a motor starter sequence in Ladder, a batch filling process in SFC, and a reusable Function Block library for analog scaling.
 \end{enumerate}
 
 \smallskip
 {\color{iblue}\rule{\linewidth}{0.6pt}}
 \smallskip
 
-{\small\sffamily\color{igray}\MakeUppercase{The Story}}
-
-\small PLC programming has been balkanized for forty years. Each vendor had their own IDE, their own instruction set, their own way of doing timers. Engineers learned one platform and were expensive to retrain. IEC 61131-3 exists to end that — one standard, portable logic, transferable skills.
-
-The momentum has shifted to Structured Text. New Codesys-based PLCs, Beckhoff TwinCAT, and even Siemens SCL all use ST as the primary language for complex logic. An engineer who only knows Ladder Diagram is increasingly working in a language that the industry is moving away from. This course brings engineers current — not by discarding LD, which is still the right tool for relay replacement and safety circuits, but by adding the ST and FBD fluency that modern projects require.
-
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.36\textwidth}
-
-% Five languages diagram
-\begin{tikzpicture}[
-  lang/.style={rectangle, rounded corners=3pt, text centered,
-    font=\small\sffamily, inner sep=5pt, minimum width=1.6cm, minimum height=0.55cm},
-]
-\node[lang, fill=iblue!15, draw=iblue] (ld) at (0, 0) {LD};
-\node[lang, fill=iblue!12, draw=iblue!70] (fbd) at (1.75, 0) {FBD};
-\node[lang, fill=icyan!20, draw=icyan!70] (st) at (0.875, -0.8) {\textbf{ST}};
-\node[lang, fill=iorange!10, draw=iorange!50] (il) at (0, -1.6) {IL};
-\node[lang, fill=igreen!10, draw=igreen!50] (sfc) at (1.75, -1.6) {SFC};
-
-\node[font=\tiny\sffamily\color{igray}, above=3pt of ld] {Relay Logic};
-\node[font=\tiny\sffamily\color{igray}, above=3pt of fbd] {Dataflow};
-\node[font=\tiny\sffamily\color{igray}, right=2pt of st] {{\color{icyan}\textbf{Primary}}};
-\node[font=\tiny\sffamily\color{igray}, below=3pt of il] {Low-level};
-\node[font=\tiny\sffamily\color{igray}, below=3pt of sfc] {Sequences};
-
-\node[font=\small\sffamily\color{inavy}, above=16pt of ld, xshift=0.875cm]
-  {\textbf{IEC 61131-3 Languages}};
-\end{tikzpicture}
-
-\vspace{5pt}
-
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=iaccent, colframe=iblue, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
   title=Certification Relevance,
   boxed title style={colback=iblue},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{iblue}{$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{PLCopen Certified} — PLCopen offers function block and motion control certifications aligned directly to IEC 61131-3.
-  \item \textbf{ISA CCST} — PLC programming languages and standard function blocks are tested in the control systems domain.
-  \item \textbf{Siemens / Beckhoff Vendor Certs} — All major vendor certifications assume IEC 61131-3 as the foundation.
+  \item \textbf{PLCopen Certified} --- PLCopen certification exams test IEC 61131-3 language knowledge, POUs, and programming best practices directly.
+  \item \textbf{ISA CCST} --- PLC programming, ladder logic, and control system configuration are core tested topics at all levels.
+  \item \textbf{Vendor Credentials} --- Siemens TIA Portal, Rockwell Studio 5000, and Beckhoff TwinCAT all use IEC 61131-3 as their programming foundation.
 \end{itemize}
 \end{tcolorbox}
-
-\vspace{5pt}
-
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
 \begin{tcolorbox}[
   enhanced, colback=iorange!8, colframe=iorange, arc=4pt,
   fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps (Certs),
+  title=Next Steps,
   boxed title style={colback=iorange},
   attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=8pt, bottom=6pt, left=6pt, right=6pt
+  top=6pt, bottom=4pt, left=5pt, right=5pt
 ]
 \begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{iorange}{\arabic*.}]
-  \item \small Complete IEC 61131-3 + PID courses as a pair.
-  \item Install Codesys runtime (free) and complete all lab exercises.
-  \item Review PLCopen Function Block standard documents (free PDF at plcopen.org).
-  \item Register at \texttt{plcopen.org} for Function Block Certification exam.
+  \item \small Complete IEC 61131-3 before starting the RTAC guide --- logic concepts transfer directly to ACSELERATOR Architect.
+  \item Download CODESYS (free IDE, IEC 61131-3 compliant) and run the practice lab exercises in a soft PLC.
+  \item Review the PLCopen Function Block libraries for motion, communications, and safety.
+  \item Pursue PLCopen certification or a vendor credential (TIA Portal, Studio 5000) as the first PLC-specific credential.
 \end{enumerate}
 \end{tcolorbox}
-
-\vspace{5pt}
-
-\begin{center}
-\begin{tikzpicture}
-  \foreach \val/\lbl/\col [count=\i] in {
-    10/Chapters/iblue,
-    600+/Questions/iorange,
-    5/Languages/igreen
-  }{
-    \node[rectangle, rounded corners=3pt, fill=\col!12, draw=\col!40,
-          inner sep=5pt, minimum width=1.1cm, font=\sffamily, text=\col] at (\i*1.35, 0)
-      {\textbf{\val}\\\tiny\color{igray}\lbl};
-  }
-\end{tikzpicture}
-\end{center}
-
 \end{minipage}
 
 \begin{tikzpicture}[remember picture, overlay]
-  \fill[inavy!90] (current page.south west) rectangle ([yshift=0.32in]current page.south east);
+  \fill[inavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
   \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
-    at ([xshift=0.65in, yshift=0.16in]current page.south west)
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
     {SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material};
   \node[anchor=east, text=icyan, font=\footnotesize\bfseries\sffamily]
-    at ([xshift=-0.65in, yshift=0.16in]current page.south east)
-    {Course 4 of 8};
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
+    {Course 3 of 8};
 \end{tikzpicture}
 
 \end{document}
