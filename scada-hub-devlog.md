@@ -919,6 +919,30 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 16 — 2026-05-16
+
+### Completed
+
+- [x] **Agent research: university syllabus structure** — Reviewed MIT OCW (6.0001, 6.033), CMU, and Stanford syllabi. Finding: professional academic syllabi use one-line topic entries (bold label + one enumeration clause, ~15–25 words). Current entries were 3–5 sentence paragraphs, classified by the agent as "prospectus or marketing copy styled as a syllabus." Also: "COURSE OVERVIEW" should be "COURSE TOPICS" per academic convention.
+- [x] **All 8 course topic lists rewritten** — Bold label + one terse clause per item. No narrative, no rationale sentences, no editorial voice. Section heading changed from `COURSE OVERVIEW` to `COURSE TOPICS` in all 8 files.
+- [x] **All 8 recompiled** — All confirmed 1 page.
+- [x] **PDFs copied, all 8 guides rebuilt, committed, pushed to GitHub** — All 8 pushed successfully.
+- [ ] **Vercel deploy blocked** — Hit 100-deploy/day free tier limit again. All changes are on GitHub and live on GitHub Pages. Re-run `vercel --prod --yes` from each guide root tomorrow.
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | 597c7f7 |
+| OPC UA | e5e30d0 |
+| IEC 61131 | 2336bbe |
+| PID | ea5ef3b |
+| DNP3 | 1d7aa61 |
+| RTAC | 71289a5 |
+| Ignition | e462e71 |
+| Wireshark | 99dbce7 |
+| scada-hub (sources) | 8e72744 |
+
+---
+
 ## Session 15 — 2026-05-16
 
 ### Completed
