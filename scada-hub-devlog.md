@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 9 — Quiz Results button restored to all 7 guide sidebars)
+> Last updated: 2026-05-15 (Session 10 — Course Syllabus button added to all 7 guide sidebars; syllabi deployed)
 
 ---
 
@@ -782,6 +782,25 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 10 — 2026-05-15
+
+### Completed
+
+- [x] **Course Syllabus button added to all 7 guide sidebars** — "Course Syllabus" link injected after "Download PDF Study Guide" in each Sidebar.jsx; opens `syllabus.pdf` in a new tab; each button styled with guide-specific accent color (`rgba` dark background matching the PDF button); `FileText` icon from lucide-react
+- [x] **syllabus.pdf deployed to all 7 guides** — PDF compiled from `scada-hub/syllabi/*_syllabus.tex`; copied to `site/public/syllabus.pdf` in each guide repo; force-added past `.gitignore`; built (`docs/syllabus.pdf` lands in each guide's docs); all 7 deployed to Vercel (`vercel --prod --yes`), committed, and pushed to GitHub
+
+| Guide | Sidebar color | Commit |
+|-------|--------------|--------|
+| Modbus | `59,130,246` | f049afe |
+| OPC UA | `13,148,136` | 3ecc43f |
+| IEC 61131 | `59,130,246` | cde4f6d |
+| PID | `168,85,247` | 6b2ee32 |
+| RTAC | `21,217,143` | 60bdc02 |
+| Ignition | `249,115,22` | 082776a |
+| Wireshark | `14,165,233` | 5ca55fa |
+
+---
+
 ## Session 9 — 2026-05-15
 
 ### Completed
@@ -834,6 +853,8 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [ ] **Course syllabi / one-page C-Suite sell sheets** — one LaTeX PDF per guide (7 builds: Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each is one page (two max): chapter outline as a narrative story, certification connections (GICSP, CCST, PLCopen, OPC Foundation, ISA), next steps to pursue each cert, subtle project pitch. Graphics where useful. Tight for executive review.
 - [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Deployed to Vercel. Source at `latex/wireshark_study_guide.tex`.
 - [x] **Course syllabi / one-page C-Suite sell sheets** — 7 one-page LaTeX PDFs built (Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each has: chapter narrative, TikZ architecture diagram, cert relevance, next steps, stats badges. Committed to `scada-hub/syllabi/`. All 7 compile clean.
+- [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Deployed to Vercel. Source at `latex/wireshark_study_guide.tex`.
+- [x] **Course Syllabus button in all 7 guide sidebars** — `syllabus.pdf` copied to each guide's `site/public/`; sidebar button injected after PDF download button; all 7 built, deployed to Vercel, committed, pushed.
 - [ ] RTAC PDF: layout and formatting overhaul
 - [ ] Field scenario quizzes: add references/deep-dive links
 - [ ] PDF code blocks: dark-on-dark text
