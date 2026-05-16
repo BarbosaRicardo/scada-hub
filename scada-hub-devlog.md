@@ -831,13 +831,16 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ## Open punchlist (all sessions)
 
-- [ ] Wireshark: missing LaTeX PDF
+- [ ] **Course syllabi / one-page C-Suite sell sheets** — one LaTeX PDF per guide (7 builds: Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each is one page (two max): chapter outline as a narrative story, certification connections (GICSP, CCST, PLCopen, OPC Foundation, ISA), next steps to pursue each cert, subtle project pitch. Graphics where useful. Tight for executive review.
+- [x] **Wireshark: missing LaTeX PDF** — Written from scratch (10 chapters, 51 pages, sky-blue theme). Deployed to Vercel. Source at `latex/wireshark_study_guide.tex`.
+- [x] **Course syllabi / one-page C-Suite sell sheets** — 7 one-page LaTeX PDFs built (Modbus, OPC UA, IEC 61131-3, PID, RTAC, Ignition, Wireshark). Each has: chapter narrative, TikZ architecture diagram, cert relevance, next steps, stats badges. Committed to `scada-hub/syllabi/`. All 7 compile clean.
 - [ ] RTAC PDF: layout and formatting overhaul
 - [ ] Field scenario quizzes: add references/deep-dive links
 - [ ] PDF code blocks: dark-on-dark text
 - [ ] Landing page redesign (scada-hub)
 - [ ] LearningPath hover bug — `whileHover={{ scale: 1.03, y: -4 }}` makes cards enlarge and text hard to read on hover
 - [ ] DNP3 LaTeX PDF — write, compile, place at `site/public/study_guide.pdf`
+- [ ] **Auth: duplicate email signup error** — If a user tries to register with an email that already has an account, show a clear "An account with this email already exists" message with a link/button to reset their password. Currently Supabase returns a generic or misleading error. Add reset-password flow triggered from the register form error state.
 - [ ] Quiz reports RLS — Supabase row-level security on `quiz_results` table
 - [ ] Wrong-answer tracking + "Review Missed" mode
 - [ ] Spaced repetition on flashcards (SM-2)
