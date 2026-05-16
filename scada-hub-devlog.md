@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 7 — Full dark-theme sweep: all 8 guides, all pages + flashcards)
+> Last updated: 2026-05-15 (Session 9 — Quiz Results button restored to all 7 guide sidebars)
 
 ---
 
@@ -813,6 +813,7 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [x] **Cross-guide SSO** — guide links in scada-hub (GuideGrid + LearningPath) now inject Supabase session tokens into URL hash when user is authenticated; guides auto-restore the session on load via `detectSessionInUrl`
 - [x] **ScadaBackground ticker overlap fixed** — ticker box widened 48→62px, value text repositioned so key label and value no longer collide on 4-digit values (e.g. "GEN 1237 kW")
 - [x] **Auth page cleanup** — removed "ALL SYSTEMS NOMINAL" badge and "FIELD ENGINEER EDITION · TEMECULA, CA" footer; replaced footer with "⚡ Ohm my, that's a lot of protocols."; removed project-description tagline from branding area
+- [x] **Quiz Results button restored** — the "Quiz Results" button (`BarChart2` → `setReportOpen(true)`) was dropped in the uniform sidebar footer refactor (commit `ece65f1`); restored to all 7 non-DNP3 guides with guide-specific accent colors; all rebuilt, deployed to Vercel, committed, and pushed
 
 ### Completed previous session (Session 7)
 
