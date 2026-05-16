@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{rgray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small The SEL Real-Time Automation Controller is the standard platform for substation SCADA integration, protocol translation, and local logic execution in power utility environments. This course covers hardware selection, ACSELERATOR Architect project configuration, DNP3 and Modbus gateway setup, IEC 61850 service integration, IEC 61131-3 logic programming, and NERC CIP access control requirements.}
+
+\smallskip
+{\small\sffamily\color{rgray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Completion of the DNP3 and IEC 61131-3 courses. Basic familiarity with substation equipment is helpful.}
+
+\smallskip
 {\color{rnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{rgray}\MakeUppercase{Course Topics}}
@@ -61,7 +73,7 @@
   \item \textbf{Field Scenarios:} Three case studies — automatic tap changer response, feeder protection with downstream reclosers, and sub-200ms load shedding.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{rnavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{rgray}\MakeUppercase{Learning Outcomes}}
@@ -76,45 +88,18 @@
   \item Analyze and implement field automation scenarios including tap changer and load shedding sequences.
 \end{itemize}
 
-\vfill
-{\color{rgreen}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{rnavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{rgray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=raccent, colframe=rgreen, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=rgreen},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{rgreen}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{rgreen}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{SEL Certified Engineer} — SEL offers application engineer certification through their training center; RTAC configuration is a core track.
-  \item \textbf{GICSP (GIAC)} — Substation automation, IEC 61850 security, and protocol gateway configuration appear in ICS security exam domains.
-  \item \textbf{ISA CCST} — Protocol gateway integration and field device configuration tested at CCST Levels II and III.
+  \item \textbf{ACSELERATOR Architect} (free from selinc.com, Windows) — SEL's project configuration tool for all RTAC lab exercises.
+  \item \textbf{SEL-5033 Software Defined Network} (free, Windows) — virtual RTAC environment for lab scenarios without physical hardware.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=rorange!8, colframe=rorange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=rorange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{rorange}{\arabic*.}]
-  \item \small Take DNP3 and IEC 61131-3 before RTAC. Protocol knowledge and programming skills are both prerequisites for field configuration work.
-  \item Download ACSELERATOR Architect (free from selinc.com) and configure a lab project against a virtual RTAC.
-  \item Attend SEL application engineering training in Pullman, WA or at a regional event. The in-person lab is the fastest path to real proficiency.
-  \item GICSP pairs well with RTAC expertise for engineers working in power utilities and substations.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[rnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

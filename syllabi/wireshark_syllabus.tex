@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{wgray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small Wireshark is the primary tool for ICS protocol analysis, incident investigation, and security verification in operational technology networks. This course covers capture techniques using SPAN ports and network taps, display filter construction, and dissector-level analysis of Modbus, DNP3, and OPC UA traffic. Advanced topics include tshark scripting, remote capture over SSH, and Lua dissectors for proprietary protocols.}
+
+\smallskip
+{\small\sffamily\color{wgray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Completion of at least one protocol course (Modbus, OPC UA, or DNP3) is strongly recommended.}
+
+\smallskip
 {\color{wnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{wgray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Protocol Lab:} Modbus poll overload diagnosis, Exception Code 02 trace, OPC UA security audit, rogue master detection, tshark alert script.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{wnavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{wgray}\MakeUppercase{Learning Outcomes}}
@@ -78,46 +90,18 @@
   \item Automate protocol monitoring with tshark scripts for recurring or unattended analysis tasks.
 \end{itemize}
 
-\vfill
-{\color{wblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{wnavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{wgray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=waccent, colframe=wblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=wblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{wblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{wblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{GICSP (GIAC):} ICS network analysis and incident response are core exam domains; Wireshark proficiency is assumed by the exam objectives.
-  \item \textbf{GRID (GIAC):} ICS defender certification; network forensics and anomaly detection are heavily tested.
-  \item \textbf{CEH (EC-Council):} Packet analysis and protocol investigation appear in the network reconnaissance modules.
-  \item \textbf{CompTIA CySA+:} Network traffic analysis in the threat detection domain.
+  \item \textbf{Wireshark and tshark} (free, cross-platform) — packet capture, display filter construction, and scripted analysis for all lab exercises.
+  \item \textbf{Sample PCAP files} (provided with course materials) — pre-recorded Modbus, DNP3, and OPC UA captures for dissector exercises.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=worange!8, colframe=worange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=worange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{worange}{\arabic*.}]
-  \item \small Complete Wireshark as the final course in the 8-guide sequence --- protocol knowledge from earlier courses makes the captures readable.
-  \item Configure a home lab SPAN port or network tap and capture live Modbus or OPC UA traffic from a simulator.
-  \item Register at giac.org for GICSP; review exam objectives and map completed courses to each domain.
-  \item GICSP requires no specific work experience; the exam is available at Pearson VUE testing centers worldwide.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[wnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

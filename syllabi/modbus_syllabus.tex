@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{mgray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small Modbus is the most widely deployed fieldbus protocol in industrial automation, present in virtually every manufacturing and utility installation worldwide. This course covers RTU mode on RS-485, ASCII mode, and Modbus TCP over Ethernet, along with the register data model, function codes, exception handling, and data type encoding across vendor implementations. Security limitations and network-layer compensating controls are addressed in the context of modern OT network architecture.}
+
+\smallskip
+{\small\sffamily\color{mgray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Basic TCP/IP networking concepts. No prior SCADA or industrial protocol experience required.}
+
+\smallskip
 {\color{mnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{mgray}\MakeUppercase{Course Topics}}
@@ -64,7 +76,7 @@
   \item \textbf{Practice Lab:} Register mapping, Exception Code 02 tracing, serial-to-TCP gateway configuration, byte-order diagnosis, and Wireshark traffic analysis.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{mnavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{mgray}\MakeUppercase{Learning Outcomes}}
@@ -79,45 +91,19 @@
   \item Specify network-layer compensating controls appropriate for a Modbus deployment.
 \end{itemize}
 
-\vfill
-{\color{mblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{mnavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{mgray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=maccent, colframe=mblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=mblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{mblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{mblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{ISA CCST} — Modbus appears in industrial communications and data acquisition domains at all three CCST levels.
-  \item \textbf{GICSP (GIAC)} — OT protocol knowledge and Modbus security posture are tested throughout ICS security exam domains.
-  \item \textbf{CompTIA CySA+} — Industrial network traffic analysis including Modbus TCP anomaly detection.
+  \item \textbf{ModRSsim2} (free, Windows) — virtual Modbus RTU/TCP slave for register read/write exercises.
+  \item \textbf{Modbus Poll} (trial, Windows) — master client for polling registers and inspecting exception responses.
+  \item \textbf{Wireshark} (free, cross-platform) — packet capture for Modbus TCP traffic analysis.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=morange!8, colframe=morange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=morange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{morange}{\arabic*.}]
-  \item \small Take Modbus before OPC UA. The data model concepts carry over directly.
-  \item Download ModRSsim2 (free) and Modbus Poll (trial) to run register reads against a live simulator.
-  \item Review IEC 61158 for the formal specification behind the protocol details.
-  \item ISA CCST Level I is the right entry credential for industrial automation work.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[mnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

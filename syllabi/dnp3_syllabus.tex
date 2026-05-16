@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{dgray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small DNP3 is the dominant SCADA protocol in North American power distribution and water utility systems, designed for the latency tolerance, event-driven reporting, and data integrity requirements of field device communication over unreliable WAN links. This course covers the three-layer protocol stack, typed data objects, function codes including Select-Before-Operate, unsolicited reporting configuration, and Secure Authentication version 5.}
+
+\smallskip
+{\small\sffamily\color{dgray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Basic TCP/IP networking concepts. Completion of the Modbus course is recommended.}
+
+\smallskip
 {\color{dnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{dgray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Protocol Lab:} Outstation commissioning, unsolicited reporting setup, SAv5 key management, tshark filtering, and event buffer overflow diagnosis.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{dnavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{dgray}\MakeUppercase{Learning Outcomes}}
@@ -78,45 +90,18 @@
   \item Write tshark display filters to isolate DNP3 traffic by function code and event class.
 \end{itemize}
 
-\vfill
-{\color{dblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{dnavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{dgray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=daccent, colframe=dblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=dblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{dblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{dblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{GICSP (GIAC)} — DNP3 protocol knowledge and Secure Authentication appear directly in ICS security exam domains; DNP3 is the primary power utility protocol tested.
-  \item \textbf{ISA CCST} — SCADA communications and field device protocols tested at CCST Levels II and III.
-  \item \textbf{NERC CIP} — SAv5 is a recognized compliance path for CIP-005 and CIP-007 electronic security perimeter requirements.
+  \item \textbf{Triangle MicroWorks DNP3 Test Harness} (free trial, Windows) — software master for outstation commissioning and SBO exercises.
+  \item \textbf{Wireshark} (free, cross-platform) — protocol capture for frame-level analysis and SAv5 handshake verification.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=dorange!8, colframe=dorange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=dorange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{dorange}{\arabic*.}]
-  \item \small Take DNP3 alongside the RTAC guide. The RTAC is the most common DNP3 master/outstation in power utility substations.
-  \item Download Triangle MicroWorks DNP3 Test Harness (free trial) to practice outstation configuration against a software master.
-  \item IEEE 1815 is the normative DNP3 standard. The DNP3 User Group application notes fill the gaps the standard leaves open.
-  \item GICSP is the ICS security credential most relevant to power utility and substation SCADA work.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[dnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

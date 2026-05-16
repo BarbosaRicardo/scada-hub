@@ -919,6 +919,39 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 18 — 2026-05-16
+
+### Completed
+
+- [x] **Syllabi Option 4: Course Description + Prerequisites + Required Software added to all 8 guides** — Added a two-sentence Course Description and a one-line Prerequisites entry before Course Topics. Added a Required Software section after Learning Outcomes listing free/trial tools (ModRSsim2, CODESYS, Wireshark, Triangle MicroWorks, ACSELERATOR Architect, etc.) specific to each guide.
+- [x] **Certification Relevance + Next Steps boxes removed from all 8 PDFs** — Per user direction: cert content will be rebuilt as a richer sidebar section in the web app (with links, descriptions, and course mapping). Removing the boxes from the PDF keeps the syllabus document clean and solves the overflow problem entirely.
+- [x] **All 8 recompiled** — All confirmed 1 page each.
+- [x] **PDFs copied, all 8 guides rebuilt, committed, pushed to GitHub** — Live on GitHub Pages.
+- [ ] **Vercel deploy deferred** — Run `vercel --prod --yes` from each guide root when rate limit resets.
+- [ ] **Sidebar certification button** — Build a new sidebar panel (or modal) for each guide containing rich cert content: cert name, link, description, which guide courses map to which exam domains.
+
+Structure per syllabus is now:
+1. Header (course title + subtitle)
+2. `COURSE DESCRIPTION` — 2-sentence overview
+3. `PREREQUISITES` — one-line entry requirement
+4. `COURSE TOPICS` — numbered list, one-line entries
+5. `LEARNING OUTCOMES` — 5 action-verb bullets
+6. `REQUIRED SOFTWARE` — 2–3 free/trial tool bullets
+7. Footer
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | b116170 |
+| OPC UA | f863884 |
+| IEC 61131 | e1f4ae4 |
+| PID | 6f9517a |
+| DNP3 | 743e1dc |
+| RTAC | 32d6f05 |
+| Ignition | 2af8f48 |
+| Wireshark | f16dcfd |
+
+---
+
 ## Session 17 — 2026-05-16
 
 ### Completed

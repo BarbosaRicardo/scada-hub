@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{igray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small IEC 61131-3 is the international standard defining the five PLC programming languages used across every major automation vendor. This course covers Structured Text, Ladder Diagram, Function Block Diagram, Sequential Function Chart, and Instruction List; the program organization unit hierarchy; and data type management across vendor implementations. Exercises use CODESYS, a vendor-neutral IDE that implements the full specification.}
+
+\smallskip
+{\small\sffamily\color{igray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small No prior programming experience required. Familiarity with basic electrical or control concepts is helpful.}
+
+\smallskip
 {\color{inavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{igray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Practice Lab:} PID controller in Structured Text, motor starter in Ladder, batch sequence in SFC, analog scaling Function Block.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{inavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{igray}\MakeUppercase{Learning Outcomes}}
@@ -78,45 +90,18 @@
   \item Diagnose scan cycle overruns, type conversion errors, and silent runtime faults in live PLC programs.
 \end{itemize}
 
-\vfill
-{\color{iblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{inavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{igray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=iaccent, colframe=iblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=iblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{iblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{iblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{PLCopen Certified} — Certification exams test IEC 61131-3 language knowledge, POUs, and programming best practices directly.
-  \item \textbf{ISA CCST} — PLC programming, ladder logic, and control system configuration are core tested topics at all levels.
-  \item \textbf{Vendor Credentials} — Siemens TIA Portal, Rockwell Studio 5000, and Beckhoff TwinCAT all use IEC 61131-3 as their programming foundation.
+  \item \textbf{CODESYS} (free, Windows/Linux) — IEC 61131-3 compliant IDE with soft PLC runtime for all lab exercises.
+  \item \textbf{PLCopen Function Block Library} (free PDF) — normative reference for standard function block interfaces across vendors.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=iorange!8, colframe=iorange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=iorange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{iorange}{\arabic*.}]
-  \item \small Take IEC 61131-3 before the RTAC guide. The logic concepts transfer directly to ACSELERATOR Architect.
-  \item Download CODESYS (free, IEC 61131-3 compliant IDE) and run the lab exercises in a soft PLC.
-  \item Review the PLCopen Function Block libraries for motion, communications, and safety.
-  \item PLCopen certification or a vendor credential (TIA Portal, Studio 5000) is the right first PLC-specific credential.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[inavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{ugray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small OPC UA is the successor to the classic OPC specifications and the standard communication backbone for Industry 4.0 and IIoT architectures. This course covers the client/server and pub/sub transport models, the node-based address space, the full service set, session and SecureChannel mechanics, and the certificate-based security model. Integration patterns using open-source stacks and commercial platforms are examined alongside Wireshark-based diagnostic techniques.}
+
+\smallskip
+{\small\sffamily\color{ugray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Basic TCP/IP networking concepts. Completion of the Modbus course is recommended but not required.}
+
+\smallskip
 {\color{unavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{ugray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Protocol Lab:} Full session capture — TCP connection, SecureChannel, browse, subscription, disconnect, and session token renewal.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{unavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{ugray}\MakeUppercase{Learning Outcomes}}
@@ -78,45 +90,19 @@
   \item Select and configure an OPC UA SDK or integration platform for a given deployment scenario.
 \end{itemize}
 
-\vfill
-{\color{ublue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{unavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{ugray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=uaccent, colframe=ublue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=ublue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{ublue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{ublue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{OPC Foundation Certified} — Developer and Integrator exams test the information model, service set, and security configuration directly.
-  \item \textbf{GICSP (GIAC)} — OPC UA security modes and integration patterns appear in ICS security exam prep domains.
-  \item \textbf{ISA CCST} — Industrial networking and system integration standards tested at all CCST levels.
+  \item \textbf{open62541} (free, cross-platform) — open-source C OPC UA stack for server and client implementation exercises.
+  \item \textbf{UA Expert} (free registration, Windows/Linux/macOS) — desktop client for address space browsing and subscription testing.
+  \item \textbf{Wireshark} (free, cross-platform) — packet capture for SecureChannel negotiation and session token analysis.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=uorange!8, colframe=uorange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=uorange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{uorange}{\arabic*.}]
-  \item \small Pair OPC UA with the Security guide for the strongest overlap with GICSP exam domains.
-  \item Download open62541 (free, open-source C stack) and run a local server against UA Expert client.
-  \item OPC Foundation spec Parts 1 (Concepts) and 4 (Services) are the normative reference.
-  \item Apply at opcfoundation.org for the OPC UA Integrator certification exam.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[unavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

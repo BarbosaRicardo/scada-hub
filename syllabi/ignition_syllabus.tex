@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{ogray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small Ignition is a web-deployed SCADA platform built on OPC UA, used across manufacturing, water/wastewater, and energy sectors. This course covers the gateway architecture, tag system design, Perspective HMI development, Jython scripting, alarm notification pipelines, Tag Historian, database integration, and security configuration — building a complete SCADA application from device connection to management report.}
+
+\smallskip
+{\small\sffamily\color{ogray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Basic SQL knowledge is helpful. No prior SCADA or HMI experience required.}
+
+\smallskip
 {\color{onavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{ogray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Field Lab:} End-to-end SCADA build — OPC-UA device connection, tag configuration, Perspective dashboard, alarm pipeline, historian, management report.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{onavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{ogray}\MakeUppercase{Learning Outcomes}}
@@ -78,45 +90,18 @@
   \item Query historian data and generate a management report from stored process values.
 \end{itemize}
 
-\vfill
-{\color{oblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{onavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{ogray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=oaccent, colframe=oblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=oblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{oblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{oblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{Inductive University Certified:} Core, Advanced, and Gold exams are free, self-paced, and industry-recognized; this course provides the structured foundation those exams assume.
-  \item \textbf{ISA CCST:} SCADA system configuration, historian, and alarm management are tested topics at CCST Levels II and III.
-  \item \textbf{Ignition Integrator:} Required for Inductive Automation Certified Integrators; demonstrates full-stack project delivery capability.
+  \item \textbf{Ignition trial} (free from inductiveautomation.com, all platforms) — fully featured SCADA platform that resets every two hours; sufficient for all lab exercises.
+  \item \textbf{Inductive University} (free, browser-based) — video coursework and Core certification exam aligned with this course.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=oyellow!8, colframe=oyellow, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=oyellow},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{oyellow!80!black}{\arabic*.}]
-  \item \small Download the Ignition trial from inductiveautomation.com (free, resets every two hours, fully featured and sufficient for the entire course).
-  \item Complete Inductive University Core certification (free, online, approximately 20 hours of video and exercises).
-  \item Build the Field Lab application from scratch using your own trial instance as the capstone.
-  \item Pursue Gold certification for the Certified Integrator pathway and higher-value project work.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[onavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);

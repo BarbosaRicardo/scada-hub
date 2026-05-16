@@ -42,8 +42,20 @@
     ([xshift=3.5in,  yshift=-0.83in]current page.north west);
 \end{tikzpicture}
 
-\vspace{0.95in}
+\vspace{0.70in}
 
+{\small\sffamily\color{pgray}\MakeUppercase{Course Description}}
+\smallskip
+
+{\small PID controllers are the primary feedback control element in industrial process automation, governing temperature, pressure, flow, and level loops in every manufacturing and utility sector. This course covers the proportional, integral, and derivative terms; process characterization via step testing; classical and lambda tuning methods; cascade control design; and PID function block configuration across major PLC platforms.}
+
+\smallskip
+{\small\sffamily\color{pgray}\MakeUppercase{Prerequisites}}
+\smallskip
+
+{\small Basic algebra. No prior control theory or PLC programming experience required.}
+
+\smallskip
 {\color{pnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
 {\small\sffamily\color{pgray}\MakeUppercase{Course Topics}}
@@ -63,7 +75,7 @@
   \item \textbf{Practice Lab:} Flow loop step-test tuning, cascade temperature/flow loop, anti-windup configuration, cold-start commissioning sequence.
 \end{enumerate}
 
-\medskip
+\smallskip
 {\color{pnavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 {\small\sffamily\color{pgray}\MakeUppercase{Learning Outcomes}}
@@ -78,45 +90,18 @@
   \item Diagnose oscillation, steady-state offset, and derivative chatter from trend data alone.
 \end{itemize}
 
-\vfill
-{\color{pblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\color{pnavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+{\small\sffamily\color{pgray}\MakeUppercase{Required Software}}
 \smallskip
 
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=paccent, colframe=pblue, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Certification Relevance,
-  boxed title style={colback=pblue},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{pblue}{$\bullet$}}
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{pblue}{\small$\bullet$}}
 \begin{itemize}\small
-  \item \textbf{ISA CCST Level III} — Advanced process control and loop tuning are tested at the senior technician level.
-  \item \textbf{ISA CAP} — Certified Automation Professional exam covers control system design and PID fundamentals explicitly.
-  \item \textbf{PE Exam (Control Systems)} — Professional Engineer licensing tests control theory, system response, and stability analysis.
+  \item \textbf{Scilab} (free, cross-platform) — numerical computing environment for step-test simulation and response plotting.
+  \item \textbf{CODESYS} (free, Windows/Linux) — soft PLC runtime for PID function block configuration and commissioning exercises.
 \end{itemize}
-\end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{tcolorbox}[
-  enhanced, colback=porange!8, colframe=porange, arc=4pt,
-  fonttitle=\small\bfseries\sffamily\color{white},
-  title=Next Steps,
-  boxed title style={colback=porange},
-  attach boxed title to top left={yshift=-2mm, xshift=5mm},
-  top=6pt, bottom=4pt, left=5pt, right=5pt
-]
-\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{porange}{\arabic*.}]
-  \item \small Take PID alongside IEC 61131-3. PLC PID blocks make sense once you understand both the algorithm and the language.
-  \item Use Scilab (free) or MATLAB (student license) to simulate step tests before commissioning on live equipment.
-  \item ISA-5.1 (Instrumentation Symbols) and ISA-18.2 (Alarm Management) are the surrounding standards worth reviewing.
-  \item ISA CCST is the right entry credential, with ISA CAP as the next step for advanced process control work.
-\end{enumerate}
-\end{tcolorbox}
-\end{minipage}
+
 
 \begin{tikzpicture}[remember picture, overlay]
   \fill[pnavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
