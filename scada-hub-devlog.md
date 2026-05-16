@@ -782,49 +782,61 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
-## Punchlist — Session 8 Updates (2026-05-15)
+## Session 9 — 2026-05-15
 
-### New items added this session
+### Completed
 
-- [ ] **Wireshark: missing LaTeX PDF** — No `study_guide.pdf` exists at `site/public/`. Needs to be written (LaTeX source), compiled, and placed at `wireshark-study-guide/site/public/study_guide.pdf`. PDF button in sidebar is live but returns 404.
+- [x] **Quiz Results button restored** — the "Quiz Results" button (`BarChart2` → `setReportOpen(true)`) was silently dropped in the Session 8 uniform sidebar footer refactor (commit `ece65f1`); `reportOpen` state and `QuizReport` import remained but were unreachable; restored to all 7 non-DNP3 guides with guide-specific accent colors; all rebuilt, deployed to Vercel, committed, and pushed
 
-- [ ] **RTAC PDF: layout and formatting overhaul** — Images are horribly laid out (overflow, bad sizing). Spacing between sections is bad. Chapter intro style is different from the Modbus PDF template. Orphaned section titles appear at bottom of pages. Fix to match Modbus PDF style as reference.
+---
 
-- [ ] **Field scenario quizzes: add references/deep-dive links** — Each field scenario question should include a "Read more" reference pointing to the relevant standard, SEL manual section, or external resource for deeper study. Apply across all guides that have field scenario quiz types.
+## Session 8 — 2026-05-15
 
-- [ ] **PDF code blocks: dark-on-dark text** — PID PDF showed dark equation boxes with dark text (unreadable). Audit all guide PDFs for dark-on-dark or light-on-light rendering in code/equation blocks. Fix LaTeX source for each affected guide.
+### Open items added
 
-- [x] **Remaining light backgrounds in web app** — Fixed across all 8 guides. modbus (ASCII, DataModel, RS485, Lab), opcua (Subscriptions, Security, Services), dnp3 (Unsolicited, Security, FunctionCodes), ignition (Lab), pid (9 pages: LoopFundamentals, PLCImplementation, PIDAction, Troubleshoot, Tuning, ProcessDynamics, CascadeControl, DigitalPID, Lab), rtac (DNP3.jsx). All deployed to Vercel.
+- [ ] **Wireshark: missing LaTeX PDF** — No `study_guide.pdf` exists at `site/public/`. PDF button in sidebar is live but returns 404.
+- [ ] **RTAC PDF: layout and formatting overhaul** — Images horribly laid out, bad spacing, orphaned titles, intro style differs from Modbus PDF template.
+- [ ] **Field scenario quizzes: add references/deep-dive links** — Each question should link out to the relevant standard or SEL manual section.
+- [ ] **PDF code blocks: dark-on-dark text** — PID PDF showed unreadable dark equation boxes. Audit all guide PDFs for rendering issues in code/equation blocks.
+- [ ] **Landing page redesign (scada-hub)** — "looks like an Instagram ad" (user quote). Needs cleaner hierarchy, more authoritative copy, less gradient noise.
 
-- [ ] **Landing page redesign (scada-hub)** — Current landing page looks like an Instagram ad (user quote). Needs more professional, polished design. Less gradient noise, cleaner hierarchy, more authoritative copy. Specifics TBD — needs design direction.
-
-### Completed this session (Session 8)
+### Completed
 
 - [x] **All 8 guides deployed to Vercel** — `[guide]-study-guide.vercel.app` aliases live; scada-hub landing page links updated from `barbosaricardo.github.io` to Vercel endpoints
-- [x] **Uniform sidebar footer buttons** — all 7 non-DNP3 guides updated to match DNP3 pattern: solid gradient PDF button + dark "← SCADA Hub" button (LayoutGrid) + "Sign In to Track Progress" auth form, each using guide-specific accent color
+- [x] **Uniform sidebar footer buttons** — all 7 non-DNP3 guides updated: solid gradient PDF button + dark "← SCADA Hub" link + auth section, each using guide-specific accent color
 - [x] **Supabase auth added to 6 guides** — modbus, opcua, iec61131, pid, wireshark, ignition now have sign-in/sign-out flow matching DNP3/RTAC
-- [x] **PID Quote blocks dark-themed** — `bg-gradient-to-r from-purple-50 to-indigo-50` replaced with `rgba(139,92,246,0.07)` inline style across all 10 PID chapter pages
+- [x] **PID Quote blocks dark-themed** — `bg-gradient-to-r from-purple-50 to-indigo-50` → `rgba(139,92,246,0.07)` inline style across all 10 PID chapter pages
 - [x] **PID + RTAC `border-slate-200` borders fixed** — changed to `border-white/8` across 18 files
 - [x] **Wireshark Vercel build fixed** — added `VERCEL` env check to vite.config.js; fixed double-comma in lucide import
 - [x] **QuizLevels.jsx dark-themed** — `bg-white`, `hover:bg-purple-50`, `border-purple-100` replaced across all guides
-- [x] **Remaining light backgrounds — full sweep** — colored info boxes (`bg-X-50 border border-X-200`) replaced with dark `rgba` inline styles across all 8 guides; ~25 files patched; all rebuilt and deployed
+- [x] **Remaining light backgrounds — full sweep** — colored info boxes (`bg-X-50 border border-X-200`) → dark `rgba` inline styles across all 8 guides; ~25 files patched; all rebuilt and deployed
 - [x] **IEC 61131 QuizLevels dark-themed + deployed** — uncommitted QuizLevels.jsx and POUs.jsx fixes committed; no light info boxes found; built and deployed to Vercel
-- [x] **Sign-in flash suppressed** — added `sessionLoading` state to all 8 guide Sidebars so the "Sign In" button is hidden until the Supabase session check resolves; prevents flash of sign-in UI for authenticated users
-- [x] **Cross-guide SSO** — guide links in scada-hub (GuideGrid + LearningPath) now inject Supabase session tokens into URL hash when user is authenticated; guides auto-restore the session on load via `detectSessionInUrl`
-- [x] **ScadaBackground ticker overlap fixed** — ticker box widened 48→62px, value text repositioned so key label and value no longer collide on 4-digit values (e.g. "GEN 1237 kW")
-- [x] **Auth page cleanup** — removed "ALL SYSTEMS NOMINAL" badge and "FIELD ENGINEER EDITION · TEMECULA, CA" footer; replaced footer with "⚡ Ohm my, that's a lot of protocols."; removed project-description tagline from branding area
-- [x] **Quiz Results button restored** — the "Quiz Results" button (`BarChart2` → `setReportOpen(true)`) was dropped in the uniform sidebar footer refactor (commit `ece65f1`); restored to all 7 non-DNP3 guides with guide-specific accent colors; all rebuilt, deployed to Vercel, committed, and pushed
+- [x] **Sign-in flash suppressed** — added `sessionLoading` state to all 8 guide Sidebars; "Sign In" button hidden until Supabase session check resolves
+- [x] **Cross-guide SSO** — guide links in scada-hub (GuideGrid + LearningPath) inject Supabase session tokens into URL hash; guides auto-restore session on load via `detectSessionInUrl`
+- [x] **ScadaBackground ticker overlap fixed** — ticker box widened 48→62px, value text repositioned so key and value no longer collide on 4-digit numbers (e.g. "GEN 1237 kW")
+- [x] **Auth page cleanup** — removed "ALL SYSTEMS NOMINAL" badge and "FIELD ENGINEER EDITION · TEMECULA, CA" footer; replaced footer with "⚡ Ohm my, that's a lot of protocols."; removed project-description tagline
 
-### Completed previous session (Session 7)
+---
+
+## Session 7 — 2026-05-15
+
+### Completed
 
 - [x] **Dark-theme sweep — Modbus Flashcards.jsx** — rewritten with full dark inline styles
 - [x] **Dark-theme sweep — all OPC UA chapter pages (10 files)** — white/light bg patterns replaced
 - [x] **Dark-theme sweep — all 8 guides, all pages (67 files total)** — `text-navy-700`, `bg-white`, `bg-slate-50`, `bg-slate-100`, `text-slate-700/800`, `border-slate-100/200` replaced with dark inline styles
 - [x] **Flashcard tap-hint dot fixed** — `bg-slate-500` → inline style in IEC, OPC UA, PID, RTAC, Wireshark, Ignition Flashcards.jsx
 
-### Still open (carried from previous sessions)
+---
 
-- [ ] LearningPath hover bug — `whileHover={{ scale: 1.03, y: -4 }}` makes cards enlarge and text hard to read
+## Open punchlist (all sessions)
+
+- [ ] Wireshark: missing LaTeX PDF
+- [ ] RTAC PDF: layout and formatting overhaul
+- [ ] Field scenario quizzes: add references/deep-dive links
+- [ ] PDF code blocks: dark-on-dark text
+- [ ] Landing page redesign (scada-hub)
+- [ ] LearningPath hover bug — `whileHover={{ scale: 1.03, y: -4 }}` makes cards enlarge and text hard to read on hover
 - [ ] DNP3 LaTeX PDF — write, compile, place at `site/public/study_guide.pdf`
 - [ ] Quiz reports RLS — Supabase row-level security on `quiz_results` table
 - [ ] Wrong-answer tracking + "Review Missed" mode
