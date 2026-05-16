@@ -919,6 +919,32 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 15 — 2026-05-16
+
+### Completed
+
+- [x] **Syllabi professional redesign — all 8 guides** — Removed marketing elements per user feedback ("looks like an advertisement"). Three structural changes applied to all 8 `.tex` files:
+  1. Removed pill badge from top-right header (`"N Chapters · N+ Questions · PDF Included"`)
+  2. Removed stats line below header (`"N Chapters · 3 Quiz Levels · Free Access · No Account Required"`)
+  3. Subtitle changed from `"Study Guide · Industrial Automation Series · SCADA Hub Training Platform"` to `"Industrial Control Systems · SCADA Hub"`
+  4. Footer changed from `"SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material"` to `"SCADA Hub · Industrial Control Systems · scada-hub.vercel.app"`
+- [x] **All 8 recompiled** — All confirmed 1 page each.
+- [x] **PDFs copied, guides rebuilt, committed, pushed, deployed to Vercel** — All 8 guides updated.
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | f20c655 |
+| OPC UA | 8b0fd0d |
+| IEC 61131 | d1935df |
+| PID | e3daff4 |
+| DNP3 | ab874d1 |
+| RTAC | e4b39e0 |
+| Ignition | 3942809 |
+| Wireshark | 3ee517d |
+| scada-hub (sources) | bf575ee |
+
+---
+
 ## Session 14 — 2026-05-16
 
 ### Completed
