@@ -919,6 +919,53 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 20 — 2026-05-16
+
+### Completed
+
+- [x] **Syllabus layout audit — all 8 confirmed identical to Modbus reference** — Read all 8 `.tex` files. All have the same structure: header TikZ overlay → Course Description → Prerequisites → thick rule → Course Topics → thin rule → Learning Outcomes → thin rule → Required Software → `\vfill` → footer TikZ. Color schemes and course numbers correct per guide. No structural differences from the Modbus reference image.
+- [x] **All 8 syllabi force-refreshed** — Recompiled all 8 PDFs (1 page each). Pushed to GitHub.
+- [x] **Manager punchlist PDF created** — 2-page LaTeX PDF with 27 numbered ADO items across Feature Work, Content Gaps, Bugs & Infrastructure, and UI/Branding. Saved to `~/Desktop/scada-hub-punchlist.pdf`. Source at `scada-hub/scada-hub-punchlist.tex`.
+- [x] **All Courses sidebar panel** — Added collapsible "All Courses" nav item to all 8 guide sidebars (after the Home/first chapter). Expands to show all 8 guides with colored icon badges and Vercel links. Icons match the SCADA Hub GuideGrid colors. State: `showGuides` toggle with ChevronDown rotation.
+- [x] **Auth sign-in removed from all 8 guide sidebars** — Removed the "Sign In to Track Progress" form and session check block from all 8 `Sidebar.jsx` files. Sidebar footer now shows: PDF download, Course Syllabus, ← SCADA Hub, Quiz Results, and guide attribution line only.
+- [x] **scada-hub: login gate confirmed removed** — `App.jsx` renders `HubContent` directly (no auth check). Hub built and pushed.
+- [x] **GitHub Pages base path fixed — all 8 guides** — Added `GITHUB_PAGES=1` env flag to all 8 `vite.config.js` files. When set, base is `/[repo-name]/`; when unset (Vercel), base is `/`. Rebuilt all 8 with `GITHUB_PAGES=1`, committed, pushed. GitHub Pages sites now load correctly.
+- [x] **Punchlist PDF updated** — Added 3 new items: Trimark Associates login page colors, floating telemetry values, All Courses panel design polish. Recompiled and saved to Desktop.
+- [x] **Cross-ecosystem link audit — all scada-hub components** — Audited and fixed all hardcoded guide URLs in `ArchitectureDiagram.jsx`, `Footer.jsx`, `LearningPath.jsx`, and `guides.js`. All now use `isGH / guideUrl(slug)` helper: GitHub Pages builds resolve to `barbosaricardo.github.io/*` and Vercel builds resolve to `*.vercel.app`. Rebuilt scada-hub with `GITHUB_PAGES=1`, committed `c13b73e`, pushed to master.
+
+### GitHub Pages commits (final state for manager review)
+
+| Guide | Commit | Branch | GitHub Pages URL |
+|-------|--------|--------|-----------------|
+| modbus | 9a409c2 | main | https://barbosaricardo.github.io/modbus-study-guide/ |
+| opcua | cb65fc0 | main | https://barbosaricardo.github.io/opcua-study-guide/ |
+| dnp3 | 9aa446d | master | https://barbosaricardo.github.io/dnp3-study-guide/ |
+| iec61131 | 5990a1c | main | https://barbosaricardo.github.io/iec61131-study-guide/ |
+| pid | 096b552 | main | https://barbosaricardo.github.io/pid-study-guide/ |
+| rtac | 0b2f961 | main | https://barbosaricardo.github.io/rtac-study-guide/ |
+| ignition | f2306cd | main | https://barbosaricardo.github.io/ignition-study-guide/ |
+| wireshark | 532766e | main | https://barbosaricardo.github.io/wireshark-study-guide/ |
+
+### Pending — Vercel deploy (rate limited 2026-05-16, retry 2026-05-17)
+
+Run from each guide's root directory when rate limit resets:
+```
+cd site && GITHUB_PAGES= npm run build && cd .. && vercel --prod --yes
+```
+Note: `GITHUB_PAGES=` (empty/unset) so the build uses `base: '/'` for Vercel.
+
+Guides to deploy: modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark, scada-hub (9 total).
+
+### Punchlist items added this session
+
+- [ ] **Trimark Associates login page colors** — Replace orange accent on ScadaBackground.jsx + AuthPage.jsx with Trimark brand hex colors. Collect hex values from brand guidelines first.
+- [ ] **Floating telemetry values** — Fix telemetry ticker overlap with node icons on ScadaBackground; animate tickers with slow vertical float.
+- [ ] **Ignition syllabus vs. coursework audit** — Pending.
+- [ ] **Wireshark syllabus vs. coursework audit** — Pending.
+- [ ] **All Courses panel polish** — Highlight current guide in dropdown; add chapter/question count subtitle per guide.
+
+---
+
 ## Session 19 — 2026-05-16
 
 ### Completed
@@ -944,9 +991,9 @@ Workflow: syllabus defines what MUST be covered; coursework is patched to match.
 | Modbus ✓ | Audited | ModRSsim2 unmentioned; TCP flashcards thin (3); prereqs not stated in web guide |
 | OPC UA ✓ | Audited | Sessions/Channels: no dedicated chapter; Discovery: 1 flashcard only; open62541 only in quizzes (never taught); Data Types chapter thin |
 | IEC 61131-3 ✓ | Audited | PLCopen FB library navigation not taught (only referenced); pre-programming scaffolding absent; vendor portability trade-offs not covered; IEC version differences in quizzes but not in chapters |
-| PID | Pending | — |
-| DNP3 | Pending | — |
-| RTAC | Pending | — |
+| PID ✓ | Audited | Scilab absent (not mentioned anywhere); CODESYS reference only (no exercises); Laplace/transfer functions assume calculus beyond stated prereq |
+| DNP3 ✓ | Audited | Minimal gap: no prerequisite statement in web guide. All 10 topics covered; Triangle MicroWorks + Wireshark both present; 114 flashcards total |
+| RTAC ✓ | Audited | Modbus Gateway chapter missing (DNP3-to-Modbus mapping, type conversion, failure modes); I/O module selection/commissioning incomplete; SEL-5033 not integrated into lab |
 | Ignition | Pending | — |
 | Wireshark | Pending | — |
 
