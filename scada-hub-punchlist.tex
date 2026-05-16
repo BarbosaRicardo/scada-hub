@@ -167,8 +167,8 @@
 \smallskip
 
 \begin{enumerate}[resume]\small
-  \item \textbf{Login Page: Trimark Associates Brand Colors} \hfill \med \\
-    The SCADA Hub login/auth page (\texttt{ScadaBackground.jsx} + \texttt{AuthPage.jsx}) uses orange as its primary accent. Replace with Trimark Associates brand hex colors. Scope: \texttt{scada-hub/site/src/components/ScadaBackground.jsx}, \texttt{AuthPage.jsx}. Collect hex color values from Trimark brand guidelines before implementation.
+  \item \textbf{Login Page: Company A Brand Colors} \hfill \med \\
+    The SCADA Hub login/auth page (\texttt{ScadaBackground.jsx} + \texttt{AuthPage.jsx}) uses orange as its primary accent. Adjust to a specific hex color value provided by Company A. Scope: \texttt{scada-hub/site/src/components/ScadaBackground.jsx}, \texttt{AuthPage.jsx}. Collect the target hex value before implementation.
 
   \item \textbf{Login Page: Floating Telemetry Values} \hfill \med \\
     On the animated SCADA login background, the live telemetry tickers (PV kW, SOC\%, RTT ms, MVA values) overlap with the node icons on some screen sizes. Fix: (a) move ticker boxes so they do not cover the icon, and (b) animate them with a slow float (gentle vertical oscillation) to give the background more life. Scope: \texttt{ScadaBackground.jsx} node layout and ticker positioning logic.
