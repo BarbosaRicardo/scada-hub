@@ -20,5 +20,9 @@ function HubContent() {
 }
 
 export default function App() {
-  return <HubContent />
+  return (
+    <AuthProvider>
+      <HubContent />
+    </AuthProvider>
+  )
 }
