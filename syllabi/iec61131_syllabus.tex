@@ -46,21 +46,21 @@
 
 {\color{inavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{igray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{igray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{iblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction:} Before IEC 61131-3, every PLC manufacturer had its own language, its own IDE, and its own way of describing a contact or a coil. Moving between vendors meant starting over. The standard defined five languages, a common type system, and a module structure that works across implementations. This chapter explains what was unified and what was deliberately left vendor-specific.
-  \item \textbf{Data Types:} BOOL, INT, DINT, REAL, TIME, STRING, and user-defined structures are the building blocks of every IEC 61131-3 program. Type mismatches that cause silent data corruption look exactly like tuning problems or sensor faults at the process level. Getting types right comes first.
-  \item \textbf{Structured Text:} Pascal-style text with IF/THEN, FOR, WHILE, CASE, and function calls. The most expressive of the five languages and the one that feels most familiar to software engineers. Also the one most PLC programmers reach for last, which is a mistake this chapter corrects.
-  \item \textbf{Ladder Diagram:} Relay logic drawn as rungs on a rail. Every PLC vendor supports it. Electricians who have never written software can read it. Understanding Ladder is non-optional for anyone who will touch existing automation code, because most existing automation code is in Ladder.
-  \item \textbf{Function Block Diagram:} Data flows left to right between connected function blocks. No explicit control flow. The natural language for process control engineers working with PID loops, filters, and signal conditioning chains where the data path matters more than execution order.
-  \item \textbf{Sequential Function Chart:} Steps and transitions model a process that moves through discrete states. A batch filling sequence, a motor start-stop sequence, a conveyor interlocking sequence — any process with a defined beginning, middle, and end is cleaner in SFC than in Ladder with timer flags.
-  \item \textbf{Program Organization Units:} Functions, Function Blocks, Programs, and Configurations are the module system. A well-defined Function Block can be reused across vendors without modification. Building libraries that survive hardware changes is the point of this chapter.
-  \item \textbf{RTAC Integration:} The SEL RTAC runs IEC 61131-3 programs through ACSELERATOR Architect. The same language that controls a tank level also controls a transformer bay. The chapter covers how PLC programming concepts translate to substation automation.
-  \item \textbf{Troubleshooting:} Implicit type conversion that changes values without warning. Scan cycle overruns that make outputs appear delayed. Latching coils that never reset. Runtime faults that stop the PLC silently. Each failure has a diagnosis procedure.
-  \item \textbf{Practice Lab:} A temperature PID controller in Structured Text with manual/auto switching. A motor starter in Ladder with overload and remote stop. A batch fill sequence in SFC with a weight setpoint. A reusable analog scaling Function Block with engineering unit conversion.
+  \item \textbf{Introduction:} The pre-standard PLC landscape, what the five-language specification unified, and what it deliberately left vendor-specific.
+  \item \textbf{Data Types:} BOOL, INT, DINT, REAL, TIME, STRING, and user-defined structures; type mismatch consequences in live systems.
+  \item \textbf{Structured Text:} Pascal-style syntax — IF/THEN, FOR, WHILE, CASE — and appropriate use cases among the five languages.
+  \item \textbf{Ladder Diagram:} Contact/coil notation, rung structure, and reading existing automation code in the industry's most common language.
+  \item \textbf{Function Block Diagram:} Data-flow graphical programming, block connectivity, and use cases in PID and signal conditioning.
+  \item \textbf{Sequential Function Chart:} Steps, transitions, and action qualifiers for modeling processes with discrete ordered states.
+  \item \textbf{Program Organization Units:} Functions, Function Blocks, Programs, and Configurations; reusable library design across vendors.
+  \item \textbf{RTAC Integration:} IEC 61131-3 in ACSELERATOR Architect and translation from PLC programming to substation automation logic.
+  \item \textbf{Troubleshooting:} Implicit type conversion, scan cycle overruns, latching coil failures, and silent runtime faults.
+  \item \textbf{Practice Lab:} PID controller in Structured Text, motor starter in Ladder, batch sequence in SFC, analog scaling Function Block.
 \end{enumerate}
 
 \vfill

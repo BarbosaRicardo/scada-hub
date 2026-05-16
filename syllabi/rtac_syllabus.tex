@@ -46,19 +46,19 @@
 
 {\color{rnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{rgray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{rgray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{rgreen}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{RTAC Architecture:} The SEL RTAC — available as the SEL-3505, SEL-3530, and SEL-3555 — is a protocol gateway, data concentrator, and local logic controller in a single DIN-rail device. It sits between field devices speaking DNP3, Modbus, and IEC 61850, and the SCADA master that speaks DNP3 or ICCP. Hardware variants, I/O module selection, communication ports, and the physical commissioning steps before software is involved.
-  \item \textbf{ACSELERATOR Architect:} Every RTAC project is a database. Tags represent individual data points. Aliases map protocol point addresses to tag names. Revision control logs every configuration change with a timestamp and operator ID. The project workflow from a blank project to first live data.
-  \item \textbf{DNP3 Configuration:} The RTAC communicates upstream to the SCADA master as a DNP3 outstation, and downstream to field devices as a DNP3 master. Point database mapping, event class assignment, unsolicited reporting intervals, and the DNP3 parameters that determine latency from a field change to a SCADA display update.
-  \item \textbf{Modbus Gateway:} The RTAC exposes a Modbus TCP server that maps DNP3 analog and binary points to holding registers and coils. Legacy SCADA systems that speak only Modbus can read live substation data through this interface. Register layout, data type conversion, and the failure modes specific to the Modbus-to-DNP3 translation.
-  \item \textbf{IEC 61850 Integration:} GOOSE messages carry protection relay trip and status signals across the station LAN in under four milliseconds. Sampled Values carry current and voltage waveforms. MMS handles operator control and data retrieval. How the RTAC maps each to its internal tag database.
-  \item \textbf{Local Logic:} When the WAN link to the SCADA master fails, the RTAC keeps running IEC 61131-3 programs locally. Event-driven automation, load shedding sequences, and protection coordination logic that must execute correctly with or without upstream communication. The logic engine, scan cycle behavior, and design principles for automation that survives communication loss.
-  \item \textbf{Security and Access Control:} Role-based access control limits which operators can view, control, or configure the RTAC. Serial port security prevents unauthorized local access. Firmware update procedures maintain integrity without interrupting the substation. NERC CIP implications for each configuration decision.
-  \item \textbf{Field Scenarios:} Three case studies from real substation automation work: a transformer bay with automatic tap changer response to load changes, a feeder protection scheme coordinating with downstream reclosers, and a load shedding sequence that must execute within 200 milliseconds of detecting an overload — with or without the SCADA master online.
+  \item \textbf{RTAC Architecture:} SEL-3505/3530/3555 hardware variants, I/O module selection, communication ports, and physical commissioning steps.
+  \item \textbf{ACSELERATOR Architect:} Project database structure, tags, aliases, protocol point mapping, revision control, and first-live-data workflow.
+  \item \textbf{DNP3 Configuration:} Outstation and master roles, point database mapping, event class assignment, unsolicited reporting, and SCADA latency parameters.
+  \item \textbf{Modbus Gateway:} TCP server configuration, DNP3-to-Modbus point mapping, register layout, data type conversion, and translation failure modes.
+  \item \textbf{IEC 61850 Integration:} GOOSE trip signals, Sampled Values, MMS operator control, and internal tag database mapping for each service type.
+  \item \textbf{Local Logic:} IEC 61131-3 programs, scan cycle behavior, event-driven automation, and design principles for WAN-independent operation.
+  \item \textbf{Security and Access Control:} Role-based access, serial port security, firmware update procedures, and NERC CIP implications per configuration decision.
+  \item \textbf{Field Scenarios:} Three case studies — automatic tap changer response, feeder protection with downstream reclosers, and sub-200ms load shedding.
 \end{enumerate}
 
 \vfill

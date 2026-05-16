@@ -46,21 +46,21 @@
 
 {\color{onavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{ogray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{ogray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{oblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Gateway Architecture:} Traditional SCADA platforms charged per tag and per client seat. Ignition's unlimited licensing model changed the economics of the entire market. This chapter covers Gateway installation, the module system, the web management interface, and the backup and restore procedures that protect a running production system.
-  \item \textbf{Tag System:} Every piece of data in Ignition is a tag. OPC tags read from PLCs. Expression tags compute derived values. Memory tags hold state. UDTs create typed, reusable templates for equipment that appears dozens of times on a single plant floor. The tag system is the foundation everything else builds on.
-  \item \textbf{OPC-UA Integration:} Ignition connects to Siemens, Allen-Bradley, Modbus, and any OPC-UA compliant device through a single protocol. This chapter covers Ignition as both OPC-UA server and client, and the device connection configuration that takes a new PLC from unconfigured to live tags in under an hour.
-  \item \textbf{Perspective Module:} HMI running in any browser, on any device, without plugins. This chapter covers the component library, View/Page/Session architecture, and the binding system that connects every displayed value to a live tag without writing code for the common case.
-  \item \textbf{Scripting:} Python (Jython) scripting runs on tag events, gateway events, a schedule, and in response to user actions. This chapter covers the system library that gives scripts access to tags, databases, alarm pipelines, and messaging. Automation logic that runs without a PLC compile cycle.
-  \item \textbf{Alarm Notification:} An alarm that reaches no one is equivalent to no alarm. This chapter covers alarm modes, notification pipelines, escalation rules, roster configuration, and email and SMS delivery. The infrastructure that ensures a fault reaches the right person at 2~a.m.
-  \item \textbf{Tag Historian:} The historian stores process data for trend analysis, regulatory compliance, and root cause investigation. This chapter covers storage providers, partitioning strategy, aggregation modes, and Store and Forward, the feature that preserves data through network interruptions without gaps in the historical record.
-  \item \textbf{Database Integration:} Named queries connect Ignition to any SQL database without embedding SQL in scripts. Transaction Groups push tag data to database tables on scan or on change. This chapter closes the loop from field sensor to management report.
-  \item \textbf{Security and Access Control:} Identity providers, role mapping, project-level permissions, and SSL/TLS configuration. The Ignition security model scales from a single-site deployment with five users to a multi-site enterprise with hundreds of engineers and operators.
-  \item \textbf{Field Lab:} Build a complete SCADA application from scratch: PLC connection via OPC-UA, tag configuration, Perspective dashboard with live trends and alarm displays, alarm notification pipeline, historian storage, and a management report generated from historical data.
+  \item \textbf{Gateway Architecture:} Installation, module system, web management interface, unlimited licensing model, and backup/restore procedures.
+  \item \textbf{Tag System:} OPC, expression, and memory tag types; UDT templates for repeated equipment; tag database as the system foundation.
+  \item \textbf{OPC-UA Integration:} Ignition as OPC-UA client and server, device driver configuration, and PLC-to-live-tags workflow.
+  \item \textbf{Perspective Module:} Browser-based HMI architecture, component library, View/Page/Session structure, and tag binding without custom code.
+  \item \textbf{Scripting:} Jython on tag events, gateway events, and schedules; system library access to tags, databases, and alarm pipelines.
+  \item \textbf{Alarm Notification:} Alarm modes, notification pipelines, escalation rules, roster configuration, and email/SMS delivery infrastructure.
+  \item \textbf{Tag Historian:} Storage providers, partitioning strategy, aggregation modes, and Store and Forward for gap-free historical data.
+  \item \textbf{Database Integration:} Named queries, Transaction Groups, and the path from field sensor value to SQL table row.
+  \item \textbf{Security and Access Control:} Identity providers, role mapping, project permissions, and SSL/TLS configuration across single-site and multi-site deployments.
+  \item \textbf{Field Lab:} End-to-end SCADA build — OPC-UA device connection, tag configuration, Perspective dashboard, alarm pipeline, historian, management report.
 \end{enumerate}
 
 \vfill

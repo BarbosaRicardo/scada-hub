@@ -46,21 +46,21 @@
 
 {\color{pnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{pgray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{pgray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{pblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction:} Every process that must hold a setpoint uses feedback control — temperature, pressure, flow, level. The physics is different; the control problem is the same. This chapter establishes the feedback loop concept before the math, so the three-term algorithm makes sense when it arrives.
-  \item \textbf{Control Loop Fundamentals:} Process variable, setpoint, error, and manipulated variable appear in every control loop regardless of the physical process. These four terms are the vocabulary. Fluency with them is the prerequisite for everything that follows.
-  \item \textbf{PID Algorithm:} Proportional gain responds to current error. Integral eliminates the steady-state offset that proportional alone cannot remove. Derivative acts on rate of change to dampen oscillation before it builds. Each term solves a specific problem, and knowing which problem each term solves is what makes tuning possible.
-  \item \textbf{Tuning Methods:} Ziegler-Nichols closed-loop, Ziegler-Nichols open-loop, lambda tuning, and IMC provide starting points without guessing. Each method makes different assumptions about the process, and the chapter covers which to use and when each one fails.
-  \item \textbf{Process Characterization:} The first-order plus dead time model describes almost any self-regulating process with three numbers: gain, time constant, and dead time. A step test extracts these numbers from live equipment. Everything else in tuning follows from them.
-  \item \textbf{Cascade Control:} When the primary process is slow and there is a faster intermediate variable available, an inner loop around that variable dramatically improves the outer loop's disturbance rejection. Flow cascaded under temperature is the textbook case. The chapter covers design, commissioning sequence, and failure modes.
-  \item \textbf{Digital Implementation:} A PLC executes PID on a fixed scan cycle. Sampling rate, velocity-form vs. position-form algorithm, bumpless transfer between manual and automatic, and anti-windup when the output saturates all require explicit configuration that continuous-control textbooks omit.
-  \item \textbf{PLC Implementation:} The PID function block looks different in Rockwell, Siemens, Beckhoff, and Modicon. Same parameters, different names, different scaling conventions. The chapter provides a translation table and a commissioning procedure that works regardless of vendor.
-  \item \textbf{Troubleshooting:} Sustained oscillation at the correct period means gain is too high. No oscillation but persistent offset means integral is undersized. Slow response with no offset means gain is too low. Derivative chatter means filtering is needed. Each symptom points to a specific adjustment.
-  \item \textbf{Practice Lab:} A flow loop tuned from a step test using lambda method. A temperature loop with a cascade inner flow loop. Anti-windup configuration on a PLC with an output that saturates at a valve's close stop. Cold-start commissioning sequence: observe in manual, step test, calculate, switch to auto.
+  \item \textbf{Introduction:} Feedback control concept and the uniform mathematical structure underlying temperature, pressure, flow, and level applications.
+  \item \textbf{Control Loop Fundamentals:} Process variable, setpoint, error, and manipulated variable — vocabulary prerequisite for PID algorithm study.
+  \item \textbf{PID Algorithm:} Proportional, integral, and derivative terms; the specific problem each term solves; combined three-term controller behavior.
+  \item \textbf{Tuning Methods:} Ziegler-Nichols closed-loop and open-loop, lambda tuning, IMC; method selection criteria and failure modes.
+  \item \textbf{Process Characterization:} First-order plus dead time model, step test procedure, and extracting gain, time constant, and dead time from equipment.
+  \item \textbf{Cascade Control:} Inner and outer loop design, commissioning sequence, and disturbance rejection improvement over single-loop control.
+  \item \textbf{Digital Implementation:} Sampling rate, velocity-form vs.\ position-form algorithm, bumpless transfer, and anti-windup on saturated outputs.
+  \item \textbf{PLC Implementation:} PID function block configuration across Rockwell, Siemens, Beckhoff, and Modicon; scaling conventions; commissioning procedure.
+  \item \textbf{Troubleshooting:} Oscillation, offset, slow response, and derivative chatter — each symptom mapped to a specific tuning adjustment.
+  \item \textbf{Practice Lab:} Flow loop step-test tuning, cascade temperature/flow loop, anti-windup configuration, cold-start commissioning sequence.
 \end{enumerate}
 
 \vfill

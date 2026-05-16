@@ -46,21 +46,21 @@
 
 {\color{unavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{ugray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{ugray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{ublue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{OPC UA Architecture:} Every major automation vendor sat on the committee that designed OPC UA, which is why it took twelve years and why it works with all of them. The unified architecture replaced DCOM — a Windows-specific middleware that died when Windows security policies tightened — with a transport-independent, platform-neutral stack. Client/server and pub/sub coexist because different applications need different patterns.
-  \item \textbf{Information Model:} An OPC UA server exposes a graph of nodes, each with a NodeID, a type, and references to related nodes. A client can browse this graph on any server and understand what data is available without vendor documentation. Address space structure, node classes, and the browsing sequence that makes OPC UA self-describing.
-  \item \textbf{Services:} Read, Write, Browse, Subscribe, and CreateMonitoredItems replace the custom driver development that OPC Classic required for every new vendor. The full service set, and which ones appear in every integration versus which ones rarely matter in practice.
-  \item \textbf{Sessions and Channels:} SecureChannel handles the encrypted transport. Session carries user authentication and context on top of it. Channel negotiation, session establishment, token lifetime, and what happens to active subscriptions when a channel drops and reconnects.
-  \item \textbf{Security:} Most production OPC UA deployments run Security Mode None because commissioning happened under a deadline and no one changed it afterward. Mode Sign, Mode SignAndEncrypt, certificate exchange, PKI structure in a plant environment, and why leaving security off is a larger problem than it appears.
-  \item \textbf{Subscriptions:} A client creates a subscription with a publishing interval, then adds MonitoredItems with individual sampling intervals and deadband filters. The full configuration chain that determines how much network traffic an OPC UA connection generates and how much data lands in the historian.
-  \item \textbf{Data Types:} Scalar types, structures, enumerations, arrays, and the QualityStatusCode that tells a client whether a value is valid, stale, uncertain, or from a failed sensor. The type system is what allows OPC UA to represent any process value without custom encoding.
-  \item \textbf{Discovery:} Local Discovery Server and Global Discovery Server allow clients to find OPC UA endpoints without being given addresses in advance. Endpoint enumeration, certificate trust during discovery, and the security gap that comes with an open discovery infrastructure.
-  \item \textbf{Implementation:} Choosing between open62541, the Unified Automation SDK, and platform SDKs for Siemens and Rockwell. Configuring Ignition as an OPC UA server. Common integration failures and how to diagnose them with the OPC UA error model and Wireshark together.
-  \item \textbf{Protocol Lab:} A Wireshark capture of a full OPC UA session from TCP connection through SecureChannel negotiation, browse, subscription, and disconnect. Reading the capture to verify security mode, subscription timing, and the exact moment a session token expires and renews.
+  \item \textbf{OPC UA Architecture:} Client/server and pub/sub transport models, the transition from DCOM, and the platform-neutral unified namespace.
+  \item \textbf{Information Model:} Address space, node classes, NodeIDs, type definitions, and the self-describing browsing model.
+  \item \textbf{Services:} Read, Write, Browse, Subscribe, and CreateMonitoredItems — the full service set and which matter in practice.
+  \item \textbf{Sessions and Channels:} SecureChannel negotiation, session establishment, token lifetime, and reconnection behavior on channel loss.
+  \item \textbf{Security:} Security Mode None vs.\ Sign vs.\ SignAndEncrypt; certificate exchange; PKI structure; consequences of disabled security.
+  \item \textbf{Subscriptions:} Publishing interval, MonitoredItem sampling, deadband filters, and the configuration chain controlling network traffic volume.
+  \item \textbf{Data Types:} Scalars, structures, enumerations, arrays, and the StatusCode quality system for representing sensor validity.
+  \item \textbf{Discovery:} Local and Global Discovery Servers, endpoint enumeration, certificate trust, and open-discovery security implications.
+  \item \textbf{Implementation:} SDK selection, Ignition as OPC UA server, common integration failures, and Wireshark-based diagnostic workflow.
+  \item \textbf{Protocol Lab:} Full session capture — TCP connection, SecureChannel, browse, subscription, disconnect, and session token renewal.
 \end{enumerate}
 
 \vfill

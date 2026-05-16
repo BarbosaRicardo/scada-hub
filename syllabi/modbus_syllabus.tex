@@ -46,22 +46,22 @@
 
 {\color{mnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{mgray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{mgray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{mblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction:} Modbus was written in 1979 by a single engineer at Modicon for their own PLCs. No one planned for it to outlast every protocol that tried to replace it. The register model from that weekend ships unchanged in devices manufactured today, and understanding that history makes the quirks make sense.
-  \item \textbf{Data Model:} Four register tables cover everything a Modbus device can expose: coil, discrete input, input register, holding register. Knowing which table holds which type of data makes every function code obvious rather than arbitrary.
-  \item \textbf{RTU Mode:} RS-485 framing, CRC-16 on every message, multi-drop bus wiring, and the inter-frame silence that separates transactions. Most field devices still ship with RTU as their primary interface. Getting serial right is non-negotiable.
-  \item \textbf{ASCII Mode:} Modbus with hex-encoded bytes and a colon framing character instead of CRC. Twice the overhead for the same data. Still found in legacy HMI equipment and covered here so engineers recognize it rather than mistake it for a malfunction.
-  \item \textbf{Modbus TCP:} Port 502, the MBAP header that wraps each RTU message, and transaction IDs that allow pipelining. Modbus crossed to Ethernet without changing its register model, which is both its greatest strength and its most significant security liability.
-  \item \textbf{Function Codes:} Twenty codes cover the entire protocol. Read Coils, Read Holding Registers, Preset Multiple Registers, and a handful of diagnostic codes handle ninety-five percent of real deployments. The rest show up exactly once per career.
-  \item \textbf{Exception Codes:} When a device cannot execute a request, it returns one of eight exception codes. Illegal Function, Illegal Data Address, Illegal Data Value, Slave Device Failure. Reading exception responses correctly eliminates the instinct to blame the cable first.
-  \item \textbf{Data Types:} Sixteen-bit registers were not designed to hold floating-point numbers, 32-bit integers, or strings. Vendors solved this differently. The register-pair conventions, byte-order choices, and word-order debates in this chapter account for most Modbus integration hours on any real job.
-  \item \textbf{Troubleshooting:} Zero-based versus one-based addressing confusion. Byte-order mismatches. RS-485 termination errors. Firewalls that drop Modbus TCP silently. Poll rates that exceed device response time. Each failure has a fingerprint.
-  \item \textbf{Security:} No authentication. No encryption. No access control. This is not an oversight — Modbus predates the concept of a networked attacker by a decade. Compensating controls live at the network layer: segmentation, unidirectional gateways, and anomaly detection.
-  \item \textbf{Practice Lab:} Five exercises from start to finish: mapping an unknown device's registers, tracing an Exception Code 02 to its source, configuring a serial-to-TCP gateway, diagnosing a byte-order fault in a historian feed, and building a Wireshark filter to monitor a Modbus TCP master in real time.
+  \item \textbf{Introduction:} Protocol origins, the 1979 register model, and why the original design persists unchanged in modern field devices.
+  \item \textbf{Data Model:} Coils, discrete inputs, input registers, and holding registers — table structure, data types, and access rules.
+  \item \textbf{RTU Mode:} RS-485 framing, CRC-16 integrity, multi-drop bus wiring, and inter-frame silence on serial Modbus links.
+  \item \textbf{ASCII Mode:} Hex-encoded framing, colon delimiter, overhead comparison to RTU, and legacy HMI equipment identification.
+  \item \textbf{Modbus TCP:} Port 502, the MBAP header, transaction ID pipelining, and security implications of Ethernet transport without authentication.
+  \item \textbf{Function Codes:} Read, write, and diagnostic codes; the subset covering ninety-five percent of deployments; error response handling.
+  \item \textbf{Exception Codes:} Eight exception identifiers, meanings, and systematic diagnosis from exception response to root cause.
+  \item \textbf{Data Types:} Register-pair conventions, byte order, word order, and floating-point encoding across vendor implementations.
+  \item \textbf{Troubleshooting:} Addressing offset errors, byte-order mismatches, RS-485 termination faults, firewall drops, and poll rate overruns.
+  \item \textbf{Security:} Protocol-level limitations and compensating controls: network segmentation, unidirectional gateways, and anomaly detection.
+  \item \textbf{Practice Lab:} Register mapping, Exception Code 02 tracing, serial-to-TCP gateway configuration, byte-order diagnosis, and Wireshark traffic analysis.
 \end{enumerate}
 
 \vfill

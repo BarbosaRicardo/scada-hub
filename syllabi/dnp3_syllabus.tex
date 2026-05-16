@@ -46,21 +46,21 @@
 
 {\color{dnavy}\rule{\linewidth}{1.2pt}}
 \smallskip
-{\small\sffamily\color{dgray}\MakeUppercase{Course Overview}}
+{\small\sffamily\color{dgray}\MakeUppercase{Course Topics}}
 \smallskip
 
 \setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{dblue}{\small\bfseries\arabic*.}}
 \begin{enumerate}\small
-  \item \textbf{Introduction:} DNP3 was designed in 1990 specifically because SCADA systems were failing. Modbus had no integrity checking on serial links. Polling-based protocols flooded slow dial-up circuits. DNP3 fixed both: CRC on every frame block, event-driven reporting that only transmits changed data, and a typed object model that makes devices self-describing. This chapter explains why DNP3 became the default SCADA protocol for North American power utilities.
-  \item \textbf{Protocol Layers:} Application Layer carries requests and responses. Transport Layer fragments large messages across multiple data link frames. Data Link Layer handles addressing and CRC on every 16-byte block. DNP3 defines all three layers internally, which is why it operates correctly on raw serial without any network stack underneath it.
-  \item \textbf{Data Link Layer:} Sync bytes, source and destination addresses, control byte, and a 16-bit CRC on every 16-byte block. Primary stations initiate; secondary stations respond. The CRC calculation in this chapter is what makes DNP3 recover from single-bit errors that would silently corrupt a Modbus message.
-  \item \textbf{Application Layer:} The APDU carries a function code, object headers, and data. Application control byte carries sequence numbers and the final-frame flag. Large responses fragment across multiple data link frames and reassemble at the receiving application layer. The complete request-response cycle including multi-fragment exchanges.
-  \item \textbf{Data Objects:} DNP3 values are typed. Analog Input Group 30 Variation 5 is a 32-bit float with a quality byte. Binary Input Group 1 Variation 2 is a single bit with a quality byte. A master reads an outstation's object map and knows exactly what format each value arrives in. The object groups and variations that appear in real deployments.
-  \item \textbf{Function Codes:} Read, Write, Direct Operate, Select-Before-Operate, Freeze, Clear, Enable/Disable Unsolicited. Select-Before-Operate requires two sequential messages with a confirmation timeout between them. A single corrupted operate message cannot trip a breaker. That is the design intent.
-  \item \textbf{Unsolicited Responses:} Outstations configured for unsolicited reporting send binary state changes, analog deadband crossings, and counter increments to the master without being polled. Class-based event assignment, event buffer sizing, unsolicited response confirmation, and what happens when the master goes offline mid-event-burst.
-  \item \textbf{Secure Authentication v5:} SAv5 adds HMAC-based challenge and response to DNP3 critical requests without modifying the underlying protocol. A master sending a Direct Operate receives a challenge, computes an HMAC with a pre-shared key, and returns the response before the operate executes. Key management architecture, aggressive mode, supported HMAC algorithms, and NERC CIP implications.
-  \item \textbf{Troubleshooting:} Event buffer overflow when the master polls too infrequently. SBO failures from confirm timeouts. Application layer confirm timeouts on slow WAN links. TCP session management when the WAN link flaps. Each failure mode has a specific signature in a Wireshark capture.
-  \item \textbf{Protocol Lab:} Five exercises: commissioning a new outstation from a blank configuration, setting up class-based unsolicited reporting, configuring SAv5 key management, writing a tshark filter that counts unsolicited messages per hour, and diagnosing an event buffer overflow from a traffic capture.
+  \item \textbf{Introduction:} Protocol origins, design goals over Modbus, CRC integrity, event-driven reporting, and the typed object model for power utility SCADA.
+  \item \textbf{Protocol Layers:} Application, Transport, and Data Link layers; DNP3's internal three-layer stack and operation on raw serial.
+  \item \textbf{Data Link Layer:} Sync bytes, addressing, control byte, CRC-16 on every 16-byte block, and primary/secondary station roles.
+  \item \textbf{Application Layer:} APDU structure, function codes, object headers, sequence numbers, fragmentation, and multi-fragment exchange.
+  \item \textbf{Data Objects:} Typed object groups and variations — Analog Input Group 30, Binary Input Group 1, quality bytes, and real-deployment object sets.
+  \item \textbf{Function Codes:} Read, Write, Direct Operate, Select-Before-Operate, Freeze, Enable/Disable Unsolicited; SBO two-message sequence and timeout.
+  \item \textbf{Unsolicited Responses:} Class-based event assignment, event buffer sizing, unsolicited confirmation, and master-offline behavior.
+  \item \textbf{Secure Authentication v5:} HMAC challenge/response, pre-shared key management, aggressive mode, supported algorithms, and NERC CIP alignment.
+  \item \textbf{Troubleshooting:} Event buffer overflow, SBO confirm timeout, application layer confirm timeout, and TCP session management on flapping WAN links.
+  \item \textbf{Protocol Lab:} Outstation commissioning, unsolicited reporting setup, SAv5 key management, tshark filtering, and event buffer overflow diagnosis.
 \end{enumerate}
 
 \vfill
