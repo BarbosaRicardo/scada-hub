@@ -1,0 +1,209 @@
+% ============================================================
+%  PID CONTROLLERS — COURSE SYLLABUS / SELL SHEET
+% ============================================================
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{palatino}
+\usepackage[scaled=0.82]{beramono}
+\usepackage[top=0.55in, bottom=0.55in, left=0.65in, right=0.65in]{geometry}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,backgrounds,fit}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[colorlinks=true, linkcolor=gblue, urlcolor=gcyan,
+  pdftitle={PID Controllers — Course Syllabus}]{hyperref}
+\usepackage{parskip}
+
+\definecolor{gblue}{HTML}{7C3AED}
+\definecolor{gcyan}{HTML}{A855F7}
+\definecolor{gnavy}{HTML}{3B0764}
+\definecolor{gorange}{HTML}{D97706}
+\definecolor{ggreen}{HTML}{16A34A}
+\definecolor{gaccent}{HTML}{FAF5FF}
+\definecolor{ggray}{HTML}{6B7280}
+
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[gnavy] (current page.north west) rectangle ([yshift=-1.05in]current page.north east);
+  \node[anchor=west, text=white, font=\fontsize{22}{26}\bfseries\sffamily]
+    at ([xshift=0.65in, yshift=-0.38in]current page.north west) {PID Controllers};
+  \node[anchor=west, text=gcyan!80, font=\fontsize{11}{13}\sffamily]
+    at ([xshift=0.65in, yshift=-0.68in]current page.north west) {Study Guide · Industrial Automation Series · SCADA Hub Training Platform};
+  \node[anchor=east, draw=gcyan, rounded corners=5pt, fill=gblue!60,
+        inner sep=6pt, text=white, font=\small\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=-0.38in]current page.north east)
+    {10 Chapters · 600+ Questions · PDF Included};
+  \draw[gorange, line width=2pt]
+    ([xshift=0.65in, yshift=-0.88in]current page.north west) --
+    ([xshift=3.5in, yshift=-0.88in]current page.north west);
+\end{tikzpicture}
+
+\vspace{0.95in}
+
+\begin{minipage}[t]{0.60\textwidth}
+
+{\color{gnavy}\rule{\linewidth}{1.2pt}}
+\smallskip
+{\small\sffamily\color{ggray}\MakeUppercase{What This Course Teaches}}
+\smallskip
+
+Every controlled process has a PID loop at its core. Flow control, pressure regulation, temperature setpoints, level management, pH dosing — the algorithm is the same everywhere, and most engineers who configure these loops have never been taught why the parameters do what they do. They tune by trial and error, accept whatever oscillation the process will tolerate, and move on.
+
+This course teaches PID from the mathematical foundation through practical tuning, cascade control, and digital implementation in PLCs. Engineers who complete it can look at a process response and diagnose why a loop is oscillating, sluggish, offset, or windup-limited — without guessing.
+
+\smallskip
+{\color{gblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+{\small\sffamily\color{ggray}\MakeUppercase{Chapter Sequence}}
+
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{gblue}{\small\bfseries\arabic*.}}
+\begin{enumerate}\small
+  \item \textbf{Loop Fundamentals} — Closed-loop control, error signal, feedback vs.\ feedforward, why open-loop control fails.
+  \item \textbf{Process Dynamics} — First-order lag, dead time, process gain, integrating processes, the FOPDT model.
+  \item \textbf{PID Action} — Proportional band vs.\ gain, integral (reset) action and windup, derivative (rate) action and filtering.
+  \item \textbf{Tuning Methods} — Ziegler-Nichols open and closed loop, IMC-based tuning (Lambda), Cohen-Coon, ITAE criteria.
+  \item \textbf{Digital PID Implementation} — Velocity vs.\ position form, sampling time selection, anti-windup strategies, bumpless transfer.
+  \item \textbf{Cascade Control} — Inner/outer loop architecture, when cascade helps and when it does not, commissioning sequence.
+  \item \textbf{PLC Implementation} — Standard PID function block (IEC 61131-3 PID\_FC), manual/auto transfer, mode handling.
+  \item \textbf{Troubleshooting} — Oscillation diagnosis, offset analysis, saturation, valve stiction, sensor lag, process nonlinearity.
+  \item \textbf{Advanced Topics} — Feedforward control, ratio control, dead time compensation (Smith predictor), split-range.
+  \item \textbf{Process Lab} — Step test analysis, FOPDT parameter extraction, Lambda tuning exercise, cascade commissioning.
+\end{enumerate}
+
+\smallskip
+{\color{gblue}\rule{\linewidth}{0.6pt}}
+\smallskip
+
+{\small\sffamily\color{ggray}\MakeUppercase{The Story}}
+
+\small The PID algorithm is 80 years old and remains the dominant control strategy in every industry. Advanced process control (model predictive control, neural networks) exists and is applied in refineries and chemical plants where the economics justify the engineering cost. For the vast majority of industrial processes — water treatment, HVAC, food \& beverage, utilities, discrete manufacturing — PID is the right tool and will remain so.
+
+The knowledge gap is in tuning and diagnosis. Many engineers can configure a PID block in their HMI. Almost none have been taught the Laplace transform intuition that explains why integral action causes windup, why derivative action amplifies noise, and why a loop that was tuned on a full tank behaves differently when the tank is empty. This course fills that gap.
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+
+% PID block diagram
+\begin{tikzpicture}[
+  blk/.style={rectangle, rounded corners=3pt, draw=gblue, fill=gblue!10,
+    font=\small\sffamily, inner sep=5pt, minimum width=1.4cm, minimum height=0.55cm, text centered},
+  arr/.style={-Stealth, thick, color=gblue!70},
+  sum/.style={circle, draw=gblue, fill=white, inner sep=2pt, font=\small\sffamily}
+]
+\node[sum] (sum) {$\Sigma$};
+\node[blk, right=10pt of sum] (pid) {PID};
+\node[blk, right=10pt of pid] (proc) {Process};
+\node[sum, below=18pt of pid] (fb) {};
+
+\draw[arr] ([xshift=-22pt]sum.west) -- node[above, font=\tiny\sffamily]{SP} (sum.west);
+\draw[arr] (sum.east) -- (pid.west);
+\draw[arr] (pid.east) -- node[above, font=\tiny\sffamily]{MV} (proc.west);
+\draw[arr] (proc.east) -- ++(14pt,0) |- node[right, font=\tiny\sffamily]{PV} (fb.east);
+\draw[arr] (fb.west) -| (sum.south) node[near end, left, font=\tiny\sffamily]{$-$};
+
+\node[font=\tiny\sffamily\color{ggray}, below=3pt of proc] {Plant};
+\node[font=\small\sffamily\color{gnavy}, above=8pt of sum, xshift=1.5cm] {\textbf{Closed-Loop Control}};
+\end{tikzpicture}
+
+\vspace{8pt}
+
+% Step response mini plot
+\begin{tikzpicture}
+\begin{axis}[
+  width=3.8cm, height=2.8cm,
+  xmin=0, xmax=10, ymin=0, ymax=1.3,
+  xlabel={\tiny Time}, ylabel={\tiny Response},
+  xlabel style={font=\tiny}, ylabel style={font=\tiny},
+  tick label style={font=\tiny},
+  axis lines=left,
+  title={\small\sffamily\color{gnavy} Step Response},
+  title style={font=\small\sffamily},
+  grid=none,
+  xtick=\empty, ytick={1},
+  yticklabels={SP}
+]
+\addplot[gblue, thick, domain=0:10, samples=80]
+  {1 - exp(-x/2)*(cos(deg(1.5*x)) + 0.5*sin(deg(1.5*x)))};
+\addplot[gorange, dashed, domain=0:10] {1};
+\end{axis}
+\end{tikzpicture}
+
+\vspace{3pt}
+
+\begin{tcolorbox}[
+  enhanced, colback=gaccent, colframe=gblue, arc=4pt,
+  fonttitle=\small\bfseries\sffamily\color{white},
+  title=Certification Relevance,
+  boxed title style={colback=gblue},
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  top=8pt, bottom=6pt, left=6pt, right=6pt
+]
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*, label=\textcolor{gblue}{$\bullet$}}
+\begin{itemize}\small
+  \item \textbf{ISA CCST (Level III)} — Process control loops and tuning are core exam topics at the Specialist level.
+  \item \textbf{ISA CAP} — Certified Automation Professional: process dynamics and control design are heavily tested.
+  \item \textbf{PE (Chemical/Control)} — P.E. exam control systems section covers PID analysis and stability.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{5pt}
+
+\begin{tcolorbox}[
+  enhanced, colback=gorange!8, colframe=gorange, arc=4pt,
+  fonttitle=\small\bfseries\sffamily\color{white},
+  title=Next Steps (Certs),
+  boxed title style={colback=gorange},
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  top=8pt, bottom=6pt, left=6pt, right=6pt
+]
+\begin{enumerate}[noitemsep, topsep=0pt, leftmargin=*, label=\small\textcolor{gorange}{\arabic*.}]
+  \item \small Complete PID + IEC 61131-3 courses as a pair.
+  \item Review ISA-5.1 (Instrumentation symbols) and ISA-75.01 (control valve sizing).
+  \item Apply at \texttt{isa.org} for CCST or CAP examination.
+  \item Five years of experience required for CAP; CCST has no experience prerequisite.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{3pt}
+
+\begin{center}
+\begin{tikzpicture}
+  \foreach \val/\lbl/\col [count=\i] in {
+    10/Chapters/gblue,
+    600+/Questions/gorange,
+    4/Methods/ggreen
+  }{
+    \node[rectangle, rounded corners=3pt, fill=\col!12, draw=\col!40,
+          inner sep=5pt, minimum width=1.1cm, font=\sffamily, text=\col] at (\i*1.35, 0)
+      {\textbf{\val}\\\tiny\color{ggray}\lbl};
+  }
+\end{tikzpicture}
+\end{center}
+
+\end{minipage}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[gnavy!90] (current page.south west) rectangle ([yshift=0.32in]current page.south east);
+  \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
+    at ([xshift=0.65in, yshift=0.16in]current page.south west)
+    {SCADA Hub Training Platform · scada-hub.vercel.app · Free access · No account required for study material};
+  \node[anchor=east, text=gcyan, font=\footnotesize\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=0.16in]current page.south east)
+    {Course 5 of 8};
+\end{tikzpicture}
+
+\end{document}
