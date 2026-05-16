@@ -1083,6 +1083,129 @@ Guides to deploy: modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark,
 
 ---
 
+## Sessions 20–25 — 2026-05-16
+
+### Overview
+
+Multi-session sprint covering: all 9 Vercel prod deployments, scada-hub blank page fix, dark theme sweep, GitHub Pages branch fix, full course audit across all 8 guides, training feature build, punchlist cleanup, and changelog PDF.
+
+---
+
+### Session 20 — Vercel Prod Deploy + scada-hub Fix
+
+- [x] **scada-hub blank page fixed** — `AuthProvider` was imported but never wrapping the component tree. `GuideGrid` calls `useAuth()` → `useContext(AuthContext)` returns `null` → destructuring crash → blank page. Wrapped `<HubContent />` in `<AuthProvider>` in `site/src/App.jsx`. Commit: `b20690d`.
+- [x] **All 9 Vercel prod deploys complete** — Hit the 100/day rate limit twice during this session; used `ScheduleWakeup` to auto-retry after reset. Final Vercel prod URLs:
+
+| Project | URL |
+|---------|-----|
+| scada-hub | https://scada-hub.vercel.app |
+| modbus | https://modbus-study-guide.vercel.app |
+| opcua | https://opcua-study-guide.vercel.app |
+| dnp3 | https://dnp3-study-guide.vercel.app |
+| iec61131 | https://iec61131-study-guide.vercel.app |
+| pid | https://pid-study-guide.vercel.app |
+| rtac | https://rtac-study-guide.vercel.app |
+| ignition | https://ignition-study-guide.vercel.app |
+| wireshark | https://wireshark-study-guide.vercel.app |
+
+---
+
+### Session 21 — Dark Theme + GitHub Pages Fix
+
+- [x] **Dark theme sweep — all 8 guides** — Replaced all light-mode Tailwind classes (`bg-white`, `bg-slate-50`, `bg-slate-100`, `text-navy-700`, `text-slate-700/800`, `border-slate-100/200`) with dark `rgba` inline styles across 67 files. Alternating table rows → `rgba(255,255,255,0.05)`. Tap-hint dots in flashcard files corrected. Builds complete for all 8 guides.
+- [x] **DNP3 AnalogyCard dark fix** — `from-purple-50 to-indigo-50` light gradient → `rgba(139,92,246,0.06)` background. Button + icon wrapper also darkened.
+- [x] **DNP3 QuizLevels dark fix + emoji removal** — Replaced emoji spans with Lucide SVG icons (`Lock`, `CheckCircle`). Passed banner, resource drawer badges, empty state all converted to dark `rgba`. All `text-slate-700` → `text-slate-200`. Commit: `b7ab6f0`.
+- [x] **GitHub Pages branch mismatch — DNP3 fixed** — Pages was configured to serve from `main`; repo lives on `master`. All pushes were invisible. Fixed via `gh api -X PUT /repos/BarbosaRicardo/dnp3-study-guide/pages`. Added `.nojekyll` to all 8 guide `docs/` folders. DNP3 live site updated.
+- [x] **Punchlist: Trimark Associates → Company A** — Login page branding item reworded; company name removed from all documentation.
+- [x] **Punchlist: R&D / AI Agent Skills item added** — New Professional Development section covering Claude AI, Codex, agentic toolchain evaluation.
+
+---
+
+### Sessions 22–23 — Course Audit (Modbus + OPC UA)
+
+Multi-agent pipeline deployed: lean Explore audit agent per course (gap table only), background sources research agent, watchdog agent for token efficiency, language humanizer agent.
+
+#### Modbus Audit — 7 gaps found
+- RS-485 missing as standalone syllabus topic
+- FC08 + FC43 absent from FunctionCodes.jsx
+- Exception codes 10 + 11 absent from Exceptions.jsx
+- Connection management missing from TCP.jsx
+- Poll rate overrun missing from Troubleshoot.jsx
+- Gateway Exception 11 + Security Audit scenarios missing from Lab.jsx
+- Security flashcards thin (4 cards for 5 attack vectors + 4 NERC standards)
+
+#### OPC UA Audit — 5 gaps found
+- No dedicated Discovery chapter (Topic 8 — LDS/GDS, FindServers, GetEndpoints)
+- Zero Troubleshooting flashcards despite full chapter with 7 status codes
+- Zero Ignition Integration flashcards (port 62541, cert trust workflow, RTAC as OPC UA server)
+- Security.jsx missing CRL and role-based access (sec05, sec07 exist in flashcards only)
+- Services.jsx missing RegisterNodes/UnregisterNodes
+
+#### Sources logged to SOURCES.md
+- Modbus spec suite: all free/downloadable from modbus.org
+- NERC CIP-005-7, CIP-007-6, CIP-010-5, CIP-013-1: free on nerc.com
+- ANSI/TIA-485-A, IEEE 754-2019, IEC 61158: require purchase
+- IEC 61158 nuance: Modbus appears under CPF 15 within IEC 61784-2
+
+#### Watchdog findings
+- Verbose audit prompts used 106k+ tokens (verbatim card text requests)
+- Lean template (gap table only, no file dumps) adopted — ~40% token savings per run
+
+---
+
+### Session 24 — Remaining Course Audits (DNP3 → Wireshark)
+
+All 8 courses audited. Gaps punchisted per course.
+
+| Guide | Syllabus | Web | Quiz Qs | Flashcard Chapters | Gaps |
+|-------|----------|-----|---------|-------------------|------|
+| Modbus | 11 topics | 11 pages | ~600 | 10 | 7 |
+| OPC UA | 10 topics | 11 pages | ~600 | 8 | 5 |
+| DNP3 | 10 topics | 11 pages | 10 chapters | 9 | 1 |
+| IEC 61131-3 | 11 topics | 10 pages | 600 Qs | 5 | 3 |
+| PID | 10 topics | 11 pages | 650 Qs | 6 | 3 |
+| RTAC | 8 topics | 11 pages | 547 Qs | 5 | 3 |
+| Ignition | 12 topics | 12 pages | 650 Qs | 6 | 2 |
+| Wireshark | 10 topics | 11 pages | 650 Qs | 7 | 3 |
+
+**Key cross-guide pattern:** Flashcard coverage averages 5–6 chapters while quiz chapters average 10. ~4–5 chapters per guide have quiz questions but zero flashcard reinforcement.
+
+**DNP3 gap:** `appLayer` chapter has quiz questions but zero flashcards.
+**IEC 61131-3 gaps:** Lab flashcards absent; "languages" category covers 4 chapters with ~47 total cards (thin); ~80 scenario questions uncovered.
+**PID gaps:** 5 of 10 quiz chapters have zero flashcards (intro, loop, P/I/D action, digital, troubleshoot).
+**RTAC gaps:** 4 quiz chapters no flashcards (intro, software, tagdb, gateway); Lab chapter has zero quiz questions.
+**Ignition gaps:** 4 quiz chapters no flashcards (intro, gateway, vision, alarms); naming mismatch (`scripting` vs `scripts`, `alarms` vs `alarming`).
+**Wireshark gaps:** Advanced (Ch 9) + Lab (Ch 10) zero flashcards; tcpreplay absent from Advanced.jsx.
+
+All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each course.
+
+---
+
+### Session 25 — Training Feature + Infra
+
+- [x] **`TrainingPanel` component built** — Collapsible "More Training & Certifications" panel. Fetches live from Supabase `training_events` table; filters to `end_date >= today` at query time. Expired events disappear automatically. Renders Certifications (gold) and Upcoming Training (blue) sections with format icons, date ranges, and provider links.
+- [x] **`TrainingPanel` wired into all 8 guides** — Guides with `Home.jsx` (modbus, dnp3, rtac, ignition): added before footer motivator. Guides with `Intro.jsx` as landing (opcua, iec61131, pid, wireshark): added before `</ChapterLayout>`. All 8 guide repos committed and pushed.
+- [x] **Vercel cron auto-updater** — `api/refresh-training.js`: runs every Monday 6 AM UTC. Brave Search API → AI Gateway (`anthropic/claude-haiku-4.5`) → Supabase upsert keyed by URL. Same event re-discovered overwrites its row (dates refresh). HEAD-checks all stored URLs; emails `ric3639@gmail.com` via Resend if any return non-2xx.
+- [x] **Supabase migration run** — `20260516_003_training_events.sql`: table created, RLS enabled (public read / admin write), unique constraint on URL, composite index on `(course, end_date)`.
+- [x] **34 training events seeded** — All 8 courses. Highlights: Ignition ICC 2026 (Sacramento, Sept 22–24), SANS ICS515 (Orlando, June 8–16 → GICSP path), SharkFest US 2026 (Nashville, July 18–23), Control Station PID workshops (June + September), SEL University RTAC rolling enrollment, ISA CCST + CAP certs, Ignition Core + Gold certs.
+- [x] **All 6 Vercel env vars configured** — `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, `CRON_SECRET`, `ALERT_EMAIL`, `BRAVE_SEARCH_API_KEY`, `RESEND_API_KEY`. All encrypted in prod.
+- [x] **`vercel.json` updated** — Added cron schedule for `api/refresh-training` (Monday 6 AM UTC).
+- [x] **Root `package.json` created** — `ai@^6.0.0` + `@supabase/supabase-js` for the API layer.
+- [x] **Seed script committed** — `scripts/seed-training.js` for future re-seeding or adding new events manually.
+- [x] **Punchlist cleaned** — Removed completed Vercel redeploy items. Added 5-step training feature launch checklist (migration ✓, env vars ✓, seed ✓, AI Gateway enable, deploy pending).
+- [x] **Changelog PDF generated** — `scada-hub-changelog.pdf` on Desktop. 2-page document covering all 25 sessions: infra, syllabi, UI fixes, training feature, course audit results.
+- [x] **scada-hub committed + pushed** — Commit: `9abeb52`.
+- [ ] **Vercel deploy — all 9 projects** — Blocked by 100/day rate limit. Auto-retry scheduled via `ScheduleWakeup`; deploys will fire automatically when limit resets.
+
+### Next session checklist
+
+- [ ] Confirm all 9 Vercel deploys succeeded (check devlog or wakeup output)
+- [ ] Enable AI Gateway on scada-hub Vercel project settings (for OIDC auth on cron)
+- [ ] Manually trigger cron once to verify end-to-end flow
+- [ ] Begin content gap fixes — priority order: DNP3 appLayer flashcards, RTAC Lab quiz questions, Ignition flashcard naming fix, Wireshark Advanced flashcards
+
+---
+
 ## Session 19 — 2026-05-16
 
 ### Completed

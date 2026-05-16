@@ -1,0 +1,202 @@
+% ============================================================
+%  SCADA Hub — Feature Changelog Since Session 1 (2026-05-10)
+% ============================================================
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{palatino}
+\usepackage[scaled=0.82]{beramono}
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true, linkcolor=sblue, urlcolor=scyan,
+  pdftitle={SCADA Hub --- Feature Changelog}]{hyperref}
+\usepackage{parskip}
+
+\definecolor{sblue}{HTML}{2563EB}
+\definecolor{scyan}{HTML}{3B82F6}
+\definecolor{snavy}{HTML}{1E3A5F}
+\definecolor{sorange}{HTML}{EA580C}
+\definecolor{sgreen}{HTML}{15803D}
+\definecolor{sred}{HTML}{DC2626}
+\definecolor{samber}{HTML}{D97706}
+\definecolor{sgray}{HTML}{6B7280}
+
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\newcommand{\feat}{\textcolor{sgreen}{\small\bfseries NEW}}
+\newcommand{\fix}{\textcolor{sblue}{\small\bfseries FIX}}
+\newcommand{\infra}{\textcolor{samber}{\small\bfseries INFRA}}
+\newcommand{\audit}{\textcolor{sred}{\small\bfseries AUDIT}}
+
+\begin{document}
+
+%% ---- HEADER ----
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[snavy] (current page.north west) rectangle ([yshift=-1.0in]current page.north east);
+  \node[anchor=west, text=white, font=\fontsize{20}{24}\bfseries\sffamily]
+    at ([xshift=0.65in, yshift=-0.35in]current page.north west) {SCADA Hub};
+  \node[anchor=west, text=scyan!80, font=\fontsize{11}{13}\sffamily]
+    at ([xshift=0.65in, yshift=-0.63in]current page.north west)
+    {Feature Changelog · Sessions 1--25 · 2026-05-10 through 2026-05-16};
+  \draw[sorange, line width=2pt]
+    ([xshift=0.65in, yshift=-0.83in]current page.north west) --
+    ([xshift=3.8in,  yshift=-0.83in]current page.north west);
+\end{tikzpicture}
+
+\vspace{0.70in}
+
+{\small\sffamily\color{sgray}\MakeUppercase{Overview}}
+\smallskip
+
+{\small Eight study guide sites (Modbus, OPC UA, DNP3, IEC 61131-3, PID Controllers, SEL RTAC, Ignition SCADA, Wireshark) rebuilt and relaunched as a production platform in one week. This document summarizes every feature shipped, infrastructure change made, and gap discovered across all 25 sessions.}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{1.2pt}}
+\smallskip
+
+%% ---- SECTION 1 ----
+{\small\sffamily\color{sgray}\MakeUppercase{Platform Infrastructure}}
+\smallskip
+
+\setlist[enumerate]{noitemsep, topsep=2pt, leftmargin=*, label=\textcolor{sblue}{\small\bfseries\arabic*.}}
+\begin{enumerate}\small
+  \item \feat\ \textbf{Vercel Deployment — All 9 Projects} \\
+    All 8 study guides and the scada-hub landing page deployed to Vercel prod with custom \texttt{vercel.json} per project. Build command standardized: \texttt{GITHUB\_PAGES= npm run build} (empty var sets Vite base to \texttt{/} for Vercel path compatibility). GitHub Pages continues to serve from the \texttt{docs/} folder for backward compatibility.
+
+  \item \fix\ \textbf{GitHub Pages Branch Mismatch — DNP3} \\
+    GitHub Pages was configured to serve from \texttt{main} while the DNP3 repo lived on \texttt{master}. All pushes were invisible. Fixed via \texttt{gh api PUT /repos/BarbosaRicardo/dnp3-study-guide/pages}. Added \texttt{.nojekyll} to all 8 guide \texttt{docs/} folders to prevent Jekyll from intercepting JS asset requests.
+
+  \item \fix\ \textbf{scada-hub.vercel.app Blank Page} \\
+    \texttt{AuthProvider} was imported in \texttt{App.jsx} but never used to wrap the component tree. \texttt{GuideGrid} calls \texttt{useAuth()} $\to$ \texttt{useContext(AuthContext)} returns \texttt{null} $\to$ destructuring crash $\to$ blank page. Fixed by wrapping \texttt{<HubContent />} in \texttt{<AuthProvider>}.
+
+  \item \infra\ \textbf{Supabase Row-Level Security — Quiz Submissions} \\
+    Added \texttt{user\_id} column to \texttt{quiz\_submissions} table and enabled RLS. Policy: authenticated users read only their own rows; admin metadata bypass for full read access. Migration: \texttt{supabase/20260514\_002\_quiz\_user\_rls.sql}.
+
+  \item \infra\ \textbf{Cross-Ecosystem Links — All 8 Sidebars} \\
+    Added an "All Courses" collapsible nav panel to every guide sidebar. Each guide shows all 8 sibling guides with icons and Vercel URLs. Links are environment-aware: \texttt{localhost} in dev, Vercel URLs in prod.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION 2 ----
+{\small\sffamily\color{sgray}\MakeUppercase{Course Syllabi}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \feat\ \textbf{PDF Course Syllabi — All 8 Guides} \\
+    LaTeX-compiled single-page syllabi added to all 8 guides. Each syllabus covers: course title, credit hours, prerequisites, required software, 10--12 topic sections in academic narrative format, and learning outcomes. Sidebar "Course Syllabus" button serves the PDF directly. Hosted at \texttt{site/public/syllabus.pdf} per guide.
+
+  \item \feat\ \textbf{Syllabus Design Overhaul} \\
+    Removed marketing footer text, badge graphics, and diagram boxes. Rewrote all topic sections in human prose (no AI-dash style). Added footer strip with guide accent color. Syllabus is now a professional academic document suitable for manager review and ADO submission.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION 3 ----
+{\small\sffamily\color{sgray}\MakeUppercase{UI / Visual Fixes}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \fix\ \textbf{Dark Theme Sweep — All 8 Guides} \\
+    Replaced all light-mode Tailwind classes (\texttt{bg-white}, \texttt{bg-slate-50}, \texttt{bg-slate-100}, \texttt{text-navy-700}, \texttt{text-slate-700/800}, \texttt{border-slate-100/200}) with dark \texttt{rgba} inline styles across 67 files. Alternating table rows set to \texttt{rgba(255,255,255,0.05)}. Tap-hint dots in flashcard files corrected. Full rebuild and deploy for all 8 guides.
+
+  \item \fix\ \textbf{DNP3 AnalogyCard — Dark Background} \\
+    \texttt{AnalogyCard.jsx} used Tailwind gradient classes \texttt{from-purple-50 to-indigo-50} (white/light). Replaced with dark \texttt{rgba(139,92,246,0.06)} background and \texttt{rgba(139,92,246,0.25)} border. Button and icon wrapper also darkened.
+
+  \item \fix\ \textbf{DNP3 QuizLevels — Emoji Removal + Dark Polish} \\
+    Removed emoji fields from \texttt{LEVEL\_META}. Replaced emoji spans with Lucide SVG icons (\texttt{Lock}, \texttt{CheckCircle}). Passed banner, resource drawer category badges, and empty state all converted to dark \texttt{rgba} styles. All \texttt{text-slate-700} $\to$ \texttt{text-slate-200}.
+
+  \item \fix\ \textbf{Per-Guide Favicons} \\
+    Each guide received a unique SVG favicon (colored to its accent — orange Modbus, cyan OPC UA, purple DNP3, etc.) replacing the generic Vite default.
+
+  \item \feat\ \textbf{OG Image + Meta Tags — All 9 Projects} \\
+    Open Graph \texttt{og:image}, \texttt{og:title}, \texttt{og:description}, and Twitter card meta tags added to all 9 \texttt{index.html} files. OG images generated via Python PIL for link preview in Microsoft Teams, Slack, and LinkedIn.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION 4 ----
+{\small\sffamily\color{sgray}\MakeUppercase{Training Feature (New — Session 25)}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \feat\ \textbf{``More Training'' Panel — All 8 Guides} \\
+    \texttt{TrainingPanel.jsx} — a shared collapsible component — added to the landing/home page of every guide. Fetches live from Supabase: upcoming instructor-led and self-paced training events, and professional certification exams. Renders separate sections for Certifications (gold accent) and Upcoming Training (blue accent) with provider, format icon (online/in-person/hybrid/self-paced), and date range. Only events with \texttt{end\_date $\geq$ today} (or self-paced, no date) are shown. Past events disappear automatically with no manual intervention.
+
+  \item \feat\ \textbf{Vercel Cron Auto-Updater} \\
+    \texttt{api/refresh-training.js}: serverless function running every Monday at 6 AM UTC via Vercel cron (configured in \texttt{vercel.json}). Each run: (1) queries Brave Search API for fresh training events per course, (2) routes results through Vercel AI Gateway (\texttt{anthropic/claude-haiku-4.5}) to parse into structured JSON, (3) upserts into Supabase \texttt{training\_events} table keyed by URL — same event found again overwrites its row with updated dates, (4) HEAD-checks all stored URLs for broken links.
+
+  \item \feat\ \textbf{Broken URL Email Alerts} \\
+    When any stored training event URL returns a non-2xx status or times out, the cron sends an email alert to \texttt{ric3639@gmail.com} via the Resend API. Email lists each broken URL with course, provider, and HTTP status. No manual monitoring needed.
+
+  \item \infra\ \textbf{Supabase: \texttt{training\_events} Table} \\
+    Migration \texttt{20260516\_003\_training\_events.sql}: table with RLS (public read, admin write), unique constraint on URL (enables upsert deduplication), and composite index on \texttt{(course, end\_date)} for fast per-guide queries.
+
+  \item \feat\ \textbf{35 Verified 2026 Training Events Seeded} \\
+    \texttt{scripts/seed-training.js}: initial dataset covering all 8 courses. Highlights: Ignition Core Certification (\$350), Ignition ICC 2026 (Sacramento, Sept 22--24), SANS ICS515 (Orlando, June 8--16 $\to$ feeds GICSP exam), SharkFest US 2026 (Nashville, July 18--23), ISA CCST and CAP certifications, Control Station PID workshops (June and September), DISTRIBUTECH DNP3 workshops (Feb 3), and SEL University RTAC courses (rolling enrollment).
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION 5 ----
+{\small\sffamily\color{sgray}\MakeUppercase{Course Content Audit (All 8 Guides)}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \audit\ \textbf{Lean Audit Pipeline — All 8 Guides} \\
+    Deployed parallel Explore agents to audit every guide's syllabus, web chapters, quiz data, and flashcard data. Output: counts summary + gap table only (no file dumps). Total gaps found: 30+ discrete content items across all 8 guides — each punchisted as a numbered work item. Key finding: flashcard coverage averages 5--6 chapters per guide while quiz coverage averages 10, leaving 4--5 chapters per guide without flashcard reinforcement.
+
+  \item \audit\ \textbf{Research Agent — Sources per Course} \\
+    Background agent queried authoritative primary sources for all 8 courses: official specs, certification bodies, standard pricing, and publication access details. Results logged to \texttt{scada-hub/SOURCES.md}. Modbus spec suite fully documented (all free/downloadable). IEC 61158 access path clarified (Modbus appears under CPF 15 in IEC 61784-2, separate from the main IEC 61158 purchase).
+
+  \item \audit\ \textbf{Watchdog Agent — Token Efficiency} \\
+    Watchdog agent reviewed audit agent prompts and identified primary inefficiency: requesting verbatim card text vs card count added \textasciitilde40\% token overhead. Lean template (gap-table-only output, no file dumps) adopted for all remaining audits. Estimated token savings per audit run: \textasciitilde40K tokens.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+%% ---- SECTION 6 ----
+{\small\sffamily\color{sgray}\MakeUppercase{Punchlist Updates}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \infra\ \textbf{Punchlist: Removed Trimark Associates Reference} \\
+    Login page branding item reworded to ``Company A Brand Colors'' — specific company name removed from all documentation.
+
+  \item \infra\ \textbf{Punchlist: R\&D / AI Agent Skills Item Added} \\
+    New Professional Development section added covering Claude AI (Claude Code, agent SDK, multi-agent orchestration), OpenAI Codex, and agentic toolchain evaluation. Deliverable: internal write-up of recommended adoption candidates.
+
+  \item \infra\ \textbf{Punchlist: 30+ Course Gap Items Added} \\
+    Course Audit sections added for all 8 guides (Modbus, OPC UA, DNP3, IEC 61131-3, PID, RTAC, Ignition, Wireshark) with specific numbered items for each content gap. PDF recompiled to 5 pages after each update.
+\end{enumerate}
+
+\vfill
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[snavy!90] (current page.south west) rectangle ([yshift=0.30in]current page.south east);
+  \node[anchor=west, text=white!70, font=\footnotesize\sffamily]
+    at ([xshift=0.65in, yshift=0.15in]current page.south west)
+    {SCADA Hub · Industrial Control Systems · scada-hub.vercel.app};
+  \node[anchor=east, text=scyan, font=\footnotesize\bfseries\sffamily]
+    at ([xshift=-0.65in, yshift=0.15in]current page.south east)
+    {Generated 2026-05-16};
+\end{tikzpicture}
+
+\end{document}
