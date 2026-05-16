@@ -3,5 +3,11 @@
   "outputDirectory": "site/dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "crons": [
+    {
+      "path": "/api/refresh-training",
+      "schedule": "0 6 * * 1"
+    }
   ]
 }

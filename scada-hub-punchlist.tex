@@ -134,9 +134,6 @@
 \smallskip
 
 \begin{enumerate}[resume]\small
-  \item \textbf{Vercel Re-Deploy All 8 Guides} \hfill \high \\
-    Free-tier 100-deploy/day limit was hit on 2026-05-15. All code is on GitHub; run \texttt{vercel --\!-prod --\!-yes} from each guide root to sync the latest builds to Vercel. Affected: all 8 guides.
-
   \item \textbf{Auth: Duplicate Email Signup Error} \hfill \med \\
     Registering with an existing email shows a generic Supabase error. Show a clear "account exists" message with a "Reset password" link. Add reset-password flow triggered from the register form error state. Scope: scada-hub \texttt{AuthPage.jsx}.
 
@@ -301,20 +298,66 @@
 {\color{snavy}\rule{\linewidth}{0.4pt}}
 \smallskip
 
-{\small\sffamily\color{sgray}\MakeUppercase{Pending Audits}}
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — Ignition SCADA Gaps}}
 \smallskip
 
 \begin{enumerate}[resume]\small
-  \item \textbf{Ignition SCADA: Syllabus vs.\ Coursework Audit} \hfill \med \\
-    Audit \texttt{ignition-study-guide} chapter pages against the Ignition syllabus (Course 7 of 8). Verify OPC-UA Integration chapter depth (syllabus Topic 3), SQL prerequisite note, and that all 10 syllabus topics have corresponding web content. Document gaps in the devlog and add fix items to punchlist.
+  \item \textbf{Ignition Flashcards: Add Cards for 4 Uncovered Chapters} \hfill \high \\
+    4 of 10 quiz chapters have zero flashcards: Intro/Overview (65 Qs), Ignition Gateway (65 Qs), Vision Module (65 Qs), and Alarming (65 Qs). Combined that is 260 quiz questions with no flashcard reinforcement. Priority order: (1) Gateway, (2) Alarming, (3) Vision, (4) Intro. Target 7--8 cards per chapter.
 
-  \item \textbf{Wireshark: Syllabus vs.\ Coursework Audit} \hfill \med \\
-    Audit \texttt{wireshark-study-guide} chapter pages against the Wireshark syllabus (Course 8 of 8). Specifically verify: SSH remote capture and tcpreplay coverage in \texttt{Advanced.jsx} (syllabus Topic 9), and that all 10 topics have web content. Document gaps in the devlog.
+  \item \textbf{Ignition Flashcards: Reconcile Quiz/Flashcard Naming} \hfill \low \\
+    Quiz chapters use \texttt{scripting} and \texttt{alarms} while flashcard categories use \texttt{scripts} and \texttt{alarming}. Students navigating from a quiz result to flashcards hit the wrong category. Standardize naming across both data files so IDs match exactly.
+\end{enumerate}
 
-  \item \textbf{Vercel Re-Deploy — All 9 Projects} \hfill \high \\
-    Vercel free-tier 100-deploy/day limit was hit on 2026-05-16. All code is current on GitHub. Run the following from each project root (build with empty \texttt{GITHUB\_PAGES} so base is \texttt{/}):
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Course Audit — Wireshark Gaps}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Wireshark Flashcards: Add Advanced Techniques Chapter Cards} \hfill \med \\
+    Ch 9 (Advanced Techniques) has 65 quiz questions but zero flashcards. This chapter covers editcap, mergecap, tshark, dumpcap ring buffer, Lua dissector scripting, and SSH remote capture. Add 6--8 cards targeting the most testable concepts: tshark command syntax, ring-buffer capture options, the SSH remote capture one-liner, and Lua dissector registration.
+
+  \item \textbf{Wireshark Flashcards: Add Lab Chapter Cards} \hfill \low \\
+    Ch 10 (Protocol Lab) has 65 quiz questions but zero flashcards. Add 5--6 cards covering the lab workflow: filter construction for Modbus, DNP3, and OPC UA captures; common frame-decode steps; and the ICS anomaly identification checklist from the lab exercises.
+
+  \item \textbf{Wireshark Advanced Chapter: Add tcpreplay Coverage} \hfill \low \\
+    \texttt{Advanced.jsx} covers editcap, mergecap, tshark, and SSH remote capture but does not mention tcpreplay (PCAP replay for ICS protocol testing). The syllabus Topic 9 lists it explicitly. Add a short section on tcpreplay usage: replaying a captured PCAP against a test device, rate control, and its role in testing IDS/IPS rules against replayed OT traffic.
+\end{enumerate}
+
+\smallskip
+{\color{snavy}\rule{\linewidth}{0.4pt}}
+\smallskip
+
+{\small\sffamily\color{sgray}\MakeUppercase{Training Feature — Launch Checklist}}
+\smallskip
+
+\begin{enumerate}[resume]\small
+  \item \textbf{Run Training Events SQL Migration} \hfill \high \\
+    Open Supabase Dashboard $\to$ SQL Editor and run \texttt{scada-hub/supabase/20260516\_003\_training\_events.sql}. Creates the \texttt{training\_events} table, RLS policies, unique constraint on URL, and the course+date index. Required before seeding or deploying the \texttt{TrainingPanel} component.
+
+  \item \textbf{Configure Vercel Env Vars for Training Cron} \hfill \high \\
+    In the scada-hub Vercel project settings, add the following environment variables:\\
+    \texttt{CRON\_SECRET} — any random string (e.g. \texttt{openssl rand -hex 32})\\
+    \texttt{BRAVE\_SEARCH\_API\_KEY} — free tier at \texttt{api.search.brave.com} (2000 queries/month)\\
+    \texttt{RESEND\_API\_KEY} — free account at \texttt{resend.com} (3000 emails/month)\\
+    \texttt{ALERT\_EMAIL} — \texttt{ric3639@gmail.com} (broken URL alert destination)\\
+    \texttt{SUPABASE\_SERVICE\_KEY} — service role key from Supabase project settings
+
+  \item \textbf{Enable Vercel AI Gateway on scada-hub Project} \hfill \high \\
+    In Vercel Dashboard $\to$ scada-hub project $\to$ Settings $\to$ AI Gateway: enable the gateway. This provisions the OIDC token the \texttt{api/refresh-training.js} cron uses to call \texttt{anthropic/claude-haiku-4.5} without a direct API key.
+
+  \item \textbf{Seed Initial Training Events} \hfill \high \\
+    After the migration runs, seed 35 verified 2026 training events and certifications across all 8 courses:\\
+    \texttt{SUPABASE\_URL=... SUPABASE\_SERVICE\_KEY=... node scripts/seed-training.js}\\
+    Covers: Modbus (3), OPC UA (4), DNP3 (4), IEC 61131-3 (4), PID (5), RTAC (3), Ignition (5), Wireshark (6) + certs.
+
+  \item \textbf{Deploy All 9 Projects — Training Feature} \hfill \high \\
+    Redeploy all 9 projects to push the \texttt{TrainingPanel} component and Vercel cron config live. Run from each project root:\\
     \texttt{cd site \&\& GITHUB\_PAGES= npm run build \&\& cd .. \&\& vercel -{-}prod -{-}yes}\\
-    Projects: modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark, scada-hub.
+    scada-hub also needs: \texttt{vercel -{-}prod -{-}yes} from the project root (no site build needed for cron function).
 
   \item \textbf{Troubleshooting Lesson Plan LaTeX PDF} \hfill \med \\
     Build a multi-chapter LaTeX PDF documenting real debugging sessions as field-engineer lesson plans. Each chapter covers one class of bug or architectural decision: symptom, what was checked, root cause, fix, and what to watch for next time. Example chapter: "Missing Icon Import Crashes React App" (Ignition \texttt{Zap} ReferenceError). Generate at the end of each session and accumulate chapters over time. Source lives in \texttt{scada-hub/lesson-plans/}. Distinct from the per-guide study guide PDFs — this is a \emph{developer training document}.
