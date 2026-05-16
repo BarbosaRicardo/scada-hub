@@ -919,6 +919,18 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 22 — 2026-05-16
+
+### Completed
+
+- [x] **Ignition sidebar crash fixed** — Root cause: `Zap` icon was used in the `AllGuidesItem` GUIDE_LIST (for DNP3 entry) but not imported. This caused a JavaScript `ReferenceError` on every page load, crashing the entire React app — blank/broken page. Fixed by adding `Zap` to the lucide-react import line. Also removed dead auth state (`session`, `sessionLoading`, `showLogin`, `loginEmail`, `loginPassword`, `loginError`, `loginLoading`), removed unused `useEffect`, `useLocation`, `supabase`, `QuizReport`, `LogIn`, `LogOut` imports, and converted the inline Quiz Results button to a `NavLink to="/report"` consistent with other guides. Built, committed `30d8dbf`, pushed to `main`.
+
+### Punchlist items added this session
+
+- [ ] **LaTeX lesson plan PDF** — Build a "how I fixed it" log as a multi-chapter LaTeX PDF. Each chapter = one type of bug or architectural decision. Content: what the symptom was, what I checked, what the root cause was, how it was fixed, and what to watch for next time. Structured as a field engineer's troubleshooting guide. Target: generate at the end of each session and accumulate chapters. Source lives in `scada-hub/lesson-plans/`. This is separate from the per-guide study guide PDFs.
+
+---
+
 ## Session 21 — 2026-05-16
 
 ### Completed

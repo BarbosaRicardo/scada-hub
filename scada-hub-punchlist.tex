@@ -195,6 +195,9 @@
     Vercel free-tier 100-deploy/day limit was hit on 2026-05-16. All code is current on GitHub. Run the following from each project root (build with empty \texttt{GITHUB\_PAGES} so base is \texttt{/}):
     \texttt{cd site \&\& GITHUB\_PAGES= npm run build \&\& cd .. \&\& vercel -{-}prod -{-}yes}\\
     Projects: modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark, scada-hub.
+
+  \item \textbf{Troubleshooting Lesson Plan LaTeX PDF} \hfill \med \\
+    Build a multi-chapter LaTeX PDF documenting real debugging sessions as field-engineer lesson plans. Each chapter covers one class of bug or architectural decision: symptom, what was checked, root cause, fix, and what to watch for next time. Example chapter: "Missing Icon Import Crashes React App" (Ignition \texttt{Zap} ReferenceError). Generate at the end of each session and accumulate chapters over time. Source lives in \texttt{scada-hub/lesson-plans/}. Distinct from the per-guide study guide PDFs — this is a \emph{developer training document}.
 \end{enumerate}
 
 \vfill
