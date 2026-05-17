@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-17 (Session 29 — Battery completion widget + CheckCircle2 nav + logo close button — all 8 guides)
+> Last updated: 2026-05-17 (Session 30 — Vercel linking all 8 guides + $p typo crash fix in useProgress)
 
 ---
 
@@ -1261,6 +1261,47 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
 | RTAC | 03b76ec |
 | Ignition | 2ddd392 |
 | Wireshark | 1a4bf06 |
+
+---
+
+## Session 30 — 2026-05-17
+
+### Completed
+
+- [x] **Linked all 8 guides to Vercel** — Ran `vercel link --yes --project <name>` for each guide. All 8 `.vercel/project.json` files created. GitHub integration was already connected on all 8 from prior setup. `vercel.json` was pre-existing in all repos with correct config: `buildCommand: "cd site && npm install && npm run build"`, `outputDirectory: "docs"`, SPA rewrite rule.
+- [x] **Vercel auto-deploy confirmed working** — Modbus, OPC UA, IEC 61131, DNP3 picked up the Session 29 GitHub push and deployed within ~5 minutes. PID, RTAC, Ignition, Wireshark were blocked by the 100 deployments/day free-tier limit (already hit from earlier deploys today).
+- [x] **`$p` typo bug — root cause found and fixed across 5 guides** — OPC UA was showing a blank page on Vercel (dark dot background, nothing rendered). Root cause: the perl substitution used `\$p` in the replacement string which produced literal `$p` in the output JavaScript — `level4Passed: !!$p.level4Passed`. Since `$p` is not declared anywhere in the hook, every call to `getChapterStatus()` threw `ReferenceError: $p is not defined`, crashing the React component tree. Fixed by replacing `!!$p.level4Passed` → `!!p.level4Passed` in all 5 affected guides.
+- [x] **`completed` field added to `getChapterStatus` in 5 guides** — The 5 perl-patched guides were also missing `completed: !!p.completed` in their `getChapterStatus` return. Added via Python script. Without it, `status.completed` was `undefined` (falsy) so CheckCircle2 would never appear in the sidebar — silent bug, not a crash.
+- [x] **All 5 affected guides rebuilt and pushed** — dnp3, iec61131, opcua, pid, wireshark. Vercel auto-deploys triggered from GitHub pushes.
+
+### Bug — Perl `$p` variable interpolation in replacement
+
+**Root cause:** In the perl substitution command:
+```bash
+perl -i -pe 's/(level3Passed: !!p\.level3Passed,)/$1\n      level4Passed: !!\$p.level4Passed,/'
+```
+In Perl's replacement string, `\$` produces a literal `$`. The intent was to write `!!p.level4Passed` but the output was `!!$p.level4Passed`. JavaScript silently parsed this as a valid-looking identifier (`$p`), so the build passed — the error was only visible at runtime as a `ReferenceError`.
+
+**Affected guides:** dnp3, iec61131, opcua, pid, wireshark (all 5 patched with the perl command in Session 29).
+
+**Not affected:** modbus (already had level4Passed from before), ignition, rtac (expanded via Python script which doesn't have this escaping issue).
+
+**Prevention:** Always use Python for multi-line JS string replacements across guide files. Perl `$variable` interpolation in replacement strings is a footgun when the target language also uses `$`.
+
+### Vercel deployment limit
+
+Hit Vercel free tier's 100 deployments/day limit during propagation. PID, RTAC, Ignition, Wireshark Vercel projects are currently serving pre-battery versions. GitHub integration is confirmed connected on all 4 — they will auto-deploy on the next push or when the limit resets (~24h from time of hitting the cap). GitHub Pages versions for all 8 guides are fully up to date.
+
+### CRITICAL RULE — Perl substitutions for JavaScript files
+
+Never use perl for multi-line JS string replacements that contain `$` characters. Use Python `str.replace()` instead. Perl's replacement string interpolates `$name` as a Perl variable — `\$` escapes to literal `$` in the output, which is a different character than intended when the target is JavaScript. Python string replacement has no such ambiguity.
+
+### Punchlist updates
+
+- [x] All 8 guides linked to Vercel with GitHub auto-deploy
+- [ ] PID, RTAC, Ignition, Wireshark — Vercel still on pre-battery version (will auto-deploy when limit resets)
+- [x] OPC UA blank page crash — fixed (`$p` typo in useProgress)
+- [x] `completed` field added to getChapterStatus on all guides
 
 ---
 
