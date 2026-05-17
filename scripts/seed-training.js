@@ -11,7 +11,7 @@ const supabase = createClient(
 
 const events = [
   // ── MODBUS ──────────────────────────────────────────────────────────────────
-  { course: 'modbus', provider: 'Learni Group', title: 'Mastering the Modbus Protocol for Industrial Automation', format: 'in-person', start_date: '2026-07-01', end_date: '2026-07-31', url: 'https://learni-group.com/en/training/training-mastering-modbus-protocol-industrial-automation-g8hy1z', is_cert: false, cert_name: null },
+  { course: 'modbus', provider: 'Learni Group', title: 'Mastering the Modbus Protocol for Industrial Automation', format: 'in-person', start_date: '2026-07-01', end_date: '2026-07-31', url: 'https://learni-group.com/en/training/training-modbus-expertise-terrain-vby4x5', is_cert: false, cert_name: null },
   { course: 'modbus', provider: 'PLC Dojo', title: 'Mastering Modbus TCP/IP Network Communication', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.plcdojo.com/courses/mastering-modbus-tcp-ip-network-communication', is_cert: false, cert_name: null },
   { course: 'modbus', provider: 'Udemy', title: 'Mastering Modbus RS485 Network Communication', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.udemy.com/course/mastering-modbus-rs485-network-communication/', is_cert: false, cert_name: null },
 
