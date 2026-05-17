@@ -1195,7 +1195,7 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
 - [x] **Punchlist cleaned** — Removed completed Vercel redeploy items. Added 5-step training feature launch checklist (migration ✓, env vars ✓, seed ✓, AI Gateway enable, deploy pending).
 - [x] **Changelog PDF generated** — `scada-hub-changelog.pdf` on Desktop. 2-page document covering all 25 sessions: infra, syllabi, UI fixes, training feature, course audit results.
 - [x] **scada-hub committed + pushed** — Commit: `9abeb52`.
-- [ ] **Vercel deploy — all 9 projects** — Blocked by 100/day rate limit. Auto-retry scheduled via `ScheduleWakeup`; deploys will fire automatically when limit resets.
+- [x] **Vercel deploy — all 9 projects** — Completed in Session 26 (rolling deploys over ~8 hours). All 9 live on Vercel.
 
 ### Next session checklist
 
@@ -1223,7 +1223,7 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
   - Ignition: celebration confetti — *"When your SCADA dashboard is prettier than your home screen."*
   - Wireshark: hackerman — *"Finding the one bad packet in 40,000. You love to see it."*
 - [x] **All 8 guides built, committed, pushed** — GitHub Pages live for all 8.
-- [ ] **Vercel deploy — all 9 projects** — Still rate-limited (100/day free tier). Re-run `vercel --prod --yes` from each project root when limit resets.
+- [x] **Vercel deploy — all 9 projects** — Deployed successfully (rolling over ~8 hours due to 100/day free tier limit; ~1–2 deploys per hour window). All 9 live: scada-hub, modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark.
 
 | Guide | Commit |
 |-------|--------|
