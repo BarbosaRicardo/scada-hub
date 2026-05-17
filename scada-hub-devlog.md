@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-17 (Session 30 — Vercel linking all 8 guides + $p typo crash fix in useProgress)
+> Last updated: 2026-05-17 (Session 31 — DNP3 Vercel Production branch fix + orphaned GIF audit all 8 courses)
 
 ---
 
@@ -1261,6 +1261,51 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
 | RTAC | 03b76ec |
 | Ignition | 2ddd392 |
 | Wireshark | 1a4bf06 |
+
+---
+
+## Session 31 — 2026-05-17
+
+### Completed
+
+- [x] **DNP3 Vercel Production branch fixed** — DNP3 repo uses `master` as its default branch. Vercel was deploying all pushes as Preview because its production branch was set to `main`. Fixed by: (1) force-pushing `master` → `main` on GitHub to sync the branch, (2) updating the Vercel project link via API to set `productionBranch: "master"`, then re-pushing to trigger a Production deploy. DNP3 Vercel is now on Production, serving the battery widget build.
+- [x] **Full GIF audit — all 8 courses** — Searched every page in all 8 guides for standalone `<GifCard>` components not wrapped in `<div className="flex items-start gap-6">` with a companion `<p className="flex-1">`. Found and fixed 3 orphaned GIFs:
+  - `DNP3 / Intro.jsx` — `gifKey="thinking"` — wrapped with companion text about DNP3 timestamps vs Modbus
+  - `DNP3 / Lab.jsx` — `gifKey="celebrate"` — wrapped with companion text about utility SCADA competency
+  - `RTAC / Security.jsx` — `gifKey="warning"` — wrapped with companion text about CIP-007 audit consequences and fine schedule
+- [x] **Ignition / Alarms.jsx cleared** — Agent flagged this as potentially orphaned. Verified it is correctly structured: GifCard is inside a `<div className="flex flex-col md:flex-row items-start gap-6">` alongside a `<div className="flex-1">` containing the Alarm Pipelines section — same Callout+GifCard pairing pattern used across other guides.
+- [x] **All fixed guides built and pushed** — DNP3 (master + main), RTAC (main).
+
+### GIF audit methodology
+
+Pattern that is CORRECT:
+```jsx
+<div className="flex items-start gap-6 my-6">
+  <GifCard gifKey="..." caption="..." />
+  <p className="flex-1 text-sm text-slate-400 leading-relaxed">...</p>
+</div>
+```
+
+Pattern that is CORRECT (Callout variant):
+```jsx
+<div className="flex flex-col md:flex-row items-start gap-6">
+  <div className="flex-1"><Callout .../></div>
+  <GifCard gifKey="..." caption="..." />
+</div>
+```
+
+Pattern that is ORPHANED (standalone GifCard):
+```jsx
+<AnalogyCard ... />
+<GifCard gifKey="..." caption="..." side="left" />  {/* ← broken */}
+<FunFact index={1} />
+```
+
+### Punchlist updates
+
+- [x] DNP3 Vercel Production branch — fixed
+- [x] Orphaned GIF audit — all 8 courses clean
+- [ ] PID, RTAC, Ignition, Wireshark Vercel — still on pre-battery versions (rate limit blocking deploy; RTAC now also has GIF fix pending deploy)
 
 ---
 
