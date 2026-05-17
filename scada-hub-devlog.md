@@ -974,6 +974,29 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 
 ---
 
+## Session 27 — 2026-05-17
+
+### Completed
+
+- [x] **Quiz normalization layer — all 8 guides** — `normalizeQuestion()` function added to Quiz.jsx in all 8 guides. Unifies `q.q`/`q.question` field names, converts string answers to integer indices, converts `type: 'tf'` → `type: 'mcq'` with `['True', 'False']` options. Fixes blank questions (opcua, iec61131, pid used `q.q` field), MCQ answers never marking correct (ignition, wireshark had string answers), and TF questions rendering blank. Wireshark Quiz.jsx has divergent structure (TFQuestion component) — TF→MCQ conversion excluded there. All 8 guides committed and pushed.
+- [x] **SCADA Automation Engineer Training badge removed — all 8 guides** — Badge removed from hero section of all 8 Home.jsx files. DNP3 used `<Radio size={12} />` inside badge (not `<Zap>`), Ignition used `<Flame>`. All 8 committed and pushed.
+- [x] **4 new Home.jsx pages created (opcua, iec61131, pid, wireshark)** — These guides used their chapter intro page as the landing page. New Home.jsx created for each matching the Modbus/DNP3 dashboard pattern: animated hero + GifCard, progress bar, stats grid, why-it-matters callout, chapter grid, TrainingPanel, italic footer quote. Guide-specific color theming applied.
+- [x] **GIF complete overhaul — all 8 guides** — Tenor API key `LIVDSRZULELA` permanently dead (HTTP 403 for all requests). Dead Giphy courseHero IDs found: modbus `l3q2XhfQ8oCkm1Sl6`, iec61131 `xT9IgG50Lg7russbDa`, ignition `g9582DNuQppMc` (all return Giphy's 239KB "content unavailable" placeholder, not caught by `onError`). All 7 non-DNP3 gifs.js files rewritten with 14–17 verified Giphy CDN IDs each. All Tenor API fetch logic removed from GifCard.jsx in all 7 guides — replaced with simplified Giphy-direct version (same as DNP3). GifCard now accepts `gifId` prop to bypass the GIFS lookup dictionary.
+- [x] **5-option rotating hero GIFs — all 8 home pages** — `HERO_OPTIONS` constant array (5 objects with `id`, `caption`, `tooltip`) added to each Home.jsx above the component. `useState(() => Math.floor(Math.random() * HERO_OPTIONS.length))` picks a random option on mount. Each page load shows a different GIF with a different caption and hover tooltip. All tooltips are course-relevant commentary or war stories. Template literals used for strings to avoid apostrophe/quote escaping issues.
+- [x] **Error boundary added to DNP3** — All chapter links on `dnp3-study-guide.vercel.app` produce a black screen (home page works). No obvious crash point found in static analysis. Error boundary added to `main.jsx` to surface the actual runtime error. Will check deployed output after Vercel auto-deploys from GitHub push.
+- [x] **All 8 guides rebuilt and pushed to GitHub** — Commits: modbus `61a836e`, opcua `0e76546`, iec61131 `c8e8c09`, pid `42337da`, wireshark `8c16dda`, rtac `9bd0d68`, ignition `1b0d1c5`, dnp3 `1f74358`.
+
+### Known issues / pending
+
+- **Vercel deploys rate-limited** — Hit 100/day free-tier limit. GitHub pushes made; Vercel auto-deploy webhooks should trigger. CLI deploys must wait for rolling 24h window to reset.
+- **DNP3 black screen unresolved** — Error boundary deployed to surface root cause. Await Vercel auto-deploy to see error message.
+
+### Punchlist items added this session
+
+- [ ] **Favicons for all 8 courses** — Backlogged by user. Guide-specific favicon.png for each guide (currently all share the default Vite icon).
+
+---
+
 ## Session 23 — 2026-05-16
 
 ### Completed
