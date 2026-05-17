@@ -1,7 +1,7 @@
 # SCADA Hub — Dev Log
 
 > Local tracking file. Update this as work progresses.
-> Last updated: 2026-05-15 (Session 13 — DNP3 syllabus written; Course Syllabus + Quiz Results added to DNP3 footer)
+> Last updated: 2026-05-17 (Session 29 — Battery completion widget + CheckCircle2 nav + logo close button — all 8 guides)
 
 ---
 
@@ -1261,6 +1261,114 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
 | RTAC | 03b76ec |
 | Ignition | 2ddd392 |
 | Wireshark | 1a4bf06 |
+
+---
+
+## Session 29 — 2026-05-17
+
+### Completed
+
+- [x] **Battery completion widget — all 8 guides** — Replaced the manual "Mark Complete" button in `ChapterLayout.jsx` with an auto-filling horizontal battery. 4 cells: L1, L2, L3, Field Scenarios. Cells fill green as each quiz level is passed. Labels (L1/L2/L3/Field) show when incomplete; disappear and "✓ COMPLETED" overlay appears when all 4 are filled with a green glow. Next Up card only appears after full completion. Completion is fully automatic — no user button click required.
+- [x] **`level4Passed` added to `getChapterStatus`** — All 8 guides' `useProgress.js` hooks now expose `level4Passed` (Field Scenarios). `ignition` and `rtac` had simplified hooks with only `visited`/`quizPassed`; both expanded to the full level1–level4 schema.
+- [x] **CheckCircle2 nav indicator — all 8 guides** — Sidebar `NavItem` now shows a green `CheckCircle2` icon in place of the three progress dots when `status.completed` is true. Applied to all 7 remaining guides (dnp3 had a different dot size — handled separately).
+- [x] **Logo icon closes mobile sidebar — all 8 guides** — Sidebar logo `<div>` converted to `<button onClick={() => setOpen(false)}>` with `lg:cursor-default` so it only triggers on mobile. Desktop cursor unchanged.
+- [x] **Flashcards NEW badge persists correctly (Modbus)** — Badge was clearing on first render because `useState` was reading stale localStorage on mount. Fixed with lazy initializer: `useState(() => !localStorage.getItem('modbus_flashcards_seen'))`. Badge now disappears permanently after first Flashcards visit.
+- [x] **All 8 guides built and pushed** — ChapterLayout, useProgress, and Sidebar changes propagated across all guides. Build errors during propagation: `</div>` not replaced with `</button>` for Ignition (`<Flame>`) and Wireshark (`<ScanSearch>`) — different logo icons than the standard `<Zap>`. Fixed with targeted per-guide string replacements.
+
+### Architecture note — battery widget
+
+`ChapterBattery` is a standalone component inside `ChapterLayout.jsx`. It reads `status` from `getChapterStatus()` (passed as prop) and `nextChapter` (for the Next Up card). No new state — purely derived from the existing quiz progress in localStorage. The `markChapterComplete` function is still exported from `useProgress` but the battery no longer calls it. The sidebar `CheckCircle2` still reads `status.completed` — which is only set if `markChapterComplete` was previously called manually or migrated from old data.
+
+### CRITICAL RULE — Sidebar icon buttons
+
+When wrapping a logo/icon in a `<button>` to close the mobile sidebar, always check which icon the guide uses — not all guides use `<Zap>`. Confirmed icon-to-guide mapping:
+- Modbus, OPC UA, IEC 61131, PID, RTAC: `<Zap size={18}>`
+- DNP3: `<Zap size={20} className="text-black">` (amber gradient bg, different)
+- Ignition: `<Flame size={18}>`
+- Wireshark: `<ScanSearch size={18}>`
+
+### Punchlist updates
+
+- [x] Chapter completion UX — battery widget replaces manual Mark Complete button (all 8 guides)
+- [x] Sidebar CheckCircle2 completed-chapter indicator (all 8 guides)
+- [x] Logo tap closes mobile drawer (all 8 guides)
+- [x] Flashcards NEW badge clears on first visit (Modbus)
+
+---
+
+## Session 28 — 2026-05-17
+
+### Completed
+
+- [x] **Punchlist PDF recompiled** — Session 27 added 5 UI navigation items to `scada-hub-punchlist.tex` but PDF was not recompiled before context ran out. Recompiled and copied to `~/Desktop/scada-hub-punchlist.pdf` at session start.
+- [x] **Missing quiz audit — false positive resolution** — Session 27 audit flagged DNP3 `AppLayer`, RTAC (`dnp3`, `iec61131`, `iec61850`), and Wireshark `dnp3` as having `<QuizLevels>` with no matching quiz data. Verified all are wired correctly: data exists in each guide's `quizzes.js`, pages already import `QuizLevels` with the correct `chapterId`. No fixes needed for those.
+- [x] **Modbus `ASCII.jsx` — QuizLevels added** — Page had `FunFact` + `ChapterExercise` but no quiz component. Added imports and `{QUIZZES.ascii && QUIZZES.ascii.length > 0 && <QuizLevels chapterId="ascii" />}` before FunFact. Quiz data already existed in `quizzes.js` — just not wired to the page.
+- [x] **Modbus `Lab.jsx` — QuizLevels added** — Final chapter had no quiz. Added same imports and component before the trophy/completion section. `lab` quiz key already populated in `quizzes.js`.
+- [x] **Modbus `Security.jsx` — Attack Vectors GIF vertically centered** — GIF (`fire`) was anchored to the top of the flex row, leaving empty space below as the attack vectors list extended further down. Added `className="self-center"` to override the row's `items-start` locally. User-requested easy W.
+- [x] **All 8 guides built and pushed** — Modbus had changes; remaining 7 were already up to date.
+
+### Quiz `.length` bug — root cause and fix
+
+**Root cause:** `QUIZZES[key]` is shaped as `{ level1: [...], level2: [...], level3: [...] }` — an object, not an array. The guard pattern `QUIZZES.intro && QUIZZES.intro.length > 0 && (...)` calls `.length` on an object, which returns `undefined`. `undefined > 0` evaluates to `false`, so `<QuizLevels>` never mounted — on any page using this pattern.
+
+**Affected pages fixed:**
+- PID — all 10 chapter pages (`Intro`, `LoopFundamentals`, `PIDAction`, `Tuning`, `ProcessDynamics`, `CascadeControl`, `DigitalPID`, `PLCImplementation`, `Troubleshoot`, `Lab`)
+- OPC UA — all 10 chapter pages (`Intro`, `Architecture`, `InfoModel`, `Services`, `Security`, `Subscriptions`, `Transport`, `IgnitionIntegration`, `Troubleshoot`, `Lab`)
+- Modbus — `ASCII.jsx` and `Lab.jsx` (introduced this session when QuizLevels was added)
+
+**Not affected:** IEC 61131, DNP3, RTAC, Wireshark, Ignition — those guides render `<QuizLevels>` unconditionally with no `.length` guard.
+
+**Fix applied:** Simplified every guard from `QUIZZES.key && QUIZZES.key.length > 0 && (...)` to `QUIZZES.key && (...)`. 22 files total. All 3 guides rebuilt and pushed.
+
+### Punchlist updates
+
+- [x] Modbus missing QuizLevels on ASCII and Lab pages — FIXED
+- [x] PID quizzes not rendering — FIXED (broken `.length` guard on object-shaped quiz data)
+- [x] OPC UA quizzes not rendering — FIXED (same bug)
+- [ ] OPC UA analogy button — carried from Session 27 (fix was applied; verify live)
+
+---
+
+## Session 27 — 2026-05-17
+
+### Completed
+
+- [x] **GifCard tooltip top-clipping fix** — Tooltip overlay had `display: flex` + `alignItems: center` which clipped text at the top when content overflowed. Removed both properties so text flows from the top naturally. Applied to all 8 guides.
+- [x] **GifCard caption alignment fix** — Caption text was extending beyond GIF edge because wrapper was `max-w-xs` (320px). Changed to `style={{ width: 200 }}` to lock wrapper to GIF width. Applied to all 8 guides.
+- [x] **Hero GIF deduplication across all 8 guides** — Every guide's `Home.jsx` had 5 unique Giphy IDs (40 total). Verified zero cross-guide duplicates. Hero selection remains random per page load (`useState(() => Math.floor(Math.random() * HERO_OPTIONS.length))`); GIF position on the page is fixed (right side, not randomly placed).
+- [x] **GifCard `body` prop — mid-page contextual text** — Added `body` prop to `GifCard.jsx` in all 8 guides. When provided, renders a two-column layout: body text on one side, GIF on the other. Applied only to GifCards in the middle of chapter pages (not Lab end-GIFs or Intro hero-GIFs). ~62 instances across all guides.
+- [x] **Dark theme sweep — 52 files across all 8 guides** — See rule below. Fixed all light Tailwind classes: `bg-*-50` → `bg-*-500/10`, `hover:bg-*-50` → `hover:bg-*-500/10`, `border-*-200` → `border-*-500/30`, `border-*-300` → `border-*-500/40`, `text-*-600/700` → `text-*-400`, `bg-white` → `bg-white/5`, `bg-slate-50/gray-50` → `bg-white/5`, `bg-slate-100/gray-100` → `bg-white/8`, `border-slate-200` → `border-white/10`. Key files: all 8 `QuizLevels.jsx`, `modbus/FunctionCodes.jsx`, `modbus/Exceptions.jsx`, `modbus/FrameDiagram.jsx`, `rtac/Lab.jsx`, `ignition/Tags.jsx`, `dnp3/Objects.jsx`, `opcua/Transport.jsx`, `opcua/Troubleshoot.jsx`.
+- [x] **All 8 guides built, committed, pushed**
+
+### CRITICAL RULE — GifCards Always Need Companion Text
+
+> **Never render a `<GifCard>` as a standalone element.** A GIF without text beside it leaves empty space and looks broken.
+>
+> Always wrap in a flex row with a `<p>` explaining the concept:
+> ```jsx
+> <div className="flex items-start gap-6 my-6">
+>   <GifCard gifKey="..." caption="..." />
+>   <p className="flex-1 text-sm text-slate-400 leading-relaxed">Explanation here...</p>
+> </div>
+> ```
+> For `side="left"` (GIF on left): GIF first, then `<p className="flex-1 ...">`.
+> For `side="right"` (GIF on right): `<p className="flex-1 ...">` first, then GIF.
+> The `flex-1` on the paragraph is mandatory — it fills the remaining width so the GIF doesn't sit alone with empty space beside it.
+
+### CRITICAL RULE — No White on Gray (mobile + desktop)
+
+> **Never use light Tailwind background/border/text classes in any study guide component.**
+>
+> Banned classes: `bg-white`, `bg-slate-50`, `bg-gray-50`, `bg-*-50`, `bg-slate-100`, `bg-gray-100`, `border-slate-200`, `border-*-200`, `border-*-300`, `text-slate-700`, `text-slate-600`, `text-*-700`, `text-*-600`
+>
+> Use instead: `bg-*-500/10`, `border-*-500/30`, `text-*-400`, or dark rgba inline styles (`rgba(255,255,255,0.05)`, `rgba(255,255,255,0.08)`, etc.)
+>
+> This applies to all components, all pages, and all mobile breakpoints. User flagged this after the Modbus FunctionCodes page showed green-50, blue-50, teal-50, and orange-50 accordion cards on a dark background — unreadable. Rule is permanent.
+
+### Punchlist (new items from this session)
+
+- [ ] **OPC UA analogy button broken** — Audit all 8 courses for same `AnalogyCard` error
+- [ ] **Missing quizzes** — Audit all 8 courses for chapters where quiz data exists but quizzes are not rendering/accessible
 
 ---
 
