@@ -986,10 +986,13 @@ Items identified in engineering review 2026-05-14. Do not start until active pun
 - [x] **Error boundary added to DNP3** — All chapter links on `dnp3-study-guide.vercel.app` produce a black screen (home page works). No obvious crash point found in static analysis. Error boundary added to `main.jsx` to surface the actual runtime error. Will check deployed output after Vercel auto-deploys from GitHub push.
 - [x] **All 8 guides rebuilt and pushed to GitHub** — Commits: modbus `61a836e`, opcua `0e76546`, iec61131 `c8e8c09`, pid `42337da`, wireshark `8c16dda`, rtac `9bd0d68`, ignition `1b0d1c5`, dnp3 `1f74358`.
 
+### Completed (continued)
+
+- [x] **All 9 projects deployed to Vercel prod** — Rate limit cleared; all 9 deployed successfully. scada-hub, modbus, opcua, dnp3, iec61131, pid, rtac, ignition, wireshark all live. Includes: verified Giphy IDs, 5-option rotating hero GIFs, simplified GifCard (Tenor logic removed), error boundary on DNP3 to surface chapter-page crash.
+
 ### Known issues / pending
 
-- **Vercel deploys rate-limited** — Hit 100/day free-tier limit. GitHub pushes made; Vercel auto-deploy webhooks should trigger. CLI deploys must wait for rolling 24h window to reset.
-- **DNP3 black screen unresolved** — Error boundary deployed to surface root cause. Await Vercel auto-deploy to see error message.
+- **DNP3 black screen** — Error boundary now live on Vercel. Visit `dnp3-study-guide.vercel.app` and click a chapter link to see the actual error message. Root cause still TBD.
 
 ### Punchlist items added this session
 
