@@ -16,6 +16,7 @@ const events = [
   { course: 'modbus', provider: 'Udemy', title: 'Mastering Modbus RS485 Network Communication', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.udemy.com/course/mastering-modbus-rs485-network-communication/', is_cert: false, cert_name: null },
 
   // ── OPC UA ───────────────────────────────────────────────────────────────────
+  { course: 'opcua', provider: 'LinkedIn Learning', title: 'Learning Industrial Automation', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.linkedin.com/learning/learning-industrial-automation', is_cert: false, cert_name: null },
   { course: 'opcua', provider: 'OPC Training Institute', title: 'Remote Training Level 3: OPC Unified Architecture', format: 'online', start_date: null, end_date: null, url: 'https://www.opcti.com/remote-training-opc-ua.aspx', is_cert: false, cert_name: null },
   { course: 'opcua', provider: 'OPC Foundation', title: 'OPC Interoperability Workshop — North America (Calgary)', format: 'in-person', start_date: '2026-03-16', end_date: '2026-03-18', url: 'https://opcfoundation.org/event-detail/opc-interoperability-workshop-2026-north-america/', is_cert: false, cert_name: null },
   { course: 'opcua', provider: 'OPC Foundation', title: 'OPC Interoperability Workshop — Europe', format: 'in-person', start_date: '2026-09-28', end_date: '2026-10-02', url: 'https://opcfoundation.org/event-detail/opc-interoperability-workshop-2026-europe/', is_cert: false, cert_name: null },
@@ -28,6 +29,7 @@ const events = [
   { course: 'dnp3', provider: 'SEL University', title: 'eCOM 205: Introduction to DNP3 Protocol and Troubleshooting', format: 'self-paced', start_date: null, end_date: null, url: 'https://selinc.com/selu/courses/ecom/205/', is_cert: false, cert_name: null },
 
   // ── IEC 61131-3 ───────────────────────────────────────────────────────────────
+  { course: 'iec61131', provider: 'LinkedIn Learning', title: 'Learning PLC Ladder Logic: 1 The Basics', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.linkedin.com/learning/learning-plc-ladder-logic', is_cert: false, cert_name: null },
   { course: 'iec61131', provider: 'CODESYS Group', title: 'CODESYS V3 Essentials Training — Live Online', format: 'online', start_date: null, end_date: null, url: 'https://www.codesys.com/ecosystem/services/academy-training/training/v3-essentials-usa/', is_cert: false, cert_name: null },
   { course: 'iec61131', provider: 'CODESYS Group', title: 'CODESYS Basic Training Course (PLCopen certified, 47 modules)', format: 'self-paced', start_date: null, end_date: null, url: 'https://us.store.codesys.com/elearning-codesys-v3.html', is_cert: false, cert_name: null },
   { course: 'iec61131', provider: 'RealPars', title: 'IEC 61131 Programming Using LAD, ST, and FB', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.realpars.com/courses/iec-61131-programming-using-lad-st-and-fb', is_cert: false, cert_name: null },
@@ -46,6 +48,7 @@ const events = [
   { course: 'rtac', provider: 'SEL University', title: 'eAPP 3530: SEL-3530 RTAC (Online, ~24 hours)', format: 'online', start_date: null, end_date: null, url: 'https://selinc.com/selu/courses/eapp/3530/', is_cert: false, cert_name: null },
 
   // ── IGNITION SCADA ────────────────────────────────────────────────────────────
+  { course: 'ignition', provider: 'LinkedIn Learning', title: 'Learning SCADA: Collect, Analyze, and Visualize Data for Industrial Automation', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.linkedin.com/learning/learning-scada-collect-analyze-and-visualize-data-for-industrial-automation', is_cert: false, cert_name: null },
   { course: 'ignition', provider: 'Inductive Automation', title: 'Ignition Core Training (Perspective Version)', format: 'in-person', start_date: '2026-06-01', end_date: '2026-06-05', url: 'https://inductiveautomation.com/training/course/details/1990', is_cert: false, cert_name: null },
   { course: 'ignition', provider: 'Inductive Automation', title: 'Ignition Community Conference (ICC) 2026', format: 'in-person', start_date: '2026-09-22', end_date: '2026-09-24', url: 'https://icc.inductiveautomation.com/', is_cert: false, cert_name: null },
   { course: 'ignition', provider: 'Inductive University', title: 'Ignition Full Self-Paced Course Library (Free)', format: 'self-paced', start_date: null, end_date: null, url: 'https://inductiveuniversity.com/', is_cert: false, cert_name: null },
@@ -53,6 +56,7 @@ const events = [
   { course: 'ignition', provider: 'Inductive Automation', title: 'Ignition Gold Certification (requires Core)', format: 'self-paced', start_date: null, end_date: null, url: 'https://inductiveautomation.com/training/certification-tests#gold', is_cert: true, cert_name: 'Ignition Gold' },
 
   // ── WIRESHARK ─────────────────────────────────────────────────────────────────
+  { course: 'wireshark', provider: 'LinkedIn Learning', title: 'Wireshark Essential Training', format: 'self-paced', start_date: null, end_date: null, url: 'https://www.linkedin.com/learning/wireshark-essential-training', is_cert: false, cert_name: null },
   { course: 'wireshark', provider: 'Wireshark Foundation', title: 'SharkFest US 2026 (Nashville, TN)', format: 'in-person', start_date: '2026-07-18', end_date: '2026-07-23', url: 'https://sharkfest.wireshark.org/sfus/', is_cert: false, cert_name: null },
   { course: 'wireshark', provider: 'SANS Institute', title: 'ICS515: ICS Visibility, Detection, and Response (SANS ICS Summit)', format: 'in-person', start_date: '2026-06-08', end_date: '2026-06-16', url: 'https://www.sans.org/cyber-security-training-events/ics-security-summit-2026', is_cert: false, cert_name: null },
   { course: 'wireshark', provider: 'Packet Pioneer', title: 'Wireshark Certified Analyst (WCA) — Complete Hands-On Course', format: 'self-paced', start_date: null, end_date: null, url: 'https://packetpioneer.com/courses/wca/', is_cert: false, cert_name: null },
