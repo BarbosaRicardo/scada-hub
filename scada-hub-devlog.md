@@ -1206,6 +1206,38 @@ All 30+ gap items added to punchlist. PDF recompiled to 5 pages after each cours
 
 ---
 
+### Session 26 — GIF Hero + Sidebar Training Button + Sidebar Starts Closed + LinkedIn + Modbus URL Fix
+
+- [x] **"More Training" button added to sidebar in all 8 guides** — New button below the Flashcards nav item. Opens a right-side drawer (`TrainingModal.jsx`) showing upcoming training and certifications for that course, fetched live from Supabase. Format icons, date ranges, amber cert badges, blue training items. Available from any page via sidebar (training panel also kept on home/intro page as second access point).
+- [x] **Sidebar starts closed** — Changed `useState(true)` → `useState(false)` for sidebar open state across all 8 guides. Previously the sidebar slid open on page load; now it's collapsed by default.
+- [x] **Learni Group Modbus URL fixed** — Original URL `g8hy1z` was 404. User provided correct URL: `training-modbus-expertise-terrain-vby4x5`. Updated in Supabase (direct DB query) and seed script.
+- [x] **LinkedIn Learning courses added** — One course per relevant guide added to Supabase `training_events`: Wireshark Essential Training, Learning PLC Ladder Logic (IEC 61131), Learning SCADA (Ignition), Learning Industrial Automation (OPC UA). Self-paced, no cert. Seed script updated.
+- [x] **Punchlist humanized** — All punchlist body text rewritten by general-purpose agent to be less AI-patterned. Scope lines, action verbs, and editorial voice made more direct. LaTeX structure, titles, and priority badges unchanged. PDF recompiled and copied to Desktop.
+- [x] **Course hero GIF + tooltip added to all 8 guides** — Each guide's home/intro page now shows a thematic GIF with a punny caption. Hovering reveals a dark overlay with a short explanation of why the GIF fits the course. `GifCard.jsx` updated with `tooltip` prop and `group-hover` CSS overlay. `gifs.js` in each guide updated with `courseHero` key. Details:
+  - Modbus: industrial automation PLC — *"Built in 1979. Still running."*
+  - OPC UA: dataflow subscription model — *"Universal translator of industrial protocols."*
+  - DNP3: fire/flames (this is fine) — *"Keeping the grid alive while everything else is on fire."*
+  - IEC 61131-3: robotics robot arm — *"Draw some rungs, connect some coils. Control a factory."*
+  - PID: math equation — *"Close. Almost. Just a little more integral. No — too much."*
+  - RTAC: arc protection relay — *"Millisecond decisions. 200 IEDs. No coffee break."*
+  - Ignition: celebration confetti — *"When your SCADA dashboard is prettier than your home screen."*
+  - Wireshark: hackerman — *"Finding the one bad packet in 40,000. You love to see it."*
+- [x] **All 8 guides built, committed, pushed** — GitHub Pages live for all 8.
+- [ ] **Vercel deploy — all 9 projects** — Still rate-limited (100/day free tier). Re-run `vercel --prod --yes` from each project root when limit resets.
+
+| Guide | Commit |
+|-------|--------|
+| Modbus | d306ab2 |
+| OPC UA | 79ffc3b |
+| DNP3 | 7b0f4c5 |
+| IEC 61131 | 3bfdf26 |
+| PID | 66d7487 |
+| RTAC | 03b76ec |
+| Ignition | 2ddd392 |
+| Wireshark | 1a4bf06 |
+
+---
+
 ## Session 19 — 2026-05-16
 
 ### Completed
