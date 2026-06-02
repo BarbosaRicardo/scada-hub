@@ -4,6 +4,7 @@ import AuthPage from './pages/AuthPage'
 import HeroSection from './components/HeroSection'
 import ArchitectureDiagram from './components/ArchitectureDiagram'
 import LearningPath from './components/LearningPath'
+import SkillsRoadmap from './components/SkillsRoadmap'
 import GuideGrid from './components/GuideGrid'
 import Footer from './components/Footer'
 
@@ -13,6 +14,7 @@ function HubContent() {
       <HeroSection />
       <ArchitectureDiagram />
       <LearningPath />
+      <SkillsRoadmap />
       <GuideGrid />
       <Footer />
     </div>

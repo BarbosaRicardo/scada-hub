@@ -67,8 +67,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg text-slate-400 max-w-xl mb-10 leading-relaxed"
         >
-          Eight structured study guides — protocols, standards, and platforms.
-          Everything you need to commission, configure, and troubleshoot industrial control systems.
+          Two tracks — SCADA Operations and RTAC Automation — built from your company's skills matrices.
+          Each track structured as five weekly levels, from foundation to expert.
         </motion.p>
 
         {/* CTAs */}
@@ -79,16 +79,22 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-3 mb-16"
         >
           <a
-            href="#guides"
+            href="#learning-path"
             className="px-7 py-3 bg-cyan-500 hover:bg-cyan-400 text-navy-800 font-bold rounded-lg transition-colors duration-150"
           >
-            Browse Guides
+            View Curriculum
           </a>
           <a
-            href="#learning-path"
+            href="#skills-roadmap"
             className="px-7 py-3 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-semibold rounded-lg transition-colors duration-150"
           >
-            View Learning Path
+            Skills Breakdown
+          </a>
+          <a
+            href="#guides"
+            className="px-7 py-3 border border-slate-700 hover:border-slate-500 text-slate-500 hover:text-slate-300 font-semibold rounded-lg transition-colors duration-150"
+          >
+            All Guides
           </a>
         </motion.div>
 
