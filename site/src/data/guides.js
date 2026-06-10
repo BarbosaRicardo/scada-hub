@@ -1,7 +1,4 @@
-const isGH = import.meta.env.BASE_URL !== '/'
-const guideUrl = (slug) => isGH
-  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
-  : `https://${slug}-study-guide.vercel.app/`
+const guideUrl = (slug) => `https://${slug}-study-guide.vercel.app/`
 
 // track: 'both' | 'scada' | 'rtac' | 'tool'
 export const GUIDES = [
