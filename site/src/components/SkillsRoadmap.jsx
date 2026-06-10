@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
-// All skills from both matrices, organized by track and week
+// All skills from both company matrices, organized by track and week
 const SCADA_SKILLS = [
   {
     week: 1,
@@ -353,33 +353,37 @@ const RTAC_COLOR = '#818cf8'
 
 function SkillCategory({ item, color }) {
   return (
-    <div
-      className="p-4 rounded-lg"
-      style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}
-    >
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <div className="flex items-center gap-2">
+    <div className="panel p-4">
+      <div className="flex items-start justify-between gap-2 mb-2.5">
+        <div className="flex items-center gap-2 min-w-0">
           <span
-            className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
-            style={{ background: `${color}18`, color }}
+            className="font-mono text-[10px] font-bold tracking-[0.14em] px-1.5 py-0.5 flex-shrink-0"
+            style={{ color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)` }}
           >
-            Wk {item.week}
+            WK {item.week}
           </span>
           <h4 className="text-white text-xs font-bold leading-tight">{item.category}</h4>
         </div>
         {item.gap && (
-          <span className="text-[10px] font-semibold text-amber-500 flex-shrink-0">⚠ Gap</span>
+          <span className="readout flex items-center gap-1.5 flex-shrink-0" style={{ color: 'var(--color-amber)' }}>
+            <span className="led led-blink" style={{ '--led-color': 'var(--color-amber)' }} aria-hidden="true" />
+            GAP
+          </span>
         )}
       </div>
       <ul className="space-y-1">
         {item.skills.map((s) => (
-          <li key={s} className="flex items-start gap-2 text-[11px] text-slate-500 leading-relaxed">
-            <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: `${color}80` }} />
+          <li key={s} className="flex items-start gap-2 text-[11px] text-ink-dim leading-relaxed">
+            <span
+              className="mt-1.5 w-1 h-1 flex-shrink-0"
+              style={{ background: `color-mix(in srgb, ${color} 55%, transparent)` }}
+              aria-hidden="true"
+            />
             {s}
           </li>
         ))}
       </ul>
-      <p className="mt-2 text-[10px] text-slate-600 font-medium">→ {item.guide}</p>
+      <p className="readout mt-2.5">→ {item.guide}</p>
     </div>
   )
 }
@@ -394,7 +398,7 @@ export default function SkillsRoadmap() {
   const gapCount = skills.filter((s) => s.gap).length
 
   return (
-    <section className="py-24 px-6 bg-navy-800" id="skills-roadmap">
+    <section className="py-24 px-4 sm:px-6 border-t border-line" id="skills-roadmap">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -404,72 +408,52 @@ export default function SkillsRoadmap() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-cyan-500 mb-3">
-            Skills Breakdown
-          </p>
+          <p className="readout text-phosphor mb-3">// Skills Breakdown</p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
             <h2 className="text-3xl sm:text-4xl font-black text-white">
               Every skill.<br className="hidden sm:block" /> Mapped to a week.
             </h2>
-            <p className="text-slate-500 text-sm max-w-xs sm:text-right">
-              Pulled directly from the company skills matrices. ⚠ flags indicate content not yet in any existing guide.
+            <p className="text-ink-dim text-sm max-w-xs sm:text-right">
+              Pulled directly from the company skills matrices. GAP flags mark content not yet in any guide.
             </p>
           </div>
 
           {/* Track toggle */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setActiveTrack('scada')}
-              className="text-xs font-semibold px-3 py-1.5 rounded transition-all duration-150"
-              style={
-                activeTrack === 'scada'
-                  ? { background: `${SCADA_COLOR}18`, color: SCADA_COLOR, border: `1px solid ${SCADA_COLOR}40` }
-                  : { background: 'rgba(255,255,255,0.04)', color: '#64748b', border: '1px solid rgba(255,255,255,0.06)' }
-              }
-            >
-              SCADA Operations
-            </button>
-            <button
-              onClick={() => setActiveTrack('rtac')}
-              className="text-xs font-semibold px-3 py-1.5 rounded transition-all duration-150"
-              style={
-                activeTrack === 'rtac'
-                  ? { background: `${RTAC_COLOR}18`, color: RTAC_COLOR, border: `1px solid ${RTAC_COLOR}40` }
-                  : { background: 'rgba(255,255,255,0.04)', color: '#64748b', border: '1px solid rgba(255,255,255,0.06)' }
-              }
-            >
-              RTAC Automation
-            </button>
+          <div className="flex gap-2" role="tablist" aria-label="Skills track">
+            {[
+              { id: 'scada', label: 'SCADA OPERATIONS', color: SCADA_COLOR },
+              { id: 'rtac', label: 'RTAC AUTOMATION', color: RTAC_COLOR },
+            ].map((t) => (
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={activeTrack === t.id}
+                onClick={() => setActiveTrack(t.id)}
+                className="font-mono text-[11px] font-bold tracking-[0.14em] px-3 py-1.5 transition-colors duration-150 cursor-pointer"
+                style={
+                  activeTrack === t.id
+                    ? { color: t.color, border: `1px solid color-mix(in srgb, ${t.color} 45%, transparent)`, background: `color-mix(in srgb, ${t.color} 8%, transparent)` }
+                    : { color: 'var(--color-ink-faint)', border: '1px solid var(--color-line)' }
+                }
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
         </motion.div>
 
-        {/* Summary stats */}
-        <motion.div
-          className="flex flex-wrap gap-x-8 gap-y-2 mb-8 pb-8 border-b text-sm"
-          style={{ borderColor: 'rgba(255,255,255,0.05)' }}
+        {/* Summary readout */}
+        <motion.p
+          className="readout mb-8 pb-8 border-b border-line"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <span>
-            <strong className="text-white font-bold">{skills.length}</strong>{' '}
-            <span className="text-slate-500">skill categories</span>
-          </span>
-          <span>
-            <strong className="text-white font-bold">{skills.reduce((a, s) => a + s.skills.length, 0)}</strong>{' '}
-            <span className="text-slate-500">individual competencies</span>
-          </span>
-          <span>
-            <strong className="text-white font-bold">{weeks.length}</strong>{' '}
-            <span className="text-slate-500">weeks to proficiency</span>
-          </span>
-          {gapCount > 0 && (
-            <span>
-              <strong className="text-amber-500 font-bold">{gapCount}</strong>{' '}
-              <span className="text-slate-500">content gaps (guide in development)</span>
-            </span>
+          {skills.length} CATEGORIES · {skills.reduce((a, s) => a + s.skills.length, 0)} COMPETENCIES ·{' '}
+          {weeks.length} WEEKS{gapCount > 0 && (
+            <span style={{ color: 'var(--color-amber)' }}> · {gapCount} GAP{gapCount > 1 ? 'S' : ''} (GUIDE IN DEVELOPMENT)</span>
           )}
-        </motion.div>
+        </motion.p>
 
         {/* Skills by week */}
         <div className="space-y-10">
@@ -485,17 +469,16 @@ export default function SkillsRoadmap() {
               >
                 {/* Week divider */}
                 <div className="flex items-center gap-4 mb-4">
-                  <div
-                    className="px-3 py-1 rounded font-black text-sm"
-                    style={{ background: `${color}15`, color }}
+                  <span
+                    className="font-mono text-sm font-bold tracking-[0.1em] px-3 py-1"
+                    style={{ color, background: `color-mix(in srgb, ${color} 10%, transparent)` }}
                   >
-                    Week {week}
-                  </div>
-                  <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.05)' }} />
-                  <span className="text-xs text-slate-600">{weekSkills.length} categories</span>
+                    WEEK {week}
+                  </span>
+                  <span className="flex-1 h-px bg-line" aria-hidden="true" />
+                  <span className="readout">{weekSkills.length} CATEGORIES</span>
                 </div>
 
-                {/* Categories grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {weekSkills.map((item) => (
                     <SkillCategory key={item.category} item={item} color={color} />

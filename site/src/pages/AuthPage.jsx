@@ -1,37 +1,37 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { supabase } from '../lib/supabase'
-import ScadaBackground from '../components/ScadaBackground'
-
-const TABS = ['login', 'register', 'forgot']
 
 const tabLabel = { login: 'Sign In', register: 'Create Account', forgot: 'Reset Password' }
 
 function FormInput({ label, type = 'text', value, onChange, placeholder, autoComplete }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{label}</label>
+    <div className="flex flex-col gap-1.5">
+      <label className="readout">{label}</label>
       <input
         type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500
-                   text-sm focus:outline-none focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/30 transition"
+        className="bg-panel-2 border border-line px-4 py-3 text-ink placeholder-ink-faint text-sm font-mono
+                   focus:outline-none focus:border-phosphor transition-colors"
       />
     </div>
   )
 }
 
 function Alert({ type, message }) {
-  const colors = type === 'error'
-    ? 'bg-red-900/30 border-red-700/50 text-red-300'
-    : 'bg-green-900/30 border-green-700/50 text-green-300'
+  const color = type === 'error' ? 'var(--color-alarm)' : '#4ade80'
   return (
-    <div className={`border rounded-xl px-4 py-3 text-sm ${colors}`}>
+    <p
+      className="border px-4 py-3 text-xs font-mono flex items-center gap-2"
+      style={{ color, borderColor: `color-mix(in srgb, ${color} 40%, transparent)`, background: `color-mix(in srgb, ${color} 6%, transparent)` }}
+      role="alert"
+    >
+      <span className="led" style={{ '--led-color': color }} aria-hidden="true" />
       {message}
-    </div>
+    </p>
   )
 }
 
@@ -63,7 +63,7 @@ function LoginForm({ onSwitch }) {
         label="Username or Email"
         type="text"
         value={login}
-        onChange={e => setLogin(e.target.value)}
+        onChange={(e) => setLogin(e.target.value)}
         placeholder="username or email"
         autoComplete="username"
       />
@@ -71,23 +71,18 @@ function LoginForm({ onSwitch }) {
         label="Password"
         type="password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder="••••••••"
         autoComplete="current-password"
       />
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-2 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/40 text-navy-900 font-bold
-                   py-3 rounded-xl transition text-sm tracking-wide"
-      >
-        {loading ? 'Signing in…' : 'Sign In'}
+      <button type="submit" disabled={loading} className="btn-console btn-console-primary mt-2 disabled:opacity-40">
+        {loading ? '[ Signing in… ]' : '[ Sign In ]'}
       </button>
-      <div className="flex justify-between text-xs text-slate-500 mt-1">
-        <button type="button" onClick={() => onSwitch('register')} className="hover:text-amber-400 transition">
+      <div className="flex justify-between mt-1">
+        <button type="button" onClick={() => onSwitch('register')} className="readout hover:text-phosphor transition-colors cursor-pointer">
           Create an account
         </button>
-        <button type="button" onClick={() => onSwitch('forgot')} className="hover:text-amber-400 transition">
+        <button type="button" onClick={() => onSwitch('forgot')} className="readout hover:text-phosphor transition-colors cursor-pointer">
           Forgot password?
         </button>
       </div>
@@ -137,7 +132,7 @@ function RegisterForm({ onSwitch }) {
         label="Email"
         type="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="you@example.com"
         autoComplete="email"
       />
@@ -145,7 +140,7 @@ function RegisterForm({ onSwitch }) {
         label="Password"
         type="password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder="Min 8 characters"
         autoComplete="new-password"
       />
@@ -153,20 +148,15 @@ function RegisterForm({ onSwitch }) {
         label="Confirm Password"
         type="password"
         value={confirm}
-        onChange={e => setConfirm(e.target.value)}
+        onChange={(e) => setConfirm(e.target.value)}
         placeholder="••••••••"
         autoComplete="new-password"
       />
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-2 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/40 text-navy-900 font-bold
-                   py-3 rounded-xl transition text-sm tracking-wide"
-      >
-        {loading ? 'Creating account…' : 'Create Account'}
+      <button type="submit" disabled={loading} className="btn-console btn-console-primary mt-2 disabled:opacity-40">
+        {loading ? '[ Creating account… ]' : '[ Create Account ]'}
       </button>
-      <div className="text-center text-xs text-slate-500 mt-1">
-        <button type="button" onClick={() => onSwitch('login')} className="hover:text-amber-400 transition">
+      <div className="text-center mt-1">
+        <button type="button" onClick={() => onSwitch('login')} className="readout hover:text-phosphor transition-colors cursor-pointer">
           Already have an account? Sign in
         </button>
       </div>
@@ -200,27 +190,22 @@ function ForgotForm({ onSwitch }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       {error && <Alert type="error" message={error} />}
       {success && <Alert type="success" message={success} />}
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-ink-dim">
         Enter the email address for your account and we'll send you a reset link.
       </p>
       <FormInput
         label="Email"
         type="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="you@example.com"
         autoComplete="email"
       />
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-2 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/40 text-navy-900 font-bold
-                   py-3 rounded-xl transition text-sm tracking-wide"
-      >
-        {loading ? 'Sending…' : 'Send Reset Link'}
+      <button type="submit" disabled={loading} className="btn-console btn-console-primary mt-2 disabled:opacity-40">
+        {loading ? '[ Sending… ]' : '[ Send Reset Link ]'}
       </button>
-      <div className="text-center text-xs text-slate-500 mt-1">
-        <button type="button" onClick={() => onSwitch('login')} className="hover:text-amber-400 transition">
+      <div className="text-center mt-1">
+        <button type="button" onClick={() => onSwitch('login')} className="readout hover:text-phosphor transition-colors cursor-pointer">
           Back to sign in
         </button>
       </div>
@@ -228,100 +213,74 @@ function ForgotForm({ onSwitch }) {
   )
 }
 
-export default function AuthPage() {
+export default function AuthPage({ onBack }) {
   const [tab, setTab] = useState('login')
 
   return (
-    <div className="min-h-screen bg-navy-800 flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Dot grid */}
-      <div className="absolute inset-0 dot-grid pointer-events-none" />
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div
+        className="absolute inset-0 scan-grid pointer-events-none opacity-40"
+        style={{ maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)' }}
+      />
 
-      {/* Animated SCADA network background */}
-      <ScadaBackground />
-
-      {/* Login card — sits above the SVG */}
       <motion.div
-        initial={{ opacity: 0, y: 24, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-md"
-        style={{ zIndex: 10 }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative w-full max-w-md z-10"
       >
         {/* Branding */}
-        <div className="text-center mb-6">
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="inline-flex items-center gap-3 mb-2"
-          >
-            {/* Logo mark — pulsing ring */}
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 rounded-xl border border-amber-500/40"
-                animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
-                transition={{ duration: 2.4, repeat: Infinity }}
-              />
-              <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/40
-                              flex items-center justify-center backdrop-blur-sm">
-                <span className="text-amber-400 text-base font-black tracking-tighter">SH</span>
-              </div>
-            </div>
-            <div className="text-left">
-              <div className="text-lg font-black text-slate-100 leading-none tracking-tight">SCADA Hub</div>
-              <div className="text-[10px] text-amber-500/70 font-mono tracking-widest uppercase">
-                Training Platform
-              </div>
-            </div>
-          </motion.div>
-
+        <div className="flex items-center justify-between mb-4">
+          <span className="readout flex items-center gap-2">
+            <span className="led led-blink" aria-hidden="true" />
+            SCADA·HUB // Operator Access
+          </span>
+          {onBack && (
+            <button onClick={onBack} className="readout hover:text-phosphor transition-colors cursor-pointer">
+              ← BACK
+            </button>
+          )}
         </div>
 
         {/* Card */}
-        <div
-          className="rounded-2xl p-8 backdrop-blur-md shadow-2xl"
-          style={{
-            background: 'rgba(8, 20, 40, 0.82)',
-            border: '1px solid rgba(251,191,36,0.12)',
-            boxShadow: '0 0 40px rgba(251,191,36,0.06), 0 25px 50px rgba(0,0,0,0.5)',
-          }}
-        >
+        <div className="panel panel-bracket p-8">
           {/* Tab selector */}
-          <div className="flex gap-1 rounded-xl p-1 mb-6"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-            {TABS.filter(t => t !== 'forgot').map(t => (
+          <div className="flex border border-line mb-6" role="tablist" aria-label="Auth mode">
+            {['login', 'register'].map((t) => (
               <button
                 key={t}
+                role="tab"
+                aria-selected={tab === t}
                 onClick={() => setTab(t)}
-                className={`flex-1 py-2 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 ${
+                className="flex-1 py-2.5 font-mono text-[11px] font-bold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer"
+                style={
                   tab === t
-                    ? 'bg-amber-500 text-slate-900 shadow-lg'
-                    : 'text-slate-500 hover:text-slate-300'
-                }`}
+                    ? { color: 'var(--color-phosphor)', background: 'color-mix(in srgb, var(--color-phosphor) 8%, transparent)' }
+                    : { color: 'var(--color-ink-faint)' }
+                }
               >
                 {tabLabel[t]}
               </button>
             ))}
           </div>
 
-          {/* Form */}
           <AnimatePresence mode="wait">
             <motion.div
               key={tab}
-              initial={{ opacity: 0, x: 12 }}
+              initial={{ opacity: 0, x: 8 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -12 }}
-              transition={{ duration: 0.18 }}
+              exit={{ opacity: 0, x: -8 }}
+              transition={{ duration: 0.15 }}
             >
-              <h2 className="text-base font-bold text-slate-100 mb-5 tracking-wide">{tabLabel[tab]}</h2>
-              {tab === 'login'    && <LoginForm onSwitch={setTab} />}
+              <h2 className="font-mono text-sm font-bold tracking-[0.1em] uppercase text-ink mb-5">{tabLabel[tab]}</h2>
+              {tab === 'login' && <LoginForm onSwitch={setTab} />}
               {tab === 'register' && <RegisterForm onSwitch={setTab} />}
-              {tab === 'forgot'   && <ForgotForm onSwitch={setTab} />}
+              {tab === 'forgot' && <ForgotForm onSwitch={setTab} />}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <p className="text-center text-[10px] font-mono text-slate-700 mt-5">
+        <p className="text-center font-mono text-[10px] text-ink-faint mt-5">
           ⚡ Ohm my, that's a lot of protocols.
         </p>
       </motion.div>

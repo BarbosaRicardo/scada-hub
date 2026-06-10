@@ -1,11 +1,8 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Monitor, Network, Cpu, Radio, Code2, Activity, Settings } from 'lucide-react'
-
-const isGH = import.meta.env.BASE_URL !== '/'
-const guideUrl = (slug) => isGH
-  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
-  : `https://${slug}-study-guide.vercel.app/`
+import { useAuth } from '../contexts/AuthContext'
+import { guideUrl, guideBaseUrl } from '../lib/guideUrl'
 
 const LAYERS = [
   {
@@ -13,37 +10,34 @@ const LAYERS = [
     label: 'HMI / SCADA',
     sublabel: 'Ignition SCADA Platform',
     icon: Monitor,
-    accentColor: 'rgba(168,85,247,0.8)',
-    url: guideUrl('ignition'),
-    guide: 'Ignition SCADA Guide',
+    accentColor: '#a855f7',
+    url: guideBaseUrl('ignition'),
   },
   {
     id: 'opcua',
     label: 'OPC UA / Gateway Layer',
     sublabel: 'Unified Architecture · Secure Channels · Session Management',
     icon: Network,
-    accentColor: 'rgba(139,92,246,0.8)',
-    url: guideUrl('opcua'),
-    guide: 'OPC UA Guide',
+    accentColor: '#8b5cf6',
+    url: guideBaseUrl('opcua'),
   },
   {
     id: 'rtac',
     label: 'SEL RTAC / Protocol Concentrator',
     sublabel: 'SEL-3530/3555 · Multi-protocol gateway · IEC 61850 GOOSE',
     icon: Cpu,
-    accentColor: 'rgba(99,102,241,0.8)',
-    url: guideUrl('rtac'),
-    guide: 'SEL RTAC Guide',
+    accentColor: '#6366f1',
+    url: guideBaseUrl('rtac'),
   },
   {
     id: 'protocols',
     label: 'Field Protocols',
     sublabel: 'DNP3 · Modbus RTU/TCP · IEC 61850 · Serial & Ethernet',
     icon: Radio,
-    accentColor: 'rgba(59,130,246,0.8)',
+    accentColor: '#3b82f6',
     urls: [
-      { label: 'DNP3 Guide', url: guideUrl('dnp3') },
-      { label: 'Modbus Guide', url: guideUrl('modbus') },
+      { label: 'DNP3', url: guideBaseUrl('dnp3') },
+      { label: 'Modbus', url: guideBaseUrl('modbus') },
     ],
   },
   {
@@ -51,137 +45,146 @@ const LAYERS = [
     label: 'IEC 61131-3 Controllers',
     sublabel: 'Structured Text · Ladder · Function Block · SFC',
     icon: Code2,
-    accentColor: 'rgba(20,184,166,0.8)',
-    url: guideUrl('iec61131'),
-    guide: 'IEC 61131-3 Guide',
+    accentColor: '#14b8a6',
+    url: guideBaseUrl('iec61131'),
   },
   {
     id: 'pid',
     label: 'PID Control Loops',
     sublabel: 'Proportional · Integral · Derivative · Process Dynamics',
     icon: Activity,
-    accentColor: 'rgba(16,185,129,0.8)',
-    url: guideUrl('pid'),
-    guide: 'PID Controllers Guide',
+    accentColor: '#10b981',
+    url: guideBaseUrl('pid'),
   },
   {
     id: 'field',
     label: 'Field Devices',
     sublabel: 'RTUs · PLCs · IEDs · Sensors · Transducers · Actuators',
     icon: Settings,
-    accentColor: 'rgba(100,116,139,0.6)',
+    accentColor: '#64748b',
     url: null,
-    guide: null,
   },
 ]
 
-function ArrowConnector({ index }) {
+function FlowConnector() {
   return (
-    <div className="flex items-center justify-center h-4 mx-auto w-8">
-      <svg width="16" height="16" viewBox="0 0 16 16">
-        <motion.line
-          x1="8" y1="0" x2="8" y2="10"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth="1.5"
-          strokeDasharray="3 2"
-          animate={{ strokeDashoffset: [0, -10] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'linear', delay: index * 0.1 }}
+    <div className="flex justify-center h-5 ml-6" aria-hidden="true">
+      <svg width="2" height="20" viewBox="0 0 2 20">
+        <line
+          x1="1" y1="0" x2="1" y2="20"
+          stroke="var(--color-phosphor-dim)"
+          strokeWidth="2"
+          strokeDasharray="4 3"
+          className="flow-dash"
         />
-        <polygon points="8,16 4,9 12,9" fill="rgba(255,255,255,0.15)" />
       </svg>
     </div>
   )
 }
 
-function LayerCard({ layer, animIndex }) {
+function RackUnit({ layer, index, session }) {
   const Icon = layer.icon
+  const href = layer.url ? guideUrl(layer.url, session) : null
 
-  const handleClick = () => {
-    const target = layer.url || layer.urls?.[0]?.url
-    if (target) window.open(target, '_blank', 'noopener,noreferrer')
-  }
+  const inner = (
+    <>
+      {/* Rack ear */}
+      <span
+        className="hidden sm:flex flex-col justify-center gap-1.5 border-r border-line px-2.5"
+        aria-hidden="true"
+      >
+        <span className="led" style={{ '--led-color': layer.accentColor }} />
+      </span>
+
+      <span className="w-10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+        <Icon size={18} strokeWidth={1.5} style={{ color: layer.accentColor }} />
+      </span>
+
+      <span className="flex-1 min-w-0 py-3 pr-3">
+        <span className="block font-mono text-xs sm:text-sm font-bold tracking-[0.08em] uppercase text-ink leading-tight">
+          {layer.label}
+        </span>
+        <span className="block text-[11px] text-ink-dim mt-0.5 truncate">{layer.sublabel}</span>
+      </span>
+
+      {href && (
+        <span className="readout pr-4 hidden sm:block group-hover:text-phosphor transition-colors">
+          OPEN →
+        </span>
+      )}
+      {layer.urls && (
+        <span className="flex gap-2 pr-4">
+          {layer.urls.map((u) => (
+            <a
+              key={u.label}
+              href={guideUrl(u.url, session)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="readout hover:text-phosphor transition-colors"
+            >
+              {u.label} →
+            </a>
+          ))}
+        </span>
+      )}
+    </>
+  )
+
+  const className =
+    'group panel flex items-stretch w-full text-left transition-colors duration-200 hover:border-line-bright'
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -16 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.4, delay: animIndex * 0.07, ease: 'easeOut' }}
+      transition={{ duration: 0.35, delay: index * 0.05 }}
     >
-      <div
-        className="group relative flex items-center gap-4 px-4 py-3.5 rounded-lg cursor-pointer transition-colors duration-150"
-        style={{
-          background: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(255,255,255,0.06)',
-          borderLeft: `3px solid ${layer.accentColor}`,
-        }}
-        onClick={handleClick}
-        onMouseEnter={e => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
-        }}
-      >
-        <Icon size={16} strokeWidth={1.5} style={{ color: layer.accentColor, flexShrink: 0 }} />
-
-        <div className="flex-1 min-w-0">
-          <div className="font-semibold text-slate-200 text-sm leading-tight">{layer.label}</div>
-          <div className="text-slate-500 text-xs mt-0.5 truncate">{layer.sublabel}</div>
-        </div>
-
-        {(layer.url || layer.urls) && (
-          <span className="text-slate-700 group-hover:text-slate-400 transition-colors duration-150 text-xs flex-shrink-0">
-            {layer.guide ? `${layer.guide} →` : '→'}
-          </span>
-        )}
-      </div>
+      {href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+          {inner}
+        </a>
+      ) : (
+        <div className={className}>{inner}</div>
+      )}
     </motion.div>
   )
 }
 
 export default function ArchitectureDiagram() {
+  const { session } = useAuth()
+
   return (
-    <section className="py-24 px-6 bg-slate-900" id="architecture">
+    <section className="py-24 px-4 sm:px-6 border-t border-line" id="architecture">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <motion.div
-          className="mb-10"
+          className="mb-12"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-cyan-500 mb-3">
-            System Architecture
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">
-            The Full SCADA Stack
-          </h2>
-          <p className="text-slate-500 text-sm">
-            Data flows from physical field devices up to the HMI. Click any layer to open its study guide.
-          </p>
+          <p className="readout text-phosphor mb-3">// Stack Architecture</p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">The full SCADA stack.</h2>
+            <p className="text-ink-dim text-sm max-w-xs sm:text-right">
+              Data flows from field devices up to the HMI. Click a layer to open its guide.
+            </p>
+          </div>
         </motion.div>
 
-        {/* Stack */}
+        {/* Rack */}
         <div className="flex flex-col">
           {LAYERS.map((layer, i) => (
             <React.Fragment key={layer.id}>
-              <LayerCard layer={layer} animIndex={LAYERS.length - 1 - i} />
-              {i < LAYERS.length - 1 && <ArrowConnector index={i} />}
+              <RackUnit layer={layer} index={i} session={session} />
+              {i < LAYERS.length - 1 && <FlowConnector />}
             </React.Fragment>
           ))}
         </div>
 
-        <motion.p
-          className="text-xs text-slate-600 mt-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-        >
-          Arrows show data flow direction (field → HMI). Hover a layer to see its study guide.
-        </motion.p>
+        <p className="readout mt-8">DATA FLOW: FIELD → HMI · ALL CHANNELS NOMINAL</p>
       </div>
     </section>
   )

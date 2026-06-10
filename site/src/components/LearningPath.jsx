@@ -1,31 +1,8 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import {
-  Network, Globe, Zap, Code2, Sliders, Server, LayoutDashboard, ScanSearch,
-} from 'lucide-react'
+import { motion } from 'motion/react'
+import { Server, LayoutDashboard } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-
-const isGH = import.meta.env.BASE_URL !== '/'
-const baseUrl = (slug) => isGH
-  ? `https://barbosaricardo.github.io/${slug}-study-guide/`
-  : `https://${slug}-study-guide.vercel.app/`
-
-function guideUrl(url, session) {
-  if (!session) return url
-  const { access_token, refresh_token } = session
-  return `${url}#access_token=${access_token}&refresh_token=${refresh_token}&expires_in=3600&token_type=bearer&type=recovery`
-}
-
-const GUIDE_URLS = {
-  Modbus: baseUrl('modbus'),
-  'OPC UA': baseUrl('opcua'),
-  DNP3: baseUrl('dnp3'),
-  'IEC 61131-3': baseUrl('iec61131'),
-  'SEL RTAC': baseUrl('rtac'),
-  'Ignition SCADA': baseUrl('ignition'),
-  'PID Controllers': baseUrl('pid'),
-  Wireshark: baseUrl('wireshark'),
-}
+import { guideUrl, GUIDE_URLS } from '../lib/guideUrl'
 
 const SCADA_TRACK = [
   {
@@ -172,42 +149,38 @@ function WeekCard({ level, color, session }) {
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.4, delay: level.week * 0.05 }}
-      className="relative flex flex-col gap-3 p-5 rounded-lg"
-      style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.06)' }}
+      transition={{ duration: 0.35 }}
+      className="panel relative flex flex-col gap-3 p-5"
     >
-      {/* Week badge */}
+      {/* Week rail */}
       <div className="flex items-center gap-2">
         <span
-          className="text-[10px] font-black uppercase tracking-[0.15em] px-2 py-0.5 rounded"
-          style={{ background: `${color}18`, color }}
+          className="font-mono text-[10px] font-bold tracking-[0.18em] px-2 py-0.5"
+          style={{ color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)` }}
         >
-          Week {level.week}
+          WK {String(level.week).padStart(2, '0')}
         </span>
-        {level.comingSoon && (
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-600 px-2 py-0.5 rounded bg-slate-800">
-            In Development
-          </span>
-        )}
+        <span className="flex-1 h-px" style={{ background: 'var(--color-line)' }} aria-hidden="true" />
       </div>
 
-      {/* Title + desc */}
       <div>
         <h4 className="font-bold text-white text-sm leading-tight mb-1">{level.title}</h4>
-        <p className="text-slate-500 text-xs leading-relaxed">{level.desc}</p>
+        <p className="text-ink-dim text-xs leading-relaxed">{level.desc}</p>
       </div>
 
-      {/* Skills list */}
-      <ul className="space-y-1">
+      <ul className="space-y-1.5">
         {level.skills.map((skill) => (
-          <li key={skill} className="flex items-start gap-2 text-xs text-slate-400">
-            <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
+          <li key={skill} className="flex items-start gap-2 text-xs text-ink-dim leading-relaxed">
+            <span
+              className="mt-1.5 w-1.5 h-1.5 flex-shrink-0"
+              style={{ background: `color-mix(in srgb, ${color} 70%, transparent)` }}
+              aria-hidden="true"
+            />
             {skill}
           </li>
         ))}
       </ul>
 
-      {/* Guide links */}
       <div className="flex flex-wrap gap-2 pt-1">
         {level.guides.map((g) => (
           <a
@@ -215,8 +188,8 @@ function WeekCard({ level, color, session }) {
             href={guideUrl(GUIDE_URLS[g], session)}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-semibold px-2 py-0.5 rounded transition-opacity duration-150 hover:opacity-80"
-            style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}
+            className="font-mono text-[11px] font-semibold tracking-wide px-2 py-1 transition-opacity duration-150 hover:opacity-75"
+            style={{ color, border: `1px solid color-mix(in srgb, ${color} 30%, transparent)` }}
           >
             {g} →
           </a>
@@ -229,21 +202,19 @@ function WeekCard({ level, color, session }) {
 function TrackColumn({ title, subtitle, color, levels, icon: Icon, session }) {
   return (
     <div className="flex flex-col gap-4">
-      {/* Track header */}
-      <div className="flex items-center gap-3 pb-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+      <div className="flex items-center gap-3 pb-4 border-b border-line">
         <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-          style={{ background: `${color}15` }}
+          className="w-9 h-9 flex items-center justify-center flex-shrink-0"
+          style={{ background: `color-mix(in srgb, ${color} 12%, transparent)`, border: `1px solid color-mix(in srgb, ${color} 30%, transparent)` }}
         >
-          <Icon size={18} strokeWidth={1.5} style={{ color }} />
+          <Icon size={18} strokeWidth={1.5} style={{ color }} aria-hidden="true" />
         </div>
         <div>
-          <p className="font-black text-white text-base leading-tight">{title}</p>
-          <p className="text-xs text-slate-500 leading-tight mt-0.5">{subtitle}</p>
+          <p className="font-mono font-bold text-white text-sm tracking-[0.08em] uppercase leading-tight">{title}</p>
+          <p className="readout mt-1">{subtitle}</p>
         </div>
       </div>
 
-      {/* Level cards */}
       {levels.map((level) => (
         <WeekCard key={level.week} level={level} color={color} session={session} />
       ))}
@@ -251,12 +222,18 @@ function TrackColumn({ title, subtitle, color, levels, icon: Icon, session }) {
   )
 }
 
+const TRACK_TABS = [
+  { id: 'both', label: 'BOTH TRACKS' },
+  { id: 'scada', label: 'SCADA OPERATIONS' },
+  { id: 'rtac', label: 'RTAC AUTOMATION' },
+]
+
 export default function LearningPath() {
   const { session } = useAuth()
   const [activeTrack, setActiveTrack] = useState('both')
 
   return (
-    <section className="py-24 px-6 bg-slate-900" id="learning-path">
+    <section className="py-24 px-4 sm:px-6 border-t border-line" id="learning-path">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -266,33 +243,29 @@ export default function LearningPath() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-cyan-500 mb-3">
-            Structured Curriculum
-          </p>
+          <p className="readout text-phosphor mb-3">// Structured Curriculum</p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
             <h2 className="text-3xl sm:text-4xl font-black text-white">
               Two tracks.<br className="hidden sm:block" /> One stack.
             </h2>
-            <p className="text-slate-500 text-sm max-w-xs sm:text-right">
+            <p className="text-ink-dim text-sm max-w-xs sm:text-right">
               Complete either track in 5–6 weeks. Each week builds directly on the last.
             </p>
           </div>
 
-          {/* Track toggle */}
-          <div className="flex gap-2 flex-wrap">
-            {[
-              { id: 'both', label: 'Both Tracks' },
-              { id: 'scada', label: 'SCADA Operations' },
-              { id: 'rtac', label: 'RTAC Automation' },
-            ].map((t) => (
+          {/* Track selector */}
+          <div className="flex gap-2 flex-wrap" role="tablist" aria-label="Track filter">
+            {TRACK_TABS.map((t) => (
               <button
                 key={t.id}
+                role="tab"
+                aria-selected={activeTrack === t.id}
                 onClick={() => setActiveTrack(t.id)}
-                className="text-xs font-semibold px-3 py-1.5 rounded transition-all duration-150"
+                className="font-mono text-[11px] font-bold tracking-[0.14em] px-3 py-1.5 transition-colors duration-150 cursor-pointer"
                 style={
                   activeTrack === t.id
-                    ? { background: 'rgba(34,211,238,0.15)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }
-                    : { background: 'rgba(255,255,255,0.04)', color: '#64748b', border: '1px solid rgba(255,255,255,0.06)' }
+                    ? { color: 'var(--color-phosphor)', border: '1px solid color-mix(in srgb, var(--color-phosphor) 45%, transparent)', background: 'color-mix(in srgb, var(--color-phosphor) 8%, transparent)' }
+                    : { color: 'var(--color-ink-faint)', border: '1px solid var(--color-line)' }
                 }
               >
                 {t.label}
@@ -301,7 +274,7 @@ export default function LearningPath() {
           </div>
         </motion.div>
 
-        {/* Two-column track layout */}
+        {/* Track columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {(activeTrack === 'both' || activeTrack === 'scada') && (
             <TrackColumn
@@ -325,15 +298,9 @@ export default function LearningPath() {
           )}
         </div>
 
-        <motion.p
-          className="mt-8 text-xs text-slate-600"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-        >
-          Protocol guides (Modbus, DNP3, OPC UA) are shared prerequisites — referenced by both tracks at the levels where each protocol appears.
-        </motion.p>
+        <p className="readout mt-10">
+          NOTE: Protocol guides (Modbus, DNP3, OPC UA) are shared prerequisites — referenced by both tracks.
+        </p>
       </div>
     </section>
   )
