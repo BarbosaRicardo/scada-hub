@@ -8,6 +8,10 @@
     {
       "path": "/api/refresh-training",
       "schedule": "0 6 * * 1"
+    },
+    {
+      "path": "/api/keep-alive",
+      "schedule": "0 12 * * *"
     }
   ]
 }
